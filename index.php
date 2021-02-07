@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'vendor/autoload.php';
+// require 'vendor/autoload.php';
 
 require('controller/Administration.php');
 
@@ -104,35 +104,35 @@ if (isset($_SESSION['user-akoyprestation'])) {
             } else { // Ajout Ville
                 if (!empty($_POST)) {
                     $data = $_POST;
-                    $ville = new ville($data);
+                    $ville = new villes($data);
                     $res = insert($ville);
 
                     $_SESSION['messages'] = $res;
                 }
             }
             require_once("view/villeView.php");
-        } elseif ($action == 'pays') { //View Ville
-            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'une ville
-                if (!empty($_POST)) {
-                    $data = $_POST;
-                    //var_dump($data);
-                    //die();
-                    $res = Manager::updateData($data, 'pays', 'id', $_GET['modif']);
-                    if ($res['code'] = 200) {
-                        header('Location: index.php?action=pays');
-                    }
-                }
-            } else { // Ajout Ville
-                if (!empty($_POST)) {
-                    $data = $_POST;
-                    $pays = new country($data);
-                    //var_dump($pays); die;
-                    $res = insert($pays);
+        // } elseif ($action == 'pays') { //View Ville
+        //     if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'une ville
+        //         if (!empty($_POST)) {
+        //             $data = $_POST;
+        //             //var_dump($data);
+        //             //die();
+        //             $res = Manager::updateData($data, 'pays', 'id', $_GET['modif']);
+        //             if ($res['code'] = 200) {
+        //                 header('Location: index.php?action=pays');
+        //             }
+        //         }
+        //     } else { // Ajout Ville
+        //         if (!empty($_POST)) {
+        //             $data = $_POST;
+        //             $pays = new country($data);
+        //             //var_dump($pays); die;
+        //             $res = insert($pays);
 
-                    $_SESSION['messages'] = $res;
-                }
-            }
-            require_once("view/paysView.php");
+        //             $_SESSION['messages'] = $res;
+        //         }
+        //     }
+        //     require_once("view/paysView.php");
         } elseif ($action == 'langue') { //View livre
             if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'une ville
                 if (!empty($_POST)) {
@@ -147,7 +147,7 @@ if (isset($_SESSION['user-akoyprestation'])) {
             } else { // Ajout livre
                 if (!empty($_POST)) {
                     $data = $_POST;
-                    $langue = new langues($data);
+                    //$langue = new langues($data);
                     //var_dump($langue); die;
                     $res = insert($langue);
 
@@ -155,28 +155,28 @@ if (isset($_SESSION['user-akoyprestation'])) {
                 }
             }
             require_once("view/langueView.php");
-        } elseif ($action == 'statut') { //View livre
-            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'une ville
-                if (!empty($_POST)) {
-                    $data = $_POST;
-                    //var_dump($data);
-                    //die();
-                    $res = Manager::updateData($data, 'statuts', 'id', $_GET['modif']);
-                    if ($res['code'] = 200) {
-                        header('Location: index.php?action=statut');
-                    }
-                }
-            } else { // Ajout Ville
-                if (!empty($_POST)) {
-                    $data = $_POST;
-                    $statut = new statuts($data);
-                    //var_dump($statut); die;
-                    $res = insert($statut);
+        // } elseif ($action == 'statut') { //View livre
+        //     if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'une ville
+        //         if (!empty($_POST)) {
+        //             $data = $_POST;
+        //             //var_dump($data);
+        //             //die();
+        //             $res = Manager::updateData($data, 'statuts', 'id', $_GET['modif']);
+        //             if ($res['code'] = 200) {
+        //                 header('Location: index.php?action=statut');
+        //             }
+        //         }
+        //     } else { // Ajout Ville
+        //         if (!empty($_POST)) {
+        //             $data = $_POST;
+        //             $statut = new statuts($data);
+        //             //var_dump($statut); die;
+        //             $res = insert($statut);
 
-                    $_SESSION['messages'] = $res;
-                }
-            }
-            require_once("view/statutView.php");
+        //             $_SESSION['messages'] = $res;
+        //         }
+        //     }
+        //     require_once("view/statutView.php");
         } elseif ($action == 'traduction') { //View annonce
             if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'une annonce
                 if (!empty($_POST)) {
@@ -257,8 +257,10 @@ if (isset($_SESSION['user-akoyprestation'])) {
     }
 } elseif (isset($_GET['signup'])) {
     if (!empty($_POST)) {
+        // die(var_dump($_POST));
         $res = UserManager::activeUser($_POST);
         //print_r($_POST); die;
+        die(var_dump($res));
         if ($res != 1) {
             $_SESSION['messages'] = $res;
         } else {
@@ -268,7 +270,6 @@ if (isset($_SESSION['user-akoyprestation'])) {
     require('view/registerView.php');
 } elseif (isset($_GET['login'])) {
     if (!empty($_POST)) {
-
         $res = UserManager::connectUser($_POST);
         if ($res != 1) {
             $_SESSION['messages'] = $res;
@@ -295,7 +296,6 @@ if (isset($_SESSION['user-akoyprestation'])) {
         require('view/loginViewMobile.php');
     } else {
         if (!empty($_POST)) {
-
             $res = UserManager::connectUser($_POST);
             if ($res != 1) {
                 $_SESSION['messages'] = $res;

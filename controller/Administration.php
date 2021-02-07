@@ -9,7 +9,7 @@ include_once('model/database/villes.php');
 include_once('model/database/categories_publication.php');
 include_once('model/database/cv.php');
 include_once('model/database/ecole.php');
-include_once('model/database/files.php');
+//include_once('model/database/files.php');
 include_once('model/database/module_role.php');
 include_once('model/database/publications.php');
 include_once('model/database/type_publication.php');
@@ -69,11 +69,11 @@ function setActionUrl($name)
 
 function getModules()
 {
-    $res = Manager::getData('module_role', 'role_id', $_SESSION['user-iniger']['roleId']);
-    $_SESSION['user-iniger']['roles']['modules'] = $res;
+    $res = Manager::getData('module_role', 'role_id', $_SESSION['user-akoyprestation']['roleId']);
+    $_SESSION['user-akoyprestation']['roles']['modules'] = $res;
     $sql ="select action_url from module where sub_module=?";
-    $res = Manager::getMultiplesRecords($sql, [$res['data']['module']]);
-    $_SESSION['user-iniger']['roles']['modules_action'] = $res;
+    $res = Manager::getMultiplesRecords($sql, [$res['data']['module_id']]);
+    $_SESSION['user-akoyprestation']['roles']['modules_action'] = $res;
 }
 
 function getActions($moduleId)
@@ -89,7 +89,7 @@ function haveAction($role, $module)
 {
    $res = array();
    // Manager::showError($module)
-   $sql = "SELECT * FROM module_role WHERE role_id=? AND module=?";
+   $sql = "SELECT * FROM module_role WHERE role_id=? AND module_id=?";
    $res = Manager::getMultiplesRecords($sql, [$role, $module]);
    if ((is_array($res) || is_object($res)) && count($res)>0) {
        return true;
