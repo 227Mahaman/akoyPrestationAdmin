@@ -260,7 +260,7 @@ class Manager
         // die(var_dump($msg));
         echo  '<div class="alert ' . $type . ' alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4><i class="icon fa '.$font.'"></i> iniger!</h4>
+        <h4><i class="icon fa '.$font.'"></i> AkoyPrestation!</h4>
         ' . $msg . '
       </div>';
     }
@@ -274,7 +274,7 @@ class Manager
     {
         $url = API_ROOT_PATH . "/history_data";
         $data = array();
-        $data['created_by'] = $_SESSION['user-iniger']['id'];
+        $data['created_by'] = $_SESSION['user-akoyprestation']['id'];
         $data['action'] = 'ajout';
         $data['table_name'] = $table;
         $data['table_id'] = $lastId;
