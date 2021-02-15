@@ -30,7 +30,7 @@ $this->config['tables']['module'] = ['id','name','icon','description','action_ur
 
 $this->config['tables']['categories_publication']['id'] = ['id'];$this->config['tables']['cv']['id'] = ['id'];$this->config['tables']['ecole']['id'] = ['id'];$this->config['tables']['files']['id'] = ['id'];$this->config['tables']['langues']['id'] = ['id'];$this->config['tables']['module']['id'] = ['id'];
 
-$this->config['tables']['module_role'] = ['id','role_id','module_id','create_at',];
+$this->config['tables']['module_role'] = ['id','role_id','module','create_at',];
 
 $this->config['tables']['categories_publication']['id'] = ['id'];$this->config['tables']['cv']['id'] = ['id'];$this->config['tables']['ecole']['id'] = ['id'];$this->config['tables']['files']['id'] = ['id'];$this->config['tables']['langues']['id'] = ['id'];$this->config['tables']['module']['id'] = ['id'];$this->config['tables']['module_role']['id'] = ['id'];
 

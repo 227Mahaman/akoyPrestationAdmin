@@ -30,9 +30,9 @@
                         <div class="auth-box-right">
                             <div class="card">
                                 <div class="card-body">
-                                    <form method="POST">
+                                    <form action="#" method="POST">
                                         <div class="form-head">
-                                            <a href="index.html" class="logo"><img src="public/img/#" class="img-fluid" alt="logo"></a>
+                                            <a href="index.html" class="logo"><img src="public/img/logoIslamNiger.png" class="img-fluid" alt="logo"></a>
                                         </div>                                        
                                         <h4 class="text-success my-4">Se connecter !</h4>
                                         <div class="form-group">
@@ -43,6 +43,10 @@
                                         </div>
                                         <div class="form-row mb-3">
                                             <div class="col-sm-6">
+                                                <!-- <div class="custom-control custom-checkbox text-left">
+                                                  <input type="checkbox" class="custom-control-input" id="rememberme">
+                                                  <label class="custom-control-label font-14" for="rememberme">Remember Me</label>
+                                                </div>                                 -->
                                             </div>
                                             <div class="col-sm-6">
                                               <div class="forgot-psw"> 
@@ -52,6 +56,14 @@
                                         </div>                          
                                       <button type="submit" class="btn btn-success btn-lg btn-block font-18">Se connecter</button>
                                     </form>
+                                    <!-- <div class="login-or">
+                                        <h6 class="text-muted">OR</h6>
+                                    </div>
+                                    <div class="social-login text-center">
+                                        <button type="submit" class="btn btn-success-rgba font-18"><i class="mdi mdi-facebook mr-2"></i>Facebook</button>
+                                        <button type="submit" class="btn btn-danger-rgba font-18"><i class="mdi mdi-google mr-2"></i>Google</button>
+                                    </div>
+                                    <p class="mb-0 mt-3">Don't have a account? <a href="user-register.html">Sign up</a></p> -->
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,9 @@
 <?php
-$title = "Rôle";
+$title = "Pays";
+if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
+  $title = "Modifier du pays";
+  $datas = Manager::getData("pays", "id", $_GET['modif'])['data'];
+}
 // ob_start();
 ?>
 <div class="breadcrumbbar">
@@ -9,6 +13,8 @@ $title = "Rôle";
       <div class="breadcrumb-list">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
+          <!-- <li class="breadcrumb-item"><a href="#"><?= $title ?></a></li>
+                                <li class="breadcrumb-item"><a href="#">Basic</a></li> -->
           <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
         </ol>
       </div>
@@ -20,27 +26,22 @@ $title = "Rôle";
   <div class="row">
     <div class="col-md-6">
       <!-- general form elements -->
-      <div class="card m-b-30">
+      <div class="card">
         <div class="card-header with-border">
           <h3 class="card-title"><?= $title ?></h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form  id="roleForm" method="post">
+        <form id="paysForm" role="form" method="post">
           <div class="card-body">
             <div class="form-group">
-              <label for="name">Nom du role</label>
-              <input type="text" required class="form-control" id="name" name="name" placeholder="Le nom du rôle">
+              <label for="name">Nom du pays</label>
+              <input type="text" required class="form-control" id="name" name="name" value="<?= (!empty($_GET['modif'])) ? $datas['name'] : "" ?>" placeholder="veuille saisir le pays">
             </div>
-            <div class="form-group">
-              <label for="description">Description</label>
-              <textarea required class="form-control" id="description" name="description" placeholder="description du rôle"></textarea>
-            </div>
+            
           </div>
-          <!-- /.card-body -->
-
           <div class="card-footer">
-            <button type="submit" onclick="postData('roleForm', 'role')" class="btn btn-success"><?= $GLOBALS['lang']['btn-valid'] ?? 'valider' ?></button>
+            <button type="submit" onclick="postData('paysForm', 'pays'<?= (!empty($_GET['modif']) ? ', ' . $_GET['modif'] : '') ?>)" class="btn btn-success"><?= $GLOBALS['lang']['btn-valid'] ?? 'valider' ?></button>
             <p id="postMessage">
 
             </p>
@@ -61,20 +62,19 @@ $title = "Rôle";
     <div class="col-md-6">
       <div class="card">
         <div class="card-header with-border">
-          <h3 class="card-title">Rôles</h3>
+          <h3 class="card-title"><?= $title ?></h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
           <table class="table table-bordered">
             <tbody>
               <tr>
-                <th style="width: 10px">Nom du rôle</th>
-                <th>Description</th>
+                <th>Nom du pays</th>
                 <th>Action</th>
               </tr>
               <?php
-              $roles = new roles();
-              $data = Manager::getDatas($roles)->all();
+              $pays = new pays();
+              $data = Manager::getDatas($pays)->all();
               if (is_array($data) || is_object($data)) {
                 foreach ($data as $value) {
 
@@ -82,13 +82,9 @@ $title = "Rôle";
               ?>
                   <tr>
                     <td><?= $value['name'] ?></td>
-                    <td><?= $value['description'] ?></td>
                     <td>
-                      <a class="btn btn-success">
-                        <i class="fa fa-edit white"></i>
-                      </a>
-                      <a href="javascript:void()" onclick="getHTML('module&role=<?= $value['id'] ?>')" class="btn btn-success">
-                        <i class="fa fa-plus"></i>
+                      <a href="javascript:void()" onclick="getHTML('pays&modif=<?= $value['id'] ?>')"  class="btn btn-success">
+                        <i class="fa fa-edit"></i>
                       </a>
                     </td>
                   </tr>

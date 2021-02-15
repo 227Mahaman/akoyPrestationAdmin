@@ -1,5 +1,5 @@
 <?php
-$title = "Rôle";
+$title = "Type des agents";
 // ob_start();
 ?>
 <div class="breadcrumbbar">
@@ -9,6 +9,8 @@ $title = "Rôle";
       <div class="breadcrumb-list">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
+          <!-- <li class="breadcrumb-item"><a href="#"><?= $title ?></a></li>
+                                <li class="breadcrumb-item"><a href="#">Basic</a></li> -->
           <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
         </ol>
       </div>
@@ -26,31 +28,21 @@ $title = "Rôle";
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form  id="roleForm" method="post">
+        <form id="typeForm" role="form" method="post">
           <div class="card-body">
             <div class="form-group">
-              <label for="name">Nom du role</label>
-              <input type="text" required class="form-control" id="name" name="name" placeholder="Le nom du rôle">
-            </div>
-            <div class="form-group">
-              <label for="description">Description</label>
-              <textarea required class="form-control" id="description" name="description" placeholder="description du rôle"></textarea>
+              <label for="label">Nom du type d'agent</label>
+              <input type="text" required class="form-control" id="label" name="label" placeholder="Type d'agent">
             </div>
           </div>
-          <!-- /.card-body -->
-
           <div class="card-footer">
-            <button type="submit" onclick="postData('roleForm', 'role')" class="btn btn-success"><?= $GLOBALS['lang']['btn-valid'] ?? 'valider' ?></button>
+            <button type="submit" onclick="postData('typeForm', 'type'<?= (!empty($_GET['modif']) ? ', ' . $_GET['modif'] : '') ?>)" class="btn btn-success"><?= $GLOBALS['lang']['btn-valid'] ?? 'valider' ?></button>
             <p id="postMessage">
 
             </p>
             <?php
-            if (!empty($_SESSION['messages'])) {
-              if ($_SESSION['messages']['code'] == 1) {
-                echo Manager::messages($_SESSION['messages']['message'], 'alert-success');
-              } else {
-                echo Manager::messages($_SESSION['messages']['message'], 'alert-danger');
-              }
+            if (isset($_SESSION['messages'])) {
+              echo Manager::messages($_SESSION['messages'], 'alert-danger');
             }
             ?>
           </div>
@@ -59,36 +51,30 @@ $title = "Rôle";
     </div>
 
     <div class="col-md-6">
-      <div class="card">
+      <div class="card m-b-30">
         <div class="card-header with-border">
-          <h3 class="card-title">Rôles</h3>
+          <h3 class="card-title"><?= $title ?></h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
           <table class="table table-bordered">
             <tbody>
               <tr>
-                <th style="width: 10px">Nom du rôle</th>
-                <th>Description</th>
+                <th>Type des agents</th>
                 <th>Action</th>
               </tr>
               <?php
-              $roles = new roles();
-              $data = Manager::getDatas($roles)->all();
+              $data = Manager::getData('types_user')['data'];
               if (is_array($data) || is_object($data)) {
                 foreach ($data as $value) {
 
 
               ?>
                   <tr>
-                    <td><?= $value['name'] ?></td>
-                    <td><?= $value['description'] ?></td>
+                    <td><?= $value['label'] ?></td>
                     <td>
                       <a class="btn btn-success">
                         <i class="fa fa-edit white"></i>
-                      </a>
-                      <a href="javascript:void()" onclick="getHTML('module&role=<?= $value['id'] ?>')" class="btn btn-success">
-                        <i class="fa fa-plus"></i>
                       </a>
                     </td>
                   </tr>
@@ -109,6 +95,7 @@ $title = "Rôle";
     </div>
   </div>
 </div>
+<br> <br> <br>
 <?php
 // $content = ob_get_clean();
 // require('template.php');

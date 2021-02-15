@@ -1,12 +1,26 @@
 <?php
+// $villes = array(
+//   array('id_ville' => '1','id_regions' => '1','nom_ville' => 'Niamey','type_ville' => 'Capital','active_ville' => '1','code_zone' => 'NIGER'),
+//   array('id_ville' => '2','id_regions' => '2','nom_ville' => 'Maradi','type_ville' => '','active_ville' => '','code_zone' => 'NIGER'),
+//   array('id_ville' => '3','id_regions' => '0','nom_ville' => 'Tahoua','type_ville' => '','active_ville' => '','code_zone' => 'NIGER'),
+//   array('id_ville' => '4','id_regions' => '0','nom_ville' => 'Zinder','type_ville' => '','active_ville' => '','code_zone' => 'NIGER'),
+//   array('id_ville' => '5','id_regions' => '0','nom_ville' => 'Dosso','type_ville' => '','active_ville' => '','code_zone' => 'NIGER'),
+//   array('id_ville' => '6','id_regions' => '0','nom_ville' => 'Diffa','type_ville' => '','active_ville' => '','code_zone' => 'NIGER'),
+//   array('id_ville' => '7','id_regions' => '0','nom_ville' => 'Agadez','type_ville' => '','active_ville' => '','code_zone' => 'NIGER'),
+//   array('id_ville' => '8','id_regions' => '0','nom_ville' => 'Tillabery','type_ville' => '','active_ville' => '','code_zone' => 'NIGER')
+// );
+
+// echo json_encode($villes);
+
+// <?php session_start();
 require_once "model/class/Manager.php";
 function bdd()
 {
-    $dbname = '';
-    $user = '';
-    $pass = '';
+    $dbname = 'akoybizc_saroapp';
+    $user = 'akoybizcom';
+    $pass = '@damoukomche';
     if ($_SERVER["SERVER_NAME"] == 'localhost') {
-        $dbname = 'akoy_prestation';
+        $dbname = 'IslamNiger';
         $user = 'root';
         $pass = '';
     }
@@ -26,7 +40,7 @@ function getTables()
     $req = bdd()->prepare($sql);
     $req->execute();
     while ($res = $req->fetch()) {
-        $data[] = $res["Tables_in_akoy_prestation"];
+        $data[] = $res["Tables_in_IslamNiger"];
     }
     return $data;
 }
@@ -106,3 +120,23 @@ if (is_array($tables_list) || is_object($tables_list)) {
         }
     }
 }
+
+
+//  $sql = "SELECT * FROM pays, document WHERE pays.id=document.' . $field . '";
+
+//  $data  = Manager::getMultiplesRecords($sql);
+// var_dump($data);
+
+
+//  $data = Manager::getData("pays", null, null, false);
+
+//  var_dump($data);
+
+// $manager = new Manager();
+
+// $sql = "INSERT INTO pays(name, id) VALUES(?, ?)";
+
+// $req = bdd()->prepare($sql);
+// $req->execute(["ACBAD", 301]);
+
+// $manager->simpleInsert($_POST, "pays");

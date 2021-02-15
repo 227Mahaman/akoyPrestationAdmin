@@ -1,38 +1,29 @@
 <?php
 include_once('model/class/RoleManager.php');
 include_once('model/class/UserManager.php');
+include_once('model/class/EmergencyManager.php');
 include_once('model/class/MenuManager.php');
 include_once('model/class/Files.php');
 include_once('model/database/module.php');
 include_once('model/database/roles.php');
 include_once('model/database/villes.php');
-include_once('model/database/categories_publication.php');
-include_once('model/database/cv.php');
-include_once('model/database/ecole.php');
-//include_once('model/database/files.php');
-include_once('model/database/module_role.php');
-include_once('model/database/publications.php');
-include_once('model/database/type_publication.php');
-include_once('model/database/types_user.php');
-include_once('model/database/users.php');
+include_once('model/database/pays.php');
+include_once('model/database/langues.php');
 
 
 function addData($data, $table)
 {
     $url = API_ROOT_PATH. "/object/$table";
     $res = Manager::addoNTable($url, $data, $table);
-    // Manager::showError($res);
     $res = Manager::correct($res);
     if (isset($res['error'])) {
         if (!$res['error']) {
             $lastId = $res['lastId'];
             if (!empty($lastId)) {
-                $res = Manager::addHistory($table, $lastId);
-                if ($res != 1) {
-                    return $res['message'];
-                }else {
+                // Manager::showError($lastId);
+               
                     return 1;
-                }
+                
             }else {
                 return $res['message'];
             }
@@ -72,7 +63,7 @@ function getModules()
     $res = Manager::getData('module_role', 'role_id', $_SESSION['user-akoyprestation']['roleId']);
     $_SESSION['user-akoyprestation']['roles']['modules'] = $res;
     $sql ="select action_url from module where sub_module=?";
-    $res = Manager::getMultiplesRecords($sql, [$res['data']['module_id']]);
+    $res = Manager::getMultiplesRecords($sql, [$res['data']['module']]);
     $_SESSION['user-akoyprestation']['roles']['modules_action'] = $res;
 }
 
@@ -88,9 +79,9 @@ function getActions($moduleId)
 function haveAction($role, $module)
 {
    $res = array();
-   // Manager::showError($module)
-   $sql = "SELECT * FROM module_role WHERE role_id=? AND module_id=?";
+   $sql = "SELECT * FROM module_role WHERE role_id=? AND module=?";
    $res = Manager::getMultiplesRecords($sql, [$role, $module]);
+    //Manager::showError($res);
    if ((is_array($res) || is_object($res)) && count($res)>0) {
        return true;
    }else {

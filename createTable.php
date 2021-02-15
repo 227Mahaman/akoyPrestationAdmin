@@ -1,4 +1,5 @@
 <?php
+//echo file_get_contents('config/Configuration.php'); die();
 require_once('api/config/Configuration.php');
 $database = new Configuration();
 global $db;
@@ -20,12 +21,19 @@ if (!empty($_POST)) {
             $text_field = "<?php \nclass $tables {\n";
 
             if (is_array($fields) || is_object($fields)) {
+                //(empty($text_field)) ? $text_field = '$this->config[\'tables\'][\'' . $tables . '\'] = [' : $text_field .= '$this->config[\'tables\'][\'' . $tables . '\'] = [';
+                //(empty($text_field_id)) ? $text_field_id = '$this->config[\'tables\'][\'' . $tables . '\'][\'id\'] = [' : $text_field_id .= '$this->config[\'tables\'][\'' . $tables . '\'][\'id\'] = [';
+                //$text_field .= '$this->config[\'tables\'][\'' . $tables . '\'] = [';
+
                 $const = "
                 public function __construct($$tables=null) {
                     " . '$this->' . "$tables = $$tables;
                          ";
                 foreach ($fields as $key => $field) {
+                    //if ($key != 0) {
                     $text_field .= "\t public $" . $field . ";\n";
+                    //$const .= '$this->' . $field . " = isset($$tables" . "['" . $field . "']) ? $$tables" . "['" . $field . "'] : NULL;\n";
+                    //}
                 }
 
                 $list = "";

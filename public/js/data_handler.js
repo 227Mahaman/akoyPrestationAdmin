@@ -2,7 +2,7 @@ host = $(location).attr('hostname');
 protocol = $(location).attr('protocol');
 folder = '';
 if (host == 'localhost') {
-    folder = '/akoyPrestationAdmin';
+    folder = '/adminAkoyPrestation';
 }
 customUrl = protocol + '//' + host + folder + '/index.php?action=';
 myurl = protocol + '//' + host + folder + '/api/object/';
@@ -44,10 +44,10 @@ $('input:checkbox.module_is_checked').each(function (i, v) {
 
 
 
-function addPermissionRole(chec) {
-    $data = "role_id=" + $_GET['role'] + "&module=" + $(chec).val();
+function addPermissionRole(chec, role) {
+    $data = "role_id=" + role + "&module=" + $(chec).val();
     //$data = JSON.stringify($($data).serializeObject());
-    $mr = getDataWith2Param('module_role', 'module', $(chec).val(), 'role_id', $_GET['role']);
+    $mr = getDataWith2Param('module_role', 'module', $(chec).val(), 'role_id', role);
     console.log($data, $mr, "ci");
     if ($(chec).prop('checked') == true) {
         $mr.done(function ($mr) {
@@ -459,19 +459,34 @@ function hidePleaseWait() {
 
 function postData(formId, action, id) {
     $('#' + formId).submit(function (e) {
+        e.preventDefault();
+        var formDat = new FormData(this);
+
         showPleaseWait();
         var data = $('#' + formId).serializeObject();
 
+
+        // // for (var key in data) {
+        // //     formDat.append(key, data[key]);
+        // //     // console.log(key, data[key], "key");
+
+        // // }
+        // // Display the key/value pairs
+        // for (var pair of formDat.entries()) {
+        //     console.log(pair[0] + ', ' + pair[1]);
+        // }
+        console.log("id", id);
+
         var formData = JSON.stringify(data);
         if (id != '') {
-            putData(formData, customUrl + action + '&modif=' + id);
+            putData(formDat, customUrl + action + '&modif=' + id);
         } else {
             $.ajax({
                 url: customUrl + action,
                 type: "POST",
                 // contentType: 'application/json',
                 dataType: "html",
-                data: formData,
+                data: formDat,
                 cache: false,
                 enctype: 'multipart/form-data',
                 processData: false, // tell jQuery not to process the data
@@ -554,7 +569,7 @@ function getHTML(action) {
         type: "GET",
         dataType: "html",
         success: function (result) {
-            console.log(result, "res");
+            console.log("res", customUrl + action,);
             hidePleaseWait();
             // $("#allDoc").toggle();
             // $("#searchDoc").toggle();
