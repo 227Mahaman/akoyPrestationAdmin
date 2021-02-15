@@ -12,9 +12,9 @@ class Manager
 
     public static function database()
     {
-        $dbname = '';
-        $user = '';
-        $pass = '';
+        $dbname = 'akoybizc_iniger';
+        $user = 'akoybizc_komche';
+        $pass = '@damoukomche2019';
         $host = 'localhost';
         if ($_SERVER["SERVER_NAME"] == 'localhost') {
             $dbname = 'akoy_prestation';
@@ -34,9 +34,9 @@ class Manager
 
     public static function bdd()
     {
-        $dbname = '';
-        $user = '';
-        $pass = '';
+        $dbname = 'akoybizc_iniger';
+        $user = 'akoybizc_komche';
+        $pass = '@damoukomche2019';
         $host = 'localhost';
         if ($_SERVER["SERVER_NAME"] == 'localhost') {
             $dbname = 'akoy_prestation';
@@ -260,7 +260,7 @@ class Manager
         // die(var_dump($msg));
         echo  '<div class="alert ' . $type . ' alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4><i class="icon fa '.$font.'"></i> iniger!</h4>
+        <h4><i class="icon fa '.$font.'"></i> admin!</h4>
         ' . $msg . '
       </div>';
     }
@@ -274,7 +274,7 @@ class Manager
     {
         $url = API_ROOT_PATH . "/history_data";
         $data = array();
-        $data['created_by'] = $_SESSION['user-iniger']['id'];
+        $data['created_by'] = $_SESSION['user-akoyprestation']['id'];
         $data['action'] = 'ajout';
         $data['table_name'] = $table;
         $data['table_id'] = $lastId;
@@ -632,9 +632,9 @@ class Manager
 
             $req = self::bdd()->prepare($sql);
             if ($req->execute($value)) {
-               return self::throwError(200, "Enregistrement modifié avec succès");
+               return self::throwError(1, "Enregistrement modifié avec succès");
             } else {
-               return self::throwError(503, "modification échouée", true);
+               return self::throwError(0, "modification échouée", true);
             }
         }
     }

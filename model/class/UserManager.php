@@ -53,7 +53,7 @@ class UserManager  extends Manager
 
         unset($data['password_2']);
         $data['updated_at'] = date('Y-m-d h:i:s', time());;
-        $data['statut'] = 1;
+        $data['status'] = 1;
         $res = self::file_put_contents($url, $data);
         $res = self::correct($res);
         if ($res['error']) {
@@ -74,25 +74,27 @@ class UserManager  extends Manager
         if (!empty($res['error']) || is_string($res) ) {
             return 'N° de téléphone ou mot de passe incorrecte';
         } else {
-                $res = $res['data'];
-                if (password_verify($data['password_'], $res['password_'])) {
-                    $_SESSION['user-akoyprestation']['id'] = $res['id'];
-                    $_SESSION['user-akoyprestation']['first_name'] = $res['first_name'];
-                    $_SESSION['user-akoyprestation']['last_name'] = $res['last_name'];
-                    $_SESSION['user-akoyprestation']['phone_number'] = $res['phone_number'];
-                    $_SESSION['user-akoyprestation']['role'] = self::getData('roles', 'id', $res['role'])['data']['name'];
-                    $_SESSION['user-akoyprestation']['roleId'] = self::getData('roles', 'id', $res['role'])['data']['id'];
-                    $_SESSION['user-akoyprestation']['type_user'] = self::getData('types_user', 'id', $res['types_user'])['data']['label'];
-                    $_SESSION['user-akoyprestation']['photo'] = self::getData('files', 'id', $res['photo'])['data']['file_url'];
-                    if (!empty($res['entity'])) {
-                        $entity = $res = self::getData('entity', 'id_entity', $res['entity'])['data'];
-                        $_SESSION['user-akoyprestation']['entity'] = $entity;
-                    }
-                    return 1;
-                } else {
-                    return 'N° de téléphone ou mot de passe incorrecte';
+
+            $res = $res['data'];
+            if (password_verify($data['password_'], $res['password_'])) {
+                $_SESSION['user-akoyprestation']['id'] = $res['id'];
+                $_SESSION['user-akoyprestation']['first_name'] = $res['first_name'];
+                $_SESSION['user-akoyprestation']['last_name'] = $res['last_name'];
+                $_SESSION['user-akoyprestation']['matricule'] = $res['matricule'];
+                $_SESSION['user-akoyprestation']['phone_number'] = $res['phone_number'];
+                $_SESSION['user-akoyprestation']['role'] = self::getData('roles', 'id', $res['role'])['data']['name'];
+                $_SESSION['user-akoyprestation']['roleId'] = self::getData('roles', 'id', $res['role'])['data']['id'];
+                $_SESSION['user-akoyprestation']['types_user'] = self::getData('types_user', 'id', $res['types_user'])['data']['label'];
+                $_SESSION['user-akoyprestation']['photo'] = self::getData('files', 'id', $res['photo'])['data']['file_url'];
+                if (!empty($res['entity'])) {
+                    $entity = $res = self::getData('entity', 'id_entity', $res['entity'])['data'];
+                    $_SESSION['user-akoyprestation']['entity'] = $entity;
                 }
-                return $res['data'];
+                return 1;
+            } else {
+                return 'N° de téléphone ou mot de passe incorrecte';
+            }
+            return $res['data'];
         }
     }
     public static function connectUserMobile($data)
@@ -112,6 +114,7 @@ class UserManager  extends Manager
             $_SESSION['user-akoyprestation']['id'] = $res['id'];
             $_SESSION['user-akoyprestation']['first_name'] = $res['first_name'];
             $_SESSION['user-akoyprestation']['last_name'] = $res['last_name'];
+            $_SESSION['user-akoyprestation']['matricule'] = $res['matricule'];
             $_SESSION['user-akoyprestation']['phone_number'] = $res['phone_number'];
             $_SESSION['user-akoyprestation']['role'] = self::getData('roles', 'id', $res['role'])['data']['name'];
             $_SESSION['user-akoyprestation']['roleId'] = self::getData('roles', 'id', $res['role'])['data']['id'];

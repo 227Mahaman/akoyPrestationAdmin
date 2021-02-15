@@ -3,7 +3,7 @@
 class module_role {
 	 public $id;
 	 public $role_id;
-	 public $module_id;
+	 public $module;
 	 public $create_at;
 	 public $module_role=array();
 
@@ -19,11 +19,11 @@ class module_role {
                     return $this->module_role;
                 }
 
-                public function role($id, $role_id, $module_id, $create_at)
+                public function role($id, $role_id, $module, $create_at)
                     {
                         $this->id = $id;
 $this->role_id = $role_id;
-$this->module_id = $module_id;
+$this->module = $module;
 $this->create_at = $create_at;
 
                     }
@@ -45,7 +45,7 @@ $this->create_at = $create_at;
 $d=$data[0];
 $this->setId($d['id']);
 $this->setRole_id($d['role_id']);
-$this->setModule_id($d['module_id']);
+$this->setModule($d['module']);
 $this->setCreate_at($d['create_at']);
 $this->module_role =$data; 
  return $this;
@@ -71,7 +71,7 @@ $this->module_role =$data;
 $d=$data[0];
 $this->setId($d['id']);
 $this->setRole_id($d['role_id']);
-$this->setModule_id($d['module_id']);
+$this->setModule($d['module']);
 $this->setCreate_at($d['create_at']);
 $this->module_role =$data; 
  return $this;
@@ -83,28 +83,28 @@ $this->module_role =$data;
                         
                     }
                     /**
-                    * Get the value of module_id
+                    * Get the value of module
                     */ 
-                    public function getModule_id($module_id=null)
+                    public function getModule($module=null)
                     {
-                        if ($module_id != null && is_array($this->module_role) && count($this->module_role)!=0) {
+                        if ($module != null && is_array($this->module_role) && count($this->module_role)!=0) {
                             $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE module_id = ?";
+                            $query = "SELECT * FROM $table_name WHERE module = ?";
                             $req = Manager::bdd()->prepare($query);
-                            $req->execute([$module_id]);
+                            $req->execute([$module]);
                             $data = "";
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId($d['id']);
 $this->setRole_id($d['role_id']);
-$this->setModule_id($d['module_id']);
+$this->setModule($d['module']);
 $this->setCreate_at($d['create_at']);
 $this->module_role =$data; 
  return $this;
                                 }
                             
                         } else {
-                            return $this->module_id;
+                            return $this->module;
                         }
                         
                     }
@@ -123,7 +123,7 @@ $this->module_role =$data;
 $d=$data[0];
 $this->setId($d['id']);
 $this->setRole_id($d['role_id']);
-$this->setModule_id($d['module_id']);
+$this->setModule($d['module']);
 $this->setCreate_at($d['create_at']);
 $this->module_role =$data; 
  return $this;
@@ -159,13 +159,13 @@ $this->module_role =$data;
                        return $this;
                    }
                     /**
-                    * Set the value of module_id
+                    * Set the value of module
                     *
                     * @return  self
                     */ 
-                   public function setModule_id($module_id)
+                   public function setModule($module)
                    {
-                    $this->module_id = $module_id;
+                    $this->module = $module;
                
                        return $this;
                    }

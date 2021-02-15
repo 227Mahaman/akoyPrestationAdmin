@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <title><?= $title ?></title>
     <!-- Fevicon -->
-    <link rel="shortcut icon" href="public/img/favicon.ico">
+    <!-- <link rel="shortcut icon" href="public/img/favicon.ico"> -->
     <!-- Start css -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
     <link href="public/vendor/plugins/dropzone/dist/dropzone.css" rel="stylesheet" type="text/css">
@@ -100,8 +100,8 @@
             <div class="sidebar">
                 <!-- Start Logobar -->
                 <div class="logobar">
-                    <a href="index.php" class="logo logo-large"><img src="public/img/#" class="img-fluid" alt="logo"></a>
-                    <a href="index.php" class="logo logo-small"><img src="public/img/#" class="img-fluid" alt="logo"></a>
+                    <a href="index.php" class="logo logo-large"><img src="public/img/logoIslamNige.png" class="img-fluid" alt="logo"></a>
+                    <a href="index.php" class="logo logo-small"><img src="public/img/logoIslamNige.png" class="img-fluid" alt="logo"></a>
                 </div>
                 <!-- End Logobar -->
                 <!-- Start Navigationbar -->
@@ -109,15 +109,20 @@
                     <ul class="vertical-menu in">
 
                         <?php
-                        $sql = "SELECT * FROM module_role mr, module m WHERE mr.module_id = m.id AND m.is_menu=1 AND mr.role_id = ? ";
+                        $sql = "SELECT mr.module FROM module_role mr, module m WHERE mr.module = m.id AND m.is_menu=1 AND mr.role_id = ? ";
                         $res = Manager::getMultiplesRecords($sql, [$_SESSION['user-akoyprestation']['roleId']]);
+                        // $res = $res['data'];
                         $thisSMenu = array();
                         foreach ($res as $key => $value) {
-                            $sql = "SELECT * FROM module WHERE is_menu=1 AND id = ?";
-                            $name = Manager::getSingleRecords($sql, [$value['module_id']]);
+                            $sql = "SELECT sub_module, name, id, icon FROM module WHERE is_menu=1 AND id = ?";
+                            $name = Manager::getSingleRecords($sql, [$value['module']]);
+                            // print_r($name);
                             if (empty($name['sub_module'])) {
+                                //echo ($value['module']);
+                                // $name = $name['data'];
                                 $menu = new MenuManager($name['name']);
                                 $sMenu = getActions($name['id']);
+                                //print_r($sMenu); die;
                                 if (is_array($sMenu) || is_object($sMenu)) {
                                     foreach ($sMenu as $key => $smValue) {
                                         if (haveAction($_SESSION['user-akoyprestation']['roleId'], $smValue['id'])) {
@@ -130,6 +135,8 @@
                                 $thisSMenu = (array) null;
                             }
                         }
+                        // $menu->setmSousMenu(['index.php?action=module'=> 'Test', 'index.php?action=test'=>'test 1']);
+                        // echo $menu->getMenu();
                         ?>
 
                     </ul>
@@ -146,7 +153,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="mobile-logobar">
-                            <a href="index.php" class="mobile-logo"><img src="public/img/#" class="img-fluid" alt="logo"></a>
+                            <a href="index.php" class="mobile-logo"><img src="public/img/logoIslamNiger.png" class="img-fluid" alt="logo"></a>
                         </div>
                         <div class="mobile-togglebar">
                             <ul class="list-inline mb-0">
@@ -368,172 +375,6 @@
     <script>
         $(document).ready(function() {
             $('.searchable').select2();
-            <?php
-            if (!empty($_GET['action'] == 'consulter-fikr')) :
-                $type = "";
-                $auteur = "";
-                $ville = "";
-                $langue = "";
-                $data = Manager::getData('cfikr')['data'];
-                $data_auteur = Manager::getData('auteurs')['data'];
-                $data_ville = Manager::getData('ville')['data'];
-                $data_langue = Manager::getData('langues')['data'];
-                if (is_array($data) || is_object($data)) {
-
-                    $t = count($data) - 1;
-                    $i = 0;
-                    foreach ($data as  $value) {
-                        if ($t != 0) {
-                            if ($i == 0) {
-
-                                $type .= '"' . $value['id'] . '":"' . $value['titre'] . '",';
-                            } elseif ($i < $t) {
-                                $type .= '{"' . $value['id'] . '":"' . $value['titre'] . '",';
-                            } else {
-                                $type .= '"' . $value['id'] . '":"' . $value['titre'] . '"}';
-                            }
-                        } else {
-                            $type .= '{"' . $value['id'] . '":"' . $value['titre'] . '"}';
-                        }
-                        $i++;
-                    }
-                    // die($type);
-                }
-                if (is_array($data_auteur) || is_object($data_auteur)) {
-
-                    $t = count($data_auteur) - 1;
-                    $i = 0;
-                    foreach ($data_auteur as  $value) {
-                        if ($t != 0) {
-                            if ($i == 0) {
-
-                                $auteur .= '{"' . $value['id'] . '":"' . $value['nom'] . ' ' . $value['prenom'] . '",';
-                            } elseif ($i < $t) {
-                                $auteur .= '"' . $value['id'] . '":"' . $value['nom'] . ' ' . $value['prenom'] . '",';
-                            } else {
-                                $auteur .= '"' . $value['id'] . '":"' . $value['nom'] . ' ' . $value['prenom'] . '"}';
-                            }
-                        } else {
-                            $auteur .= '{"' . $value['id'] . '":"' . $value['nom'] . ' ' . $value['prenom'] . '"}';
-                        }
-                        $i++;
-                    }
-                    // die($type);
-                }
-                if (is_array($data_ville) || is_object($data_ville)) {
-
-                    $t = count($data_ville) - 1;
-                    $i = 0;
-                    foreach ($data_ville as  $value) {
-                        if ($t != 0) {
-                            if ($i == 0) {
-
-                                $ville .= '{"' . $value['id'] . '":"' . $value['titre'] . '",';
-                            } elseif ($i < $t) {
-                                $ville .= '"' . $value['id'] . '":"' . $value['titre'] . '",';
-                            } else {
-                                $ville .= '"' . $value['id'] . '":"' . $value['titre'] . '"}';
-                            }
-                        } else {
-                            $ville .= '{"' . $value['id'] . '":"' . $value['titre'] . '"}';
-                        }
-                        $i++;
-                    }
-                    // die($type);
-                }
-                if (is_array($data_langue) || is_object($data_langue)) {
-
-                    $t = count($data_langue) - 1;
-                    $i = 0;
-                    foreach ($data_langue as  $value) {
-                        if ($t != 0) {
-                            if ($i == 0) {
-
-                                $langue .= '{"' . $value['id'] . '":"' . $value['titre'] . '",';
-                            } elseif ($i < $t) {
-                                $langue .= '"' . $value['id'] . '":"' . $value['titre'] . '",';
-                            } else {
-                                $langue .= '"' . $value['id'] . '":"' . $value['titre'] . '"}';
-                            }
-                        } else {
-                            $langue .= '{"' . $value['id'] . '":"' . $value['titre'] . '"}';
-                        }
-                        $i++;
-                    }
-                    // die($type);
-                }
-            ?>
-                console.log(<?php echo $type ?>);
-
-                $('#edit-fikr').Tabledit({
-                    url: 'index.php?action=consulter-fikr',
-                    deleteButton: false,
-                    hideIdentifier: true,
-                    columns: {
-                        identifier: [0, 'id'],
-                        editable: [
-                            [1, 'titre'],
-                            [2, 'livre'],
-                            [3, 'date_ajout'],
-                            [4, 'cfikr', '<?= $type ?>'],
-                            [5, 'auteur', '<?= $auteur ?>'],
-                            [6, 'ville', '<?= $ville ?>'],
-                            [7, 'langue', '<?= $langue ?>']
-                        ]
-                    },
-
-                    onDraw: function() {
-                        console.log('onDraw()');
-                    },
-                    onSuccess: function(data, textStatus, jqXHR) {
-                        console.log('onSuccess(data, textStatus, jqXHR)');
-                        console.log(data);
-                        console.log(textStatus);
-                        console.log(jqXHR);
-                    },
-                    onFail: function(jqXHR, textStatus, errorThrown) {
-                        console.log('onFail(jqXHR, textStatus, errorThrown)');
-                        console.log(jqXHR);
-                        console.log(textStatus);
-                        console.log(errorThrown);
-                    },
-                    onAlways: function() {
-                        console.log('onAlways()');
-                    },
-                    onAjax: function(action, serialize) {
-                        console.log('onAjax(action, serialize)');
-                        console.log(action);
-                        console.log(serialize);
-                    }
-                });
-
-            <?php
-            endif;
-            if (!empty($_GET['fikr'])) : ?>
-                $("#chemin").fileinput({
-                    showRemove: true,
-                    showPreview: true,
-
-                    uploadUrl: "index.php?action=sendData", // server upload action
-                    uploadAsync: false,
-                    uploadExtraData: function() {
-                        return {
-                            fikr: <?= $_GET['fikr'] ?>
-                        };
-                    }
-                }).on('filebatchpreupload', function(event, data, id, index) {
-                    $('#kv-success-2').html('<h4>Statut</h4><ul></ul>').hide();
-                }).on('filebatchuploadsuccess', function(event, data) {
-                    var out = '';
-                    $.each(data.files, function(key, file) {
-                        var fname = file.name;
-                        out = out + '<li>' + 'Fichier ajouter # ' + (key + 1) + ' - ' + fname + ' successfully.' + '</li>';
-                    });
-                    $('#kv-success-2 ul').append(out);
-                    $('#kv-success-2').fadeIn('slow');
-                });
-            <?php endif ?>
-
             console.log($('.note-editable'), "ok");
 
             $('#description').val($('.note-editable').html());
