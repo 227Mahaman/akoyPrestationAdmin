@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'vendor/autoload.php';
+//require 'vendor/autoload.php';
 
 require('controller/Administration.php');
 
@@ -124,7 +124,7 @@ if (isset($_SESSION['user-akoyprestation'])) {
             } else { // Ajout Ville
                 if (!empty($input)) {
                     $data = $input;
-                    $ville = new ville($data);
+                    $ville = new villes($data);
                     //var_dump($ville); die;
                     $res = insert($ville);
 

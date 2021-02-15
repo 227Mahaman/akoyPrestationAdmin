@@ -4,10 +4,18 @@ include_once('model/class/UserManager.php');
 include_once('model/class/EmergencyManager.php');
 include_once('model/class/MenuManager.php');
 include_once('model/class/Files.php');
+include_once('model/database/categories_publication.php');
+include_once('model/database/cv.php');
+include_once('model/database/ecole.php');
 include_once('model/database/module.php');
-include_once('model/database/roles.php');
-include_once('model/database/villes.php');
 include_once('model/database/pays.php');
+include_once('model/database/publications.php');
+include_once('model/database/module_role.php');
+include_once('model/database/roles.php');
+include_once('model/database/type_publication.php');
+include_once('model/database/types_user.php');
+include_once('model/database/villes.php');
+include_once('model/database/users.php');
 include_once('model/database/langues.php');
 
 
