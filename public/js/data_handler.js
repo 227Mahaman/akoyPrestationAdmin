@@ -2,7 +2,7 @@ host = $(location).attr('hostname');
 protocol = $(location).attr('protocol');
 folder = '';
 if (host == 'localhost') {
-    folder = '/adminAkoyPrestation';
+    folder = '/akoyPrestationAdmin';
 }
 customUrl = protocol + '//' + host + folder + '/index.php?action=';
 myurl = protocol + '//' + host + folder + '/api/object/';
