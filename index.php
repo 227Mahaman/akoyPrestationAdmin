@@ -19,14 +19,6 @@ if (!empty($_GET['langue'])) {
 }
 $lang = json_decode(file_get_contents("public/traduction.json"), true);
 if (!empty($lang)) $GLOBALS['lang'] = $lang[$_SESSION['laguage']];
- //Manager::showError($_SESSION);
- //var_dump($_SESSION['user-akoyprestation']);die;
-// $test = "hh";
-// //echo(Manager::print_var_name($test));  die();
-// $roles = new roles();
-// $roles->role(11, "Test", "Mon test");
-// Manager::update($roles, "id", 11);
-//var_dump(Manager::getDatas(new ville())->getIdVille(3)); die;
 
 if (isset($_SESSION['user-akoyprestation'])) {
     getModules();
@@ -40,27 +32,32 @@ if (isset($_SESSION['user-akoyprestation'])) {
             require('view/notFoundView.php');
             return;
         }
-       // var_dump($action); die;
         if ($action == 'role') {
             $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
             if (!empty($input)) {
                 $data = $input;
-                $roles = new roles($data);
-                //var_dump($roles); die;
-                $res = insert($roles);
-                //$res = addData($data, 'roles');
-
-                //if ($res['code'] != 1) {
-                $_SESSION['messages'] = $res;
+                $res = 0;
+                if(!isset($_GET['modif'])){
+                    $roles = new roles($data);
+                    $res = insert($roles);
+                } else {
+                    $res = update('roles', $data, 'id', $_GET['modif']);
+                }
+                if ($res != 1) {
+                    $_SESSION['messages'] = $res;
+                    $_SESSION['type'] = 0;
+                } else {
+                    $_SESSION['messages'] = "Enregistrement réussis";
+                    $_SESSION['type'] = 1;
+                }
                 if (!empty($_SESSION['messages'])) {
-                    if ($_SESSION['messages']['code'] == 1) {
-                        echo Manager::messages($_SESSION['messages']['message'], 'alert-success');
+                    if ($_SESSION['type'] == 1) {
+                        echo Manager::messages($_SESSION['messages'], 'alert-success');
                     } else {
-                        echo Manager::messages($_SESSION['messages']['message'], 'alert-danger');
+                        echo Manager::messages($_SESSION['messages'], 'alert-danger');
                     }
                 }
                 die;
-                // }
             }
             require_once("view/roleView.php");
         } elseif ($action == 'module') {
@@ -68,14 +65,22 @@ if (isset($_SESSION['user-akoyprestation'])) {
             if (!empty($input)) {
                 $data = $input;
                 $res = 0;
-                if (!empty($_GET['modif'])) {
-                    $res = update('module', $data, 'id', $_GET['modif']);
+                var_dump($_POST);
+                if(!isset($_GET['modif'])){
+                    $modules = new module($data);
+                    $res = insert($modules);
                 } else {
-
-                    $res = addData($data, 'module');
+                    $res = update('module', $data, 'id', $_GET['modif']);
                 }
+                // if (!empty($_GET['modif'])) {//Modification
+                //     $res = update('module', $data, 'id', $_GET['modif']);
+                // } else {//Insertion
+                //     //$res = addData($data, 'module');
+                //     $modules = new module($data);
+                //     $res = insert($modules);
+                // }
 
-                // Manager::showError($res);
+                //Manager::showError($res);
 
                 if ($res != 1) {
                     $_SESSION['messages'] = $res;
@@ -92,7 +97,6 @@ if (isset($_SESSION['user-akoyprestation'])) {
                     }
                 }
                 die;
-                // die('ok '.$_SESSION['type']);
             }
             require_once("view/moduleView.php");
         } elseif ($action == 'permission') {

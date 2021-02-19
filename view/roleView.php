@@ -1,6 +1,10 @@
 <?php
 $title = "Rôle";
-// ob_start();
+$role_data = array();
+if (!empty($_GET['modif'])) {
+  $title = "Modifier role";
+  $role_data = Manager::getData('roles', 'id', $_GET['modif'])['data'];
+}
 ?>
 <div class="breadcrumbbar">
   <div class="row align-items-center">
@@ -26,21 +30,21 @@ $title = "Rôle";
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form  id="roleForm" method="post">
+        <form  id="roleForm" role="form" method="post">
           <div class="card-body">
             <div class="form-group">
               <label for="name">Nom du role</label>
-              <input type="text" required class="form-control" id="name" name="name" placeholder="Le nom du rôle">
+              <input type="text" required class="form-control" id="name" name="name" value="<?= (!empty($_GET['modif']) ? $role_data['name'] : '') ?>" placeholder="Le nom du rôle">
             </div>
             <div class="form-group">
               <label for="description">Description</label>
-              <textarea required class="form-control" id="description" name="description" placeholder="description du rôle"></textarea>
+              <textarea required class="form-control" id="description" name="description" placeholder="description du rôle"><?= (!empty($_GET['modif']) ? $role_data['description'] : '') ?></textarea>
             </div>
           </div>
           <!-- /.card-body -->
 
           <div class="card-footer">
-            <button type="submit" onclick="postData('roleForm', 'role')" class="btn btn-success"><?= $GLOBALS['lang']['btn-valid'] ?? 'valider' ?></button>
+            <button type="submit" onclick="postData('roleForm', 'role'<?= (!empty($_GET['modif']) ? ', ' . $role_data['id'] : '') ?>)" class="btn btn-success"><?= $GLOBALS['lang']['btn-valid'] ?? 'valider' ?></button>
             <p id="postMessage">
 
             </p>
@@ -84,7 +88,7 @@ $title = "Rôle";
                     <td><?= $value['name'] ?></td>
                     <td><?= $value['description'] ?></td>
                     <td>
-                      <a class="btn btn-success">
+                      <a href="javascript:void()" onclick="getHTML('role&modif=<?= $value['id'] ?>')" class="btn btn-success">
                         <i class="fa fa-edit white"></i>
                       </a>
                       <a href="javascript:void()" onclick="getHTML('module&role=<?= $value['id'] ?>')" class="btn btn-success">

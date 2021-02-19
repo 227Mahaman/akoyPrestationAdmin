@@ -8,7 +8,7 @@ if (!empty($_GET['modif'])) {
   $module_data = Manager::getData('module', 'id', $_GET['modif'])['data'];
 }
 $page = 1;
-$per_page = 4;
+$per_page = 20;
 if (!empty($_GET['page'])) {
   extract($_GET);
 }
@@ -63,6 +63,7 @@ $start_form = ($page - 1) * $per_page;
                   <option <?= (!empty($_GET['modif']) ? (($module_data['is_menu'] == '0') ? 'selected' : '') : '') ?> value="0">Non</option>
                 </select>
               </div>
+              
               <?php if (!empty($_GET['modif']) && !empty($module_data['sub_module'])) : ?>
                 <div class="form-group">
                   <label for="sub_module">Sous menu de</label>
