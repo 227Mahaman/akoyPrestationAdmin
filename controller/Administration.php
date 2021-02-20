@@ -55,6 +55,17 @@ function update($table, $data, $property, $val)
     
 }
 
+function deleteLogique($table, $data, $property, $val)
+{
+    $res = Manager::updateData($data, $table, $property, $val);
+    if ($res['error']) {
+        return $res['message'];
+    }else {
+        return 1;
+    }
+    
+}
+
 function insert($table) {
     $manager = new Manager();
     return $manager->insert($table);

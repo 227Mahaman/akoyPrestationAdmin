@@ -266,16 +266,16 @@ if (isset($_SESSION['user-akoyprestation'])) {
             require_once("view/typeAgentView.php");
         } elseif ($action == 'addUser') {
             $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
-            if (!empty($input) && !empty($_FILES)) {
+            if (!empty($input) && !empty($_FILES) && !empty($input)) {
                 $data = $input;
                 $res = 0;
-                if(!isset($_GET['modif'])){
+                // if(!isset($_GET['modif'])){
                     $data['profile_picture'] = $_FILES['profile_picture'];
                     $res = UserManager::addUser($data);
-                } else {
-                    $res = update('users', $data, 'id', $_GET['modif']);
-                }
-                var_dump($res);
+                // } else {
+                //     $res = update('users', $data, 'id', $_GET['modif']);
+                // }
+                // var_dump($res);
                 if ($res != 1) {
                     $_SESSION['messages'] = $res;
                     if (!empty($_SESSION['messages'])) {
@@ -321,7 +321,10 @@ if (isset($_SESSION['user-akoyprestation'])) {
             }
             require_once("view/addUserView.php");
         } elseif ($action == 'showUser') {
-
+            if(isset($_GET['delete'])){
+                $data['statut'] = 0;
+                $res = update('users', $data, 'id', $_GET['delete']);
+            }
             require_once("view/showUserView.php");
         }  elseif ($action == 'roleModule') {
             require_once("view/roleModuleView.php");

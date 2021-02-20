@@ -64,7 +64,7 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
             <div class="input-group-prepend">
               <span class="input-group-text">Matricule</span>
             </div>
-            <input type="tel" required class="form-control" id="matricule" name="matricule" placeholder="Veuillez entrer le matricule" value="<?= (!empty($_GET['modif'])) ? $datas['matricule'] : "" ?>">
+            <input type="tel" required class="form-control" id="matricule" name="matricule" placeholder="Veuillez entrer le matricule" value="<//?= (!empty($_GET['modif'])) ? $datas['matricule'] : "" ?>">
           </div> -->
           <div class="input-group mb-3">
             <div class="input-group-prepend">
