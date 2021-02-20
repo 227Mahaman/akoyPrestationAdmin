@@ -34,10 +34,10 @@ class Manager
 
     public static function bdd()
     {
-        $dbname = 'akoybizc_iniger';
-        $user = 'akoybizc_komche';
-        $pass = '@damoukomche2019';
-        $host = 'localhost';
+        $dbname = 'c1485149c_akoyprestation';
+        $user = 'c1485149c_akoydev';
+        $pass = 'mrr7WGFc9hZJGkq';
+        $host = 'https://phpmyadmin.akoyhost.net/';
         if ($_SERVER["SERVER_NAME"] == 'localhost') {
             $dbname = 'akoy_prestation';
             $user = 'root';

@@ -5,6 +5,8 @@ define ('HOST', "http://" . $_SERVER ['HTTP_HOST']); // get the hostname
 
 if ($_SERVER['HTTP_HOST'] == 'localhost') {
     $folder = '/akoyPrestationAdmin';
+} else {
+    
 }
 
 define('ROOT_PATH', HOST . "$folder");
