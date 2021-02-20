@@ -151,7 +151,7 @@ if (isset($_SESSION['user-akoyprestation'])) {
                     $data = $input;
                     //var_dump($data);
                     //die();
-                    $res = Manager::updateData($data, 'country', 'id', $_GET['modif']);
+                    $res = Manager::updateData($data, 'pays', 'id', $_GET['modif']);
                     if ($res['code'] = 200) {
                         echo " <script>
                         getHTML('pays');
@@ -162,7 +162,7 @@ if (isset($_SESSION['user-akoyprestation'])) {
             } else { // Ajout pays
                 if (!empty($input)) {
                     $data = $input;
-                    $pays = new country($data);
+                    $pays = new pays($data);
                     //var_dump($pays); die;
                     $res = insert($pays);
 
