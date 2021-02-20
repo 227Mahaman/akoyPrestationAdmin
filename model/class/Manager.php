@@ -15,7 +15,7 @@ class Manager
         $dbname = 'c1485149c_akoyprestation';
         $user = 'c1485149c_akoydev';
         $pass = 'mrr7WGFc9hZJGkq';
-        $host = 'https://phpmyadmin.akoyhost.net/';
+        $host = 'phpmyadmin.akoyhost.net/';
         if ($_SERVER["SERVER_NAME"] == 'localhost') {
             $dbname = 'akoy_prestation';
             $user = 'root';
@@ -37,7 +37,7 @@ class Manager
         $dbname = 'c1485149c_akoyprestation';
         $user = 'c1485149c_akoydev';
         $pass = 'mrr7WGFc9hZJGkq';
-        $host = 'https://phpmyadmin.akoyhost.net/';
+        $host = 'phpmyadmin.akoyhost.net/';
         if ($_SERVER["SERVER_NAME"] == 'localhost') {
             $dbname = 'akoy_prestation';
             $user = 'root';
