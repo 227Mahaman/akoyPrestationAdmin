@@ -1,0 +1,1 @@
+ALTER TABLE `villes` ADD `pays` INT NOT NULL AFTER `titre`, ADD `statut` INT NOT NULL DEFAULT '1' AFTER `pays`, ADD INDEX (`pays`);

@@ -117,7 +117,7 @@ if (isset($_SESSION['user-akoyprestation'])) {
                     $data = $input;
                     //var_dump($data);
                     //die();
-                    $res = Manager::updateData($data, 'ville', 'id', $_GET['modif']);
+                    $res = Manager::updateData($data, 'villes', 'id', $_GET['modif']);
                     if ($res['code'] = 1) {
                         echo " <script>
                         getHTML('ville');

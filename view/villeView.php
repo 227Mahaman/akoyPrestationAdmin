@@ -85,18 +85,24 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
           <table id="searchTable" class="table table-bordered">
             <tbody>
               <tr>
+              <th>#</th>
                 <th>Nom de la ville</th>
                 <th>Action</th>
               </tr>
               <?php
-              $ville = new villes();
-              $data = Manager::getDatas($ville)->all();
-              if ((is_array($data) || is_object($data)) && !empty($data->villes)) {
-                foreach ($data as $value) {
+              // $ville = new villes();
+              // $data = Manager::getDatas($ville)->all();
+              // if ((is_array($data) || is_object($data)) && !empty($data->villes)) {
+              //   foreach ($data as $value) {
 
-
+                $i = 0;
+                $data = Manager::getData('villes', 'statut', 1, true)['data'];
+                if (is_array($data) || is_object($data)) {
+                  foreach ($data as $value) {
+                    $i++;
               ?>
                   <tr>
+                  <td><?= $i;?></td>
                     <td><?= $value['titre'] ?></td>
                     <td>
                       <a href="javascript:void()" onclick="getHTML('ville&modif=<?= $value['id'] ?>')" class="btn btn-success">
