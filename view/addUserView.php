@@ -111,12 +111,6 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
               ?>
             </select>
           </div>
-          <!-- <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="isEntity" id="isEntity">
-            <label class="form-check-label" for="isEntity">
-              Entité
-            </label>
-          </div> -->
        
           <div class="input-group mb-3" style="text-align: center;">
             <img src="<?= (!empty($_GET['modif'])) ? $src : 'public/img/150x150.png' ?>" id="profile_img" style="height: 100px; border-radius: 50%" alt="photo profile">
