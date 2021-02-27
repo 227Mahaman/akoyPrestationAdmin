@@ -109,12 +109,12 @@
                     <ul class="vertical-menu in">
 
                         <?php
-                        $sql = "SELECT mr.module FROM module_role mr, module m WHERE mr.module = m.id AND m.is_menu=1 AND mr.role_id = ? ";
+                        $sql = "SELECT mr.module FROM module_role mr, module m WHERE mr.module = m.id AND m.is_menu=1 AND statut=1 AND mr.role_id = ? ";
                         $res = Manager::getMultiplesRecords($sql, [$_SESSION['user-akoyprestation']['roleId']]);
                         // $res = $res['data'];
                         $thisSMenu = array();
                         foreach ($res as $key => $value) {
-                            $sql = "SELECT sub_module, name, id, icon FROM module WHERE is_menu=1 AND id = ?";
+                            $sql = "SELECT sub_module, name, id, icon FROM module WHERE is_menu=1 AND statut=1 AND id = ?";
                             $name = Manager::getSingleRecords($sql, [$value['module']]);
                             // print_r($name);
                             if (empty($name['sub_module'])) {

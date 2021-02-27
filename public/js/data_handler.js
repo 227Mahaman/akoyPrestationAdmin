@@ -125,7 +125,7 @@ function getPermission(module) {
     console.log("perm", module);
 
     $permision = getDatas('module', 'sub_module', $_GET['module']);
-    if (module != "") {
+    if (module != undefined) {
         $permision = getDatas('module', 'sub_module', module);
 
     }
@@ -136,9 +136,12 @@ function getPermission(module) {
             $data = '';
             $permision = $permision.data;
             $.each($permision, function (i, v) {
+                isMenu = v.is_menu==1 ? 'Oui':'Non';
                 $data += `
                 <tr>
                 <td>` + v.name + `</td>
+                <td>` + v.action_url + `</td>
+                <td>` + isMenu + `</td>
                 <td>` + v.description + `</td>
                 <td>
                   <a class="btn btn-success">
@@ -569,7 +572,7 @@ function getHTML(action) {
         type: "GET",
         dataType: "html",
         success: function (result) {
-            console.log("res", customUrl + action,);
+            console.log("res", customUrl + action);
             hidePleaseWait();
             // $("#allDoc").toggle();
             // $("#searchDoc").toggle();

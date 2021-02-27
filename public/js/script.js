@@ -11,18 +11,31 @@ function addTableRow(sub_module) {
     $tr = `<tr id="addPermission">
     <form >
             <td>
-            <div class="form-group">
-                <input type="text" required class="form-control" id="name" name="name" placeholder="Le nom du module">
-            </div>
+                <div class="form-group">
+                    <input type="text" required class="form-control" id="name" name="name" placeholder="Le nom du module">
+                </div>
             </td>
             <td>
-            <div class="form-group">
-                <input required class="form-control" id="description" name="description" placeholder="description du module">
-            </div>
+                <div class="form-group">
+                    <input type="text" required class="form-control" id="action_url" name="action_url" placeholder="Le lien du module">
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <select class="form-control" id="is_menu" name="is_menu">
+                    <option value="1">Oui</option>
+                    <option value="0">Non</option>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <input required class="form-control" id="description" name="description" placeholder="description du module">
+                </div>
+            </td>
             <div style="display:none" class="form-group">
                 <input required class="form-control" id="sub_module" name="sub_module" value="`+sub_module+`" placeholder="description du module">
             </div>
-            </td>
             <td>
             <button type="button" onclick="addData('module',`+sub_module+`)" class="btn btn-success">
                 <i class="fa  fa-check-square white"></i>

@@ -40,6 +40,8 @@ if (isset($_GET['module'])) extract($_GET);
               <thead>
                 <tr>
                   <th>Permission</th>
+                  <th>URL</th>
+                  <th>Menu ?</th>
                   <th>Description</th>
                   <th>Action</th>
                 </tr>

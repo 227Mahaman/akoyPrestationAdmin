@@ -336,6 +336,81 @@ if (isset($_SESSION['user-akoyprestation'])) {
             require_once("view/homeView.php");
         } elseif ($action == 'searchView') {
             require_once("view/searchDataView.php");
+        } elseif ($action == 'typePublication') { //
+            $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification
+                if (!empty($input)) {
+                    $data = $input;
+                    $res = Manager::updateData($data, 'type_publication', 'id', $_GET['modif']);
+                    if ($res['code'] = 1) {
+                        echo " <script>
+                        getHTML('typePublication');
+                    </script>";
+                    die;
+                    }
+                }
+            } else { // Ajout
+                if (!empty($input)) {
+                    $data = $input;
+                    $typePub = new type_publication($data);
+                    $res = insert($typePub);
+
+                    $_SESSION['messages'] = $res;
+                    if (!empty($_SESSION['messages'])) {
+                        if ($_SESSION['messages']['code'] == 1) {
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-success');
+                        } else {
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-danger');
+                        }
+                    }
+                    die;
+                }
+            }
+            require_once("view/typePublicationView.php");
+        } elseif ($action == 'ecoles') {
+            $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification
+                var_dump($_GET['modif']);
+                var_dump($input);
+                if (!empty($input)) {
+                    $data = $input;
+                    $data['updated_at'] = date("Y-m-d H:i:s");
+                    $res = update('type_publication', $data, 'id', $_GET['modif']);
+                    //$res = Manager::updateData($data, 'type_publication', 'id', $_GET['modif']);
+                    if ($res['code'] = 1) {
+                        echo " <script>
+                        getHTML('typePublication');
+                    </script>";
+                    die;
+                    }
+                }
+            } elseif (!empty($_GET['delete'])) { //Suppression
+                $data['statut'] = 0;
+                $res = Manager::updateData($data, 'type_publication', 'id', $_GET['delete']);
+                if ($res['code'] = 1) {
+                    echo " <script>
+                    getHTML('typePublication');
+                </script>";
+                die;
+                }
+            } else { // Ajout
+                if (!empty($input)) {
+                    $data = $input;
+                    $ecoles = new ecole($data);
+                    $res = insert($ecoles);
+
+                    $_SESSION['messages'] = $res;
+                    if (!empty($_SESSION['messages'])) {
+                        if ($_SESSION['messages']['code'] == 1) {
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-success');
+                        } else {
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-danger');
+                        }
+                    }
+                    die;
+                }
+            }
+            require_once("view/ecoleView.php");
         }
     } elseif (empty($_GET['mat'])) {
         require_once("view/homeView.php");

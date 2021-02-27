@@ -8,7 +8,7 @@ if (!empty($_GET['modif'])) {
   $module_data = Manager::getData('module', 'id', $_GET['modif'])['data'];
 }
 $page = 1;
-$per_page = 20;
+$per_page = 25;
 if (!empty($_GET['page'])) {
   extract($_GET);
 }
@@ -118,7 +118,7 @@ $start_form = ($page - 1) * $per_page;
                   <th>Action</th>
                 </tr>
                 <?php
-                $sql = "SELECT * FROM module LIMIT $start_form, $per_page";
+                $sql = "SELECT * FROM module WHERE statut=1 LIMIT $start_form, $per_page";
                 $data = Manager::getMultiplesRecords($sql);
                 if (is_array($data) || is_object($data)) {
                   // var_dump($page, $sql);
