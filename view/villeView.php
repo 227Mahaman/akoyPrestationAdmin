@@ -90,11 +90,6 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
                 <th>Action</th>
               </tr>
               <?php
-              // $ville = new villes();
-              // $data = Manager::getDatas($ville)->all();
-              // if ((is_array($data) || is_object($data)) && !empty($data->villes)) {
-              //   foreach ($data as $value) {
-
                 $i = 0;
                 $data = Manager::getData('villes', 'statut', 1, true)['data'];
                 if (is_array($data) || is_object($data)) {
@@ -105,8 +100,11 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
                   <td><?= $i;?></td>
                     <td><?= $value['titre'] ?></td>
                     <td>
-                      <a href="javascript:void()" onclick="getHTML('ville&modif=<?= $value['id'] ?>')" class="btn btn-success">
-                        <i class="fa fa-edit"></i>
+                      <a href="javascript:void()" onclick="getHTML('ville&modif=<?= $value['id'] ?>')" class="btn btn-primary">
+                        <i class="fa fa-edit white"></i>
+                      </a>
+                      <a href="javascript:void()" onclick="getHTML('ville&delete=<?= $value['id'] ?>')" class="btn btn-danger">
+                        <i class="fa fa-trash white"></i>
                       </a>
                     </td>
                   </tr>

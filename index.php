@@ -115,8 +115,6 @@ if (isset($_SESSION['user-akoyprestation'])) {
             if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'une ville
                 if (!empty($input)) {
                     $data = $input;
-                    //var_dump($data);
-                    //die();
                     $res = Manager::updateData($data, 'villes', 'id', $_GET['modif']);
                     if ($res['code'] = 1) {
                         echo " <script>
@@ -124,6 +122,15 @@ if (isset($_SESSION['user-akoyprestation'])) {
                     </script>";
                     die;
                     }
+                }
+            } elseif (!empty($_GET['delete']) && ctype_digit($_GET['delete'])) { //
+                $data['statut'] = 0;
+                $res = Manager::updateData($data, 'villes', 'id', $_GET['delete']);
+                if ($res['code'] = 200) {
+                    echo " <script>
+                    getHTML('ville');
+                </script>";
+                die;
                 }
             } else { // Ajout Ville
                 if (!empty($input)) {
