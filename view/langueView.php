@@ -79,7 +79,7 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
               </tr>
               <?php
               $langue = new langues();
-              $data = Manager::getDatas($langue)->all();
+              $data = Manager::getDatas($langue, 'statut', 1, true)['data'];
               // Manager::showError($data);
               if (is_array($data) || is_object($data)) {
                 foreach ($data as $value) {
@@ -90,8 +90,11 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
                     <td><?= $value['titre'] ?></td>
                     <td><?= $value['code'] ?></td>
                     <td>
-                      <a href="javascript:void()" onclick="getHTML('langue&modif=<?= $value['id'] ?>')" class="btn btn-success">
-                        <i class="fa fa-edit"></i>
+                      <a href="javascript:void()" onclick="getHTML('langue&modif=<?= $value['id'] ?>')" class="btn btn-primary">
+                        <i class="fa fa-edit white"></i>
+                      </a>
+                      <a href="javascript:void()" onclick="getHTML('langue&delete=<?= $value['id'];?>')" class="btn btn-danger">
+                        <i class="fa fa-trash white"></i>
                       </a>
                     </td>
                   </tr>

@@ -22,7 +22,7 @@ $this->config['tables']['files'] = ['id','file_name','file_url','file_type','fil
 
 $this->config['tables']['categories_publication']['id'] = ['id'];$this->config['tables']['cv']['id'] = ['id'];$this->config['tables']['ecole']['id'] = ['id'];$this->config['tables']['files']['id'] = ['id'];
 
-$this->config['tables']['langues'] = ['id','code','titre',];
+$this->config['tables']['langues'] = ['id','code','titre','statut',];
 
 $this->config['tables']['categories_publication']['id'] = ['id'];$this->config['tables']['cv']['id'] = ['id'];$this->config['tables']['ecole']['id'] = ['id'];$this->config['tables']['files']['id'] = ['id'];$this->config['tables']['langues']['id'] = ['id'];
 
