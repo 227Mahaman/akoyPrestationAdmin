@@ -34,7 +34,7 @@ $start_form = ($page - 1) * $per_page;
 <div class="container container-margin">
   <div class="row">
     <?php if (!isset($_GET['role'])) : ?>
-      <div class="col-md-5">
+      <div class="col-md-4">
         <!-- general form elements -->
         <div class="card m-b-30">
           <div class="card-header with-border">
@@ -102,7 +102,7 @@ $start_form = ($page - 1) * $per_page;
 
       </div>
     <?php endif; ?>
-    <div class="<?= (isset($_GET['role'])) ? 'col-md-12' : 'col-md-7' ?>">
+    <div class="<?= (isset($_GET['role'])) ? 'col-md-12' : 'col-md-8' ?>">
       <div class="card m-b-30">
         <div class="card-header with-border">
           <h3 class="card-title"><b><?= isset($_GET['role']) ? Manager::getData('roles', 'id', $role)['data']['name'] : 'Module' ?></b></h3>
@@ -121,10 +121,7 @@ $start_form = ($page - 1) * $per_page;
                 $sql = "SELECT * FROM module WHERE statut=1 LIMIT $start_form, $per_page";
                 $data = Manager::getMultiplesRecords($sql);
                 if (is_array($data) || is_object($data)) {
-                  // var_dump($page, $sql);
                   foreach ($data as $value) {
-
-                    //var_dump(Manager::getData('module', "id", $value['sub_module'])); die;
                 ?>
                     <tr>
                       <td><?php echo $value['name'];
@@ -132,11 +129,14 @@ $start_form = ($page - 1) * $per_page;
                       <td><?= $value['description'] ?></td>
                       <td>
                         <?php if (!isset($_GET['role'])) : ?>
-                          <a href="javascript:void()" onclick="getHTML('module&modif=<?= $value['id'] ?>')" class="btn btn-success">
+                          <a href="javascript:void()" onclick="getHTML('module&modif=<?= $value['id'] ?>')" class="btn btn-primary">
                             <i class="fa fa-edit white"></i>
                           </a>
                           <a href="javascript:void()" onclick="getHTML('permission&module=<?= $value['id'] ?>')" class="btn btn-success">
                             <i class="fa fa-plus"></i>
+                          </a>
+                          <a href="javascript:void()" onclick="getHTML('module&delete=<?= $value['id'] ?>')" class="btn btn-danger">
+                            <i class="fa fa-trash white"></i>
                           </a>
                         <?php else : ?>
                           <div class="form-group">

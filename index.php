@@ -73,41 +73,41 @@ if (isset($_SESSION['user-akoyprestation'])) {
             require_once("view/roleView.php");
         } elseif ($action == 'module') {
             $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
-            if (!empty($input)) {
-                $data = $input;
-                $res = 0;
-                var_dump($_POST);
-                if(!isset($_GET['modif'])){
-                    $modules = new module($data);
-                    $res = insert($modules);
-                } else {
-                    $res = update('module', $data, 'id', $_GET['modif']);
-                }
-                // if (!empty($_GET['modif'])) {//Modification
-                //     $res = update('module', $data, 'id', $_GET['modif']);
-                // } else {//Insertion
-                //     //$res = addData($data, 'module');
-                //     $modules = new module($data);
-                //     $res = insert($modules);
-                // }
-
-                //Manager::showError($res);
-
-                if ($res != 1) {
-                    $_SESSION['messages'] = $res;
-                    $_SESSION['type'] = 0;
-                } else {
-                    $_SESSION['messages'] = "Enregistrement réussis";
-                    $_SESSION['type'] = 1;
-                }
-                if (!empty($_SESSION['messages'])) {
-                    if ($_SESSION['type'] == 1) {
-                        echo Manager::messages($_SESSION['messages'], 'alert-success');
-                    } else {
-                        echo Manager::messages($_SESSION['messages'], 'alert-danger');
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification
+                if (!empty($input)) {
+                    $data = $input;
+                    $res = Manager::updateData($data, 'module', 'id', $_GET['modif']);
+                    if ($res['code'] = 1) {
+                        echo " <script>
+                        getHTML('module');
+                    </script>";
+                    die;
                     }
                 }
+            } elseif (!empty($_GET['delete']) && ctype_digit($_GET['delete'])) { //Delete
+                $data['statut'] = 0;
+                $res = Manager::updateData($data, 'module', 'id', $_GET['delete']);
+                if ($res['code'] = 200) {
+                    echo " <script>
+                    getHTML('module');
+                </script>";
                 die;
+                }
+            } else { // Ajout
+                if (!empty($input)) {
+                    $data = $input;
+                    $modules = new module($data);
+                    $res = insert($modules);
+                    $_SESSION['messages'] = $res;
+                    if (!empty($_SESSION['messages'])) {
+                        if ($_SESSION['messages']['code'] == 1) {
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-success');
+                        } else {
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-danger');
+                        }
+                    }
+                    die;
+                }
             }
             require_once("view/moduleView.php");
         } elseif ($action == 'permission') {
