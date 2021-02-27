@@ -78,7 +78,7 @@ if (!empty($_GET['modif'])) {
               </tr>
               <?php
               $roles = new roles();
-              $data = Manager::getDatas($roles)->all();
+              $data = Manager::getDatas($roles, 'statut', 1, true)['data'];
               if (is_array($data) || is_object($data)) {
                 foreach ($data as $value) {
 
@@ -88,11 +88,14 @@ if (!empty($_GET['modif'])) {
                     <td><?= $value['name'] ?></td>
                     <td><?= $value['description'] ?></td>
                     <td>
-                      <a href="javascript:void()" onclick="getHTML('role&modif=<?= $value['id'] ?>')" class="btn btn-success">
+                      <a href="javascript:void()" onclick="getHTML('role&modif=<?= $value['id'] ?>')" class="btn btn-primary">
                         <i class="fa fa-edit white"></i>
                       </a>
                       <a href="javascript:void()" onclick="getHTML('module&role=<?= $value['id'] ?>')" class="btn btn-success">
                         <i class="fa fa-plus"></i>
+                      </a>
+                      <a href="javascript:void()" onclick="getHTML('role&delete=<?= $value['id'] ?>')" class="btn btn-danger">
+                        <i class="fa fa-trash white"></i>
                       </a>
                     </td>
                   </tr>

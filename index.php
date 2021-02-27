@@ -34,30 +34,41 @@ if (isset($_SESSION['user-akoyprestation'])) {
         }
         if ($action == 'role') {
             $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
-            if (!empty($input)) {
-                $data = $input;
-                $res = 0;
-                if(!isset($_GET['modif'])){
-                    $roles = new roles($data);
-                    $res = insert($roles);
-                } else {
-                    $res = update('roles', $data, 'id', $_GET['modif']);
-                }
-                if ($res != 1) {
-                    $_SESSION['messages'] = $res;
-                    $_SESSION['type'] = 0;
-                } else {
-                    $_SESSION['messages'] = "Enregistrement réussis";
-                    $_SESSION['type'] = 1;
-                }
-                if (!empty($_SESSION['messages'])) {
-                    if ($_SESSION['type'] == 1) {
-                        echo Manager::messages($_SESSION['messages'], 'alert-success');
-                    } else {
-                        echo Manager::messages($_SESSION['messages'], 'alert-danger');
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification
+                if (!empty($input)) {
+                    $data = $input;
+                    $res = Manager::updateData($data, 'roles', 'id', $_GET['modif']);
+                    if ($res['code'] = 1) {
+                        echo " <script>
+                        getHTML('role');
+                    </script>";
+                    die;
                     }
                 }
+            } elseif (!empty($_GET['delete']) && ctype_digit($_GET['delete'])) { //Delete
+                $data['statut'] = 0;
+                $res = Manager::updateData($data, 'roles', 'id', $_GET['delete']);
+                if ($res['code'] = 200) {
+                    echo " <script>
+                    getHTML('role');
+                </script>";
                 die;
+                }
+            } else { // Ajout
+                if (!empty($input)) {
+                    $data = $input;
+                    $roles = new roles($data);
+                    $res = insert($roles);
+                    $_SESSION['messages'] = $res;
+                    if (!empty($_SESSION['messages'])) {
+                        if ($_SESSION['messages']['code'] == 1) {
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-success');
+                        } else {
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-danger');
+                        }
+                    }
+                    die;
+                }
             }
             require_once("view/roleView.php");
         } elseif ($action == 'module') {
