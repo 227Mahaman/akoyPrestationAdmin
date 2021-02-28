@@ -1,5 +1,10 @@
 <?php
 $title = "Type des agents";
+$type_user_data = array();
+if (!empty($_GET['modif'])) {
+  $title = "Modifier Type agent";
+  $type_user_data = Manager::getData('types_user', 'id', $_GET['modif'])['data'];
+}
 // ob_start();
 ?>
 <div class="breadcrumbbar">
@@ -9,8 +14,6 @@ $title = "Type des agents";
       <div class="breadcrumb-list">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
-          <!-- <li class="breadcrumb-item"><a href="#"><?= $title ?></a></li>
-                                <li class="breadcrumb-item"><a href="#">Basic</a></li> -->
           <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
         </ol>
       </div>
@@ -32,7 +35,7 @@ $title = "Type des agents";
           <div class="card-body">
             <div class="form-group">
               <label for="label">Nom du type d'agent</label>
-              <input type="text" required class="form-control" id="label" name="label" placeholder="Type d'agent">
+              <input type="text" required class="form-control" id="label" name="label" value="<?= (!empty($_GET['modif']) ? $type_user_data['label'] : '');?>" placeholder="Type d'agent">
             </div>
           </div>
           <div class="card-footer">
@@ -64,7 +67,7 @@ $title = "Type des agents";
                 <th>Action</th>
               </tr>
               <?php
-              $data = Manager::getData('types_user')['data'];
+              $data = Manager::getData('types_user', 'statut', 1, true)['data'];
               if (is_array($data) || is_object($data)) {
                 foreach ($data as $value) {
 
@@ -73,8 +76,11 @@ $title = "Type des agents";
                   <tr>
                     <td><?= $value['label'] ?></td>
                     <td>
-                      <a class="btn btn-success">
+                      <a href="javascript:void()" onclick="getHTML('type&modif=<?= $value['id'] ?>')" class="btn btn-primary">
                         <i class="fa fa-edit white"></i>
+                      </a>
+                      <a href="javascript:void()" onclick="getHTML('type&delete=<?= $value['id'] ?>')" class="btn btn-danger">
+                        <i class="fa fa-trash white"></i>
                       </a>
                     </td>
                   </tr>

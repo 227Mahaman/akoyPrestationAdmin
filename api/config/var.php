@@ -50,7 +50,7 @@ $this->config['tables']['type_publication'] = ['id','titre','statut',];
 
 $this->config['tables']['categories_publication']['id'] = ['id'];$this->config['tables']['cv']['id'] = ['id'];$this->config['tables']['ecole']['id'] = ['id'];$this->config['tables']['files']['id'] = ['id'];$this->config['tables']['langues']['id'] = ['id'];$this->config['tables']['module']['id'] = ['id'];$this->config['tables']['module_role']['id'] = ['id'];$this->config['tables']['pays']['id'] = ['id'];$this->config['tables']['publications']['id'] = ['id'];$this->config['tables']['roles']['id'] = ['id'];$this->config['tables']['type_publication']['id'] = ['id'];
 
-$this->config['tables']['types_user'] = ['id','label',];
+$this->config['tables']['types_user'] = ['id','label','statut',];
 
 $this->config['tables']['categories_publication']['id'] = ['id'];$this->config['tables']['cv']['id'] = ['id'];$this->config['tables']['ecole']['id'] = ['id'];$this->config['tables']['files']['id'] = ['id'];$this->config['tables']['langues']['id'] = ['id'];$this->config['tables']['module']['id'] = ['id'];$this->config['tables']['module_role']['id'] = ['id'];$this->config['tables']['pays']['id'] = ['id'];$this->config['tables']['publications']['id'] = ['id'];$this->config['tables']['roles']['id'] = ['id'];$this->config['tables']['type_publication']['id'] = ['id'];$this->config['tables']['types_user']['id'] = ['id'];
 

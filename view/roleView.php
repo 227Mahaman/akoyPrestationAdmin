@@ -34,7 +34,7 @@ if (!empty($_GET['modif'])) {
           <div class="card-body">
             <div class="form-group">
               <label for="name">Nom du role</label>
-              <input type="text" required class="form-control" id="name" name="name" value="<?= (!empty($_GET['modif']) ? $role_data['name'] : '') ?>" placeholder="Le nom du rôle">
+              <input type="text" required class="form-control" id="name" name="name" value="<?= (!empty($_GET['modif']) ? $role_data['name'] : '');?>" placeholder="Le nom du rôle">
             </div>
             <div class="form-group">
               <label for="description">Description</label>

@@ -46,6 +46,7 @@ $title = "Utilisateurs";
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">N° de téléphone</th>
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">Type utilisateur</th>
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">Rôle</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">Photo</th>
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">Action</th>
                 </tr>
               </thead>
@@ -66,9 +67,10 @@ $title = "Utilisateurs";
                   
                   <td><?= Manager::getData('types_user', 'id', $value['type_user'])['data']['label'] ?></td>
                   <td><?= Manager::getData('roles', 'id', $value['role'])['data']['name'] ?></td>
+                  <td><?= Manager::getData('roles', 'id', $value['role'])['data']['name'] ?></td>
                   <td>
-                    <a href="javascript:void()" onclick="getHTML('addUser&modif=<?= $value['id'] ?>')" class="btn btn-success">
-                      <i class="fa fa-pencil"></i>
+                    <a href="javascript:void()" onclick="getHTML('addUser&modif=<?= $value['id'] ?>')" class="btn btn-primary">
+                      <i class="fa fa-edit white"></i>
                     </a>
                     <a href="javascript:void()" onclick="getHTML('showUser&delete=<?= $value['id'] ?>')" class="btn btn-danger">
                       <i class="fa fa-trash"></i>
@@ -82,9 +84,10 @@ $title = "Utilisateurs";
                   
                   <td><?= Manager::getData('types_user', 'id', $value['type_user'])['data']['label'] ?></td>
                   <td><?= Manager::getData('roles', 'id', $value['role'])['data']['name'] ?></td>
+                  <td><?= Manager::getData('roles', 'id', $value['role'])['data']['name'] ?></td>
                   <td>
-                    <a href="javascript:void()" onclick="getHTML('addUser&modif=<?= $value['id'] ?>')" class="btn btn-success">
-                      <i class="fa fa-pencil"></i>
+                    <a href="javascript:void()" onclick="getHTML('addUser&modif=<?= $value['id'] ?>')" class="btn btn-primary">
+                      <i class="fa fa-edit white"></i>
                     </a>
                     <a href="javascript:void()" onclick="getHTML('showUser&delete=<?= $value['id'] ?>')" class="btn btn-danger">
                       <i class="fa fa-trash"></i>
@@ -105,6 +108,7 @@ $title = "Utilisateurs";
                   <th rowspan="1" colspan="1">N° de téléphone</th>
                   <th rowspan="1" colspan="1">Type agent</th>
                   <th rowspan="1" colspan="1">Rôle</th>
+                  <th rowspan="1" colspan="1">Photo</th>
                   <th rowspan="1" colspan="1">Action</th>
                 </tr>
               </tfoot>
