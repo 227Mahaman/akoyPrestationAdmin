@@ -299,17 +299,27 @@ if (isset($_SESSION['user-akoyprestation'])) {
             require_once("view/typeAgentView.php");
         } elseif ($action == 'addUser') {
             $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
-            if (!empty($input) && !empty($_FILES) && !empty($input)) {
-                $data = $input;
-                $res = 0;
-                // if(!isset($_GET['modif'])){
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification
+                if (!empty($input)) {
+                    $data = $input;
+                    if (!empty($_FILES['profile_picture']['name'])) {
+                        $data['photo'] = UserManager::uploadProfilePicture($_FILES['profile_picture']);
+                    }
+                    $res = Manager::updateData($data, 'users', 'id', $_GET['modif']);
+                    if ($res['code'] = 1) {
+                        echo " <script>
+                        getHTML('showUser');
+                    </script>";
+                    die;
+                    }
+                }
+            } else { // Ajout
+                if (!empty($input) && !empty($_FILES)) {
+                    $data = $input;
+                    // $types_users = new types_user($data);
+                    // $res = insert($types_users);
                     $data['profile_picture'] = $_FILES['profile_picture'];
                     $res = UserManager::addUser($data);
-                // } else {
-                //     $res = update('users', $data, 'id', $_GET['modif']);
-                // }
-                // var_dump($res);
-                if ($res != 1) {
                     $_SESSION['messages'] = $res;
                     if (!empty($_SESSION['messages'])) {
                         if ($_SESSION['messages']['code'] == 1) {
@@ -318,44 +328,13 @@ if (isset($_SESSION['user-akoyprestation'])) {
                             echo Manager::messages($_SESSION['messages']['message'], 'alert-danger');
                         }
                     }
-                    die;
-                } else {
-                   echo " <script>
-                        getHTML('showUser');
-                    </script>";
-                    die;
-                    // header('Location: index.php?action=');
-                }
-                
-            }
-            if (!empty($_GET['modif']) && ctype_digit($_GET['modif']) && !empty($input)) { //Modification d'un utilisateur
-                $data = $input;
-                if (!empty($_FILES['profile_picture']['name'])) {
-                    $data['photo'] = UserManager::uploadProfilePicture($_FILES['profile_picture']);
-                    // $data['profile_picture'] = $_FILES['profile_picture'];
-                }
-                $res = Manager::updateData($data, 'users', 'id', $_GET['modif']);
-                if ($res != 1) {
-                    $_SESSION['messages'] = $res;
-                    if (!empty($_SESSION['messages'])) {
-                        if ($_SESSION['messages']['code'] == 1) {
-                            echo Manager::messages($_SESSION['messages']['message'], 'alert-success');
-                        } else {
-                            echo Manager::messages($_SESSION['messages']['message'], 'alert-danger');
-                        }
-                    }
-                    die;
-                } else {
-                    echo " <script>
-                        getHTML('showUser');
-                    </script>";
                     die;
                 }
             }
             require_once("view/addUserView.php");
         } elseif ($action == 'showUser') {
             if(isset($_GET['delete'])){
-                $data['statut'] = 0;
+                $data['statut_delete'] = 0;
                 $res = update('users', $data, 'id', $_GET['delete']);
             }
             require_once("view/showUserView.php");

@@ -43,17 +43,19 @@ $title = "Utilisateurs";
               <thead>
                 <tr role="row">
                   <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 182.467px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Nom & Prénom</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">N° de téléphone</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">Type utilisateur</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">N°téléphone</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">Type Agent</th>
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">Rôle</th>
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">Photo</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">Activé</th>
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">Action</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
                 $i = 0;
-                $data = Manager::getData('users', 'statut', 1, true)['data'];
+                // $data = Manager::getData('users', 'statut', 1, true)['data'];
+                $data = Manager::getData('users', 'statut_delete', 1, true)['data'];
                 if (is_array($data) || is_object($data)) {
                   foreach ($data as $value) {
                     $i++;
@@ -67,7 +69,10 @@ $title = "Utilisateurs";
                   
                   <td><?= Manager::getData('types_user', 'id', $value['type_user'])['data']['label'] ?></td>
                   <td><?= Manager::getData('roles', 'id', $value['role'])['data']['name'] ?></td>
-                  <td><?= Manager::getData('roles', 'id', $value['role'])['data']['name'] ?></td>
+                  <td>
+                    <img width="50" src="<?= Manager::getData("files", "id", $value['photo'])['data']['file_url'];?>" class="img-circle" alt="<?= $value['first_name'];?>">
+                  </td>
+                  <td><?= (Manager::getData('roles', 'id', $value['role'])['data']['statut']==1) ? 'Oui': 'Non';?></td>
                   <td>
                     <a href="javascript:void()" onclick="getHTML('addUser&modif=<?= $value['id'] ?>')" class="btn btn-primary">
                       <i class="fa fa-edit white"></i>
@@ -84,7 +89,10 @@ $title = "Utilisateurs";
                   
                   <td><?= Manager::getData('types_user', 'id', $value['type_user'])['data']['label'] ?></td>
                   <td><?= Manager::getData('roles', 'id', $value['role'])['data']['name'] ?></td>
-                  <td><?= Manager::getData('roles', 'id', $value['role'])['data']['name'] ?></td>
+                  <td>
+                  <img width="50" src="<?= Manager::getData("files", "id", $value['photo'])['data']['file_url'];?>" class="img-circle" alt="<?= $value['first_name'];?>">
+                  </td>
+                  <td><?= (Manager::getData('roles', 'id', $value['role'])['data']['statut']==1) ? 'Oui': 'Non';?></td>
                   <td>
                     <a href="javascript:void()" onclick="getHTML('addUser&modif=<?= $value['id'] ?>')" class="btn btn-primary">
                       <i class="fa fa-edit white"></i>
@@ -104,11 +112,12 @@ $title = "Utilisateurs";
               </tbody>
               <tfoot>
                 <tr>
-                  <th rowspan="1" colspan="1">Nom et Prénom</th>
-                  <th rowspan="1" colspan="1">N° de téléphone</th>
+                  <th rowspan="1" colspan="1">Nom & Prénom</th>
+                  <th rowspan="1" colspan="1">N°téléphone</th>
                   <th rowspan="1" colspan="1">Type agent</th>
                   <th rowspan="1" colspan="1">Rôle</th>
                   <th rowspan="1" colspan="1">Photo</th>
+                  <th rowspan="1" colspan="1">Activé</th>
                   <th rowspan="1" colspan="1">Action</th>
                 </tr>
               </tfoot>
