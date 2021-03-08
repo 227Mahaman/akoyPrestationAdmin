@@ -395,18 +395,6 @@ if (isset($_SESSION['user-akoyprestation'])) {
                     die;
                     }
                 }
-                // if (!empty($input)) {
-                //     $data = $input;
-                //     $data['updated_at'] = date("Y-m-d H:i:s");
-                //     $res = update('type_publication', $data, 'id', $_GET['modif']);
-                //     //$res = Manager::updateData($data, 'type_publication', 'id', $_GET['modif']);
-                //     if ($res['code'] = 1) {
-                //         echo " <script>
-                //         getHTML('typePublication');
-                //     </script>";
-                //     die;
-                //     }
-                // }
             } elseif (!empty($_GET['delete'])) { //Suppression
                 $data['statut'] = 0;
                 $res = Manager::updateData($data, 'type_publication', 'id', $_GET['delete']);
@@ -434,6 +422,50 @@ if (isset($_SESSION['user-akoyprestation'])) {
                 }
             }
             require_once("view/ecoleView.php");
+        } elseif ($action == 'addPublication') {
+            $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification
+                if (!empty($input)) {
+                    $data = $input;
+                    $data['updated_at'] = date("Y-m-d H:i:s");
+                    if (!empty($_FILES['profile_picture']['name'])) {
+                        $data['file'] = UserManager::uploadProfilePicture($_FILES['profile_picture']);
+                    }
+                    $res = Manager::updateData($data, 'publications', 'id', $_GET['modif']);
+                    if ($res['code'] = 1) {
+                        echo " <script>
+                        getHTML('showUser');
+                    </script>";
+                    die;
+                    }
+                }
+            } else { // Ajout
+                if (!empty($input) && !empty($_FILES)) {
+                    $data = $input;
+                    $data['user_create'] = $_SESSION['user-akoyprestation']['id'];
+                    $data['file'] = $_FILES['profile_picture'];
+                    $data['file'] = UserManager::uploadProfilePicture($data['file']);
+                    $data['file'] = intval($data['file']);
+                    $publications = new publications($data);
+                    $res = insert($publications);
+                    $_SESSION['messages'] = $res;
+                    if (!empty($_SESSION['messages'])) {
+                        if ($_SESSION['messages']['code'] == 1) {
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-success');
+                        } else {
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-danger');
+                        }
+                    }
+                    die;
+                }
+            }
+            require_once("view/addPublicationView.php");
+        } elseif($action == 'listPublication'){
+            if(isset($_GET['delete'])){
+                $data['statut'] = 0;
+                $res = update('publications', $data, 'id', $_GET['delete']);
+            }
+            require_once("view/listPublicationView.php");
         }
     } elseif (empty($_GET['mat'])) {
         require_once("view/homeView.php");
