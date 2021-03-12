@@ -51,7 +51,7 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
             </div>
             <select class="form-control" id="type_publication" name="type_publication">
               <?php
-              $data = Manager::getData('type_publication')['data'];
+              $data = Manager::getData('type_publication', 'statut', 1, true)['data'];
               if (is_array($data) || is_object($data)) {
                 foreach ($data as $value) {
               ?>
