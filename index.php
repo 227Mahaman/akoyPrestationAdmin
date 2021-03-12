@@ -361,6 +361,15 @@ if (isset($_SESSION['user-akoyprestation'])) {
                     die;
                     }
                 }
+            } elseif (!empty($_GET['delete'])) { //Suppression
+                $data['statut'] = 0;
+                $res = Manager::updateData($data, 'type_publication', 'id', $_GET['delete']);
+                if ($res['code'] = 1) {
+                    echo " <script>
+                    getHTML('typePublication');
+                </script>";
+                die;
+                }
             } else { // Ajout
                 if (!empty($input)) {
                     $data = $input;
@@ -382,22 +391,20 @@ if (isset($_SESSION['user-akoyprestation'])) {
         } elseif ($action == 'ecoles') {
             $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
             if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification
-                // var_dump($_GET['modif']);
-                // var_dump($input);
                 if (!empty($input)) {
                     $data = $input;
                     $data['updated_at'] = date("Y-m-d H:i:s");
-                    $res = Manager::updateData($data, 'type_publication', 'id', $_GET['modif']);
+                    $res = Manager::updateData($data, 'ecole', 'id', $_GET['modif']);
                     if ($res['code'] = 200) {
                         echo " <script>
-                        getHTML('typePublication');
+                        getHTML('ecoles');
                     </script>";
                     die;
                     }
                 }
             } elseif (!empty($_GET['delete'])) { //Suppression
                 $data['statut'] = 0;
-                $res = Manager::updateData($data, 'type_publication', 'id', $_GET['delete']);
+                $res = Manager::updateData($data, 'ecole', 'id', $_GET['delete']);
                 if ($res['code'] = 1) {
                     echo " <script>
                     getHTML('typePublication');

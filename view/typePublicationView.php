@@ -34,11 +34,11 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
           <div class="card-body">
             <div class="form-group">
               <label for="titre">Type</label>
-              <input type="text" required class="form-control" id="titre" name="titre" value="<?= (!empty($_GET['modif'])) ? $datas['titre'] : "" ?>" placeholder="Type Publi ation">
+              <input type="text" required class="form-control" id="titre" name="titre" value="<?= (!empty($_GET['modif'])) ? $datas['titre'] : "" ?>" placeholder="Type Publication">
             </div>
           </div>
           <div class="card-footer">
-            <button type="submit" onclick="postData('type_publicationForm', 'type_publication'<?= (!empty($_GET['modif']) ? ', ' . $_GET['modif'] : '') ?>)" class="btn btn-success"><?= $GLOBALS['lang']['btn-valid'] ?? 'valider' ?></button>
+            <button type="submit" onclick="postData('type_publicationForm', 'typePublication'<?= (!empty($_GET['modif']) ? ', ' . $_GET['modif'] : '') ?>)" class="btn btn-success"><?= $GLOBALS['lang']['btn-valid'] ?? 'valider' ?></button>
             <p id="postMessage">
 
             </p>
@@ -81,8 +81,11 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
                   <td><?= $i;?></td>
                     <td><?= $value['titre'] ?></td>
                     <td>
-                      <a href="javascript:void()" onclick="getHTML('typePublication&modif=<?= $value['id'] ?>')" class="btn btn-success">
+                      <a href="javascript:void()" onclick="getHTML('typePublication&modif=<?= $value['id'] ?>')" class="btn btn-primary">
                         <i class="fa fa-edit"></i>
+                      </a>
+                      <a href="javascript:void()" onclick="getHTML('typePublication&delete=<?= $value['id'];?>')" class="btn btn-danger">
+                        <i class="fa fa-trash white"></i>
                       </a>
                     </td>
                   </tr>
