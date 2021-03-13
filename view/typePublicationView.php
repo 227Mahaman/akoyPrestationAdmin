@@ -4,6 +4,7 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
   $title = "Modifier du type";
   $datas = Manager::getData("type_publication", "id", $_GET['modif'])['data'];
 }
+// TODO faire un code qui va permettre de recharger le tableau
 // ob_start();
 ?>
 <div class="breadcrumbbar">
