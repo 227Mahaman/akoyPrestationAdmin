@@ -3,6 +3,7 @@
 class entreprise {
 	 public $id;
 	 public $titre;
+	 public $statut;
 	 public $entreprise=array();
 
 
@@ -17,10 +18,11 @@ class entreprise {
                     return $this->entreprise;
                 }
 
-                public function role($id, $titre)
+                public function role($id, $titre, $statut)
                     {
                         $this->id = $id;
 $this->titre = $titre;
+$this->statut = $statut;
 
                     }
                 
@@ -41,6 +43,7 @@ $this->titre = $titre;
 $d=$data[0];
 $this->setId($d['id']);
 $this->setTitre($d['titre']);
+$this->setStatut($d['statut']);
 $this->entreprise =$data; 
  return $this;
                                 }
@@ -65,12 +68,38 @@ $this->entreprise =$data;
 $d=$data[0];
 $this->setId($d['id']);
 $this->setTitre($d['titre']);
+$this->setStatut($d['statut']);
 $this->entreprise =$data; 
  return $this;
                                 }
                             
                         } else {
                             return $this->titre;
+                        }
+                        
+                    }
+                    /**
+                    * Get the value of statut
+                    */ 
+                    public function getStatut($statut=null)
+                    {
+                        if ($statut != null && is_array($this->entreprise) && count($this->entreprise)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE statut = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$statut]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId($d['id']);
+$this->setTitre($d['titre']);
+$this->setStatut($d['statut']);
+$this->entreprise =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->statut;
                         }
                         
                     }
@@ -95,6 +124,17 @@ $this->entreprise =$data;
                    public function setTitre($titre)
                    {
                     $this->titre = $titre;
+               
+                       return $this;
+                   }
+                    /**
+                    * Set the value of statut
+                    *
+                    * @return  self
+                    */ 
+                   public function setStatut($statut)
+                   {
+                    $this->statut = $statut;
                
                        return $this;
                    }

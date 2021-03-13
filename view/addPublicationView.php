@@ -85,6 +85,44 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
+              <span class="input-group-text">Ville</span>
+            </div>
+            <select class="form-control" id="ville" name="ville">
+              <?php
+              $data = Manager::getData('villes', 'statut', 1, true)['data'];
+              if (is_array($data) || is_object($data)) {
+                foreach ($data as $value) {
+              ?>
+                  <option <?= (!empty($_GET['modif'])) ? (($value['id'] == $datas['ville']) ? "selected" : "") : "" ?> value="<?= $value['id'] ?>"><?= $value['titre'];?></option>
+              <?php
+                }
+              } else {
+                Manager::messages('Aucune donnée trouvé', 'alert-warning');
+              }
+              ?>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Entreprise</span>
+            </div>
+            <select class="form-control" id="entreprise" name="entreprise">
+              <?php
+              $data = Manager::getData('entreprise', 'statut', 1, true)['data'];
+              if (is_array($data) || is_object($data)) {
+                foreach ($data as $value) {
+              ?>
+                  <option <?= (!empty($_GET['modif'])) ? (($value['id'] == $datas['entreprise']) ? "selected" : "") : "" ?> value="<?= $value['id'] ?>"><?= $value['titre'];?></option>
+              <?php
+                }
+              } else {
+                Manager::messages('Aucune donnée trouvé', 'alert-warning');
+              }
+              ?>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
               <span class="input-group-text">Titre</span>
             </div>
 
@@ -94,7 +132,7 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
             <div class="input-group-prepend">
               <span class="input-group-text">Description</span>
             </div>
-            <input type="text" required class="form-control" id="description" name="description" placeholder="Veuillez entrer la description" value="<?= (!empty($_GET['modif'])) ? $datas['description'] : "" ?>">
+            <textarea class="form-control" id="description" name="description" value="<?= (!empty($_GET['modif'])) ? $datas['description'] : "" ?>" placeholder="Description" cols="5" rows="2"><?= (!empty($_GET['modif'])) ? $datas['description'] : "" ?></textarea>
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -120,12 +158,12 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
             </div>
             <input type="date" required class="form-control" id="date_fin" name="date_fin" value="<?= (!empty($_GET['modif'])) ? $datas['date_fin'] : "" ?>">
           </div>
-          <div class="input-group mb-3">
+          <!-- <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">Date Elaboration</span>
             </div>
-            <input type="date" required class="form-control" id="date_elaboration" name="date_elaboration" value="<?= (!empty($_GET['modif'])) ? $datas['date_elaboration'] : "" ?>">
-          </div>
+            <input type="date" required class="form-control" id="date_elaboration" name="date_elaboration" value="<?//= (!empty($_GET['modif'])) ? $datas['date_elaboration'] : "" ?>">
+          </div> -->
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">Ecole</span>

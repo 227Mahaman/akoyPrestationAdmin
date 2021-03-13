@@ -450,6 +450,7 @@ if (isset($_SESSION['user-akoyprestation'])) {
                 if (!empty($input) && !empty($_FILES)) {
                     $data = $input;
                     $data['user_create'] = $_SESSION['user-akoyprestation']['id'];
+                    $data['date_elaboration'] = date("Y-m-d H:i:s");
                     $data['file'] = $_FILES['profile_picture'];
                     $files = new Files();
                     $data['file'] = $files->uploadFilePicture($data['file']);

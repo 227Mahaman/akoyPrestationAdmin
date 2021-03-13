@@ -17,6 +17,8 @@ class publications {
 	 public $create_at;
 	 public $updated_at;
 	 public $statut;
+	 public $ville;
+	 public $entreprise;
 	 public $publications=array();
 
 
@@ -31,7 +33,7 @@ class publications {
                     return $this->publications;
                 }
 
-                public function role($id, $type_publication, $category_publication, $titre, $description, $lieu, $date_annee_bourse, $date_debut, $date_fin, $ecole, $date_elaboration, $file, $user_create, $create_at, $updated_at, $statut)
+                public function role($id, $type_publication, $category_publication, $titre, $description, $lieu, $date_annee_bourse, $date_debut, $date_fin, $ecole, $date_elaboration, $file, $user_create, $create_at, $updated_at, $statut, $ville, $entreprise)
                     {
                         $this->id = $id;
 $this->type_publication = $type_publication;
@@ -49,6 +51,8 @@ $this->user_create = $user_create;
 $this->create_at = $create_at;
 $this->updated_at = $updated_at;
 $this->statut = $statut;
+$this->ville = $ville;
+$this->entreprise = $entreprise;
 
                     }
                 
@@ -83,6 +87,8 @@ $this->setUser_create($d['user_create']);
 $this->setCreate_at($d['create_at']);
 $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -121,6 +127,8 @@ $this->setUser_create($d['user_create']);
 $this->setCreate_at($d['create_at']);
 $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -159,6 +167,8 @@ $this->setUser_create($d['user_create']);
 $this->setCreate_at($d['create_at']);
 $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -197,6 +207,8 @@ $this->setUser_create($d['user_create']);
 $this->setCreate_at($d['create_at']);
 $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -235,6 +247,8 @@ $this->setUser_create($d['user_create']);
 $this->setCreate_at($d['create_at']);
 $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -273,6 +287,8 @@ $this->setUser_create($d['user_create']);
 $this->setCreate_at($d['create_at']);
 $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -311,6 +327,8 @@ $this->setUser_create($d['user_create']);
 $this->setCreate_at($d['create_at']);
 $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -349,6 +367,8 @@ $this->setUser_create($d['user_create']);
 $this->setCreate_at($d['create_at']);
 $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -387,6 +407,8 @@ $this->setUser_create($d['user_create']);
 $this->setCreate_at($d['create_at']);
 $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -425,6 +447,8 @@ $this->setUser_create($d['user_create']);
 $this->setCreate_at($d['create_at']);
 $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -463,6 +487,8 @@ $this->setUser_create($d['user_create']);
 $this->setCreate_at($d['create_at']);
 $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -501,6 +527,8 @@ $this->setUser_create($d['user_create']);
 $this->setCreate_at($d['create_at']);
 $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -539,6 +567,8 @@ $this->setUser_create($d['user_create']);
 $this->setCreate_at($d['create_at']);
 $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -577,6 +607,8 @@ $this->setUser_create($d['user_create']);
 $this->setCreate_at($d['create_at']);
 $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -615,6 +647,8 @@ $this->setUser_create($d['user_create']);
 $this->setCreate_at($d['create_at']);
 $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -653,12 +687,94 @@ $this->setUser_create($d['user_create']);
 $this->setCreate_at($d['create_at']);
 $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
 $this->publications =$data; 
  return $this;
                                 }
                             
                         } else {
                             return $this->statut;
+                        }
+                        
+                    }
+                    /**
+                    * Get the value of ville
+                    */ 
+                    public function getVille($ville=null)
+                    {
+                        if ($ville != null && is_array($this->publications) && count($this->publications)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE ville = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$ville]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId($d['id']);
+$this->setType_publication($d['type_publication']);
+$this->setCategory_publication($d['category_publication']);
+$this->setTitre($d['titre']);
+$this->setDescription($d['description']);
+$this->setLieu($d['lieu']);
+$this->setDate_annee_bourse($d['date_annee_bourse']);
+$this->setDate_debut($d['date_debut']);
+$this->setDate_fin($d['date_fin']);
+$this->setEcole($d['ecole']);
+$this->setDate_elaboration($d['date_elaboration']);
+$this->setFile($d['file']);
+$this->setUser_create($d['user_create']);
+$this->setCreate_at($d['create_at']);
+$this->setUpdated_at($d['updated_at']);
+$this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
+$this->publications =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->ville;
+                        }
+                        
+                    }
+                    /**
+                    * Get the value of entreprise
+                    */ 
+                    public function getEntreprise($entreprise=null)
+                    {
+                        if ($entreprise != null && is_array($this->publications) && count($this->publications)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE entreprise = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$entreprise]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId($d['id']);
+$this->setType_publication($d['type_publication']);
+$this->setCategory_publication($d['category_publication']);
+$this->setTitre($d['titre']);
+$this->setDescription($d['description']);
+$this->setLieu($d['lieu']);
+$this->setDate_annee_bourse($d['date_annee_bourse']);
+$this->setDate_debut($d['date_debut']);
+$this->setDate_fin($d['date_fin']);
+$this->setEcole($d['ecole']);
+$this->setDate_elaboration($d['date_elaboration']);
+$this->setFile($d['file']);
+$this->setUser_create($d['user_create']);
+$this->setCreate_at($d['create_at']);
+$this->setUpdated_at($d['updated_at']);
+$this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
+$this->publications =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->entreprise;
                         }
                         
                     }
@@ -837,6 +953,28 @@ $this->publications =$data;
                    public function setStatut($statut)
                    {
                     $this->statut = $statut;
+               
+                       return $this;
+                   }
+                    /**
+                    * Set the value of ville
+                    *
+                    * @return  self
+                    */ 
+                   public function setVille($ville)
+                   {
+                    $this->ville = $ville;
+               
+                       return $this;
+                   }
+                    /**
+                    * Set the value of entreprise
+                    *
+                    * @return  self
+                    */ 
+                   public function setEntreprise($entreprise)
+                   {
+                    $this->entreprise = $entreprise;
                
                        return $this;
                    }
