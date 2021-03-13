@@ -4,6 +4,10 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
   $title = "Modification du type";
   $datas = Manager::getData("categories_publication", "id", $_GET['modif'])['data'];
 }
+if (!empty($_GET['type'])) {
+  $datas['type_publication']=$_GET['type'];
+  // die($_GET['type']);
+}
 // ob_start();
 ?>
 <div class="breadcrumbbar">
@@ -30,19 +34,46 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form id="categorie_publicationForm" role="form" method="post">
+        <form id="categorie_type_publicationForm" role="form" method="post">
           <div class="card-body">
             <div class="form-group">
-              <label for="titre">Titre</label>
-              <input type="text" required class="form-control" id="titre" name="titre" value="<?= (!empty($_GET['modif'])) ? $datas['titre'] : "" ?>" placeholder="Catégorie">
+                <label for="type_publication">Type publication</label>
+                <select class="form-control searchable" id="type_publication" name="type_publication">
+                  <?php
+                  $sql = "SELECT * FROM type_publication WHERE statut=1 AND id=?";
+                  $data = Manager::getMultiplesRecords($sql, [$_GET['type']]);
+                  if (is_array($data) || is_object($data)) {
+                    foreach ($data as $value) {
+                  ?>
+                      <option <?= (!empty($_GET['modif']) || !empty($_GET['type'])) ? (($value['id'] == $datas['type_publication']) ? "selected" : "") : "";?> value="<?= $value['id'] ?>"><?= $value['titre'];?></option>
+                  <?php
+                    }
+                  } else {
+                    Manager::messages('Aucune donnée trouvé', 'alert-warning');
+                  }
+                  ?>
+                </select>
             </div>
             <div class="form-group">
-              <label for="icon">icon</label>
-              <input type="text" value="<?= (!empty($_GET['modif']) ? $datas['icon'] : '') ?>" class="form-control" id="icon" name="icon" placeholder="icon sous-format fontawsome (facultatif)">
+                <label for="categories_publication">Catégorie</label>
+                <select class="form-control searchable" id="categories_publication" name="categories_publication">
+                  <?php
+                  $data = Manager::getData('categories_publication', 'statut', 1, true)['data'];
+                  if (is_array($data) || is_object($data)) {
+                    foreach ($data as $value) {
+                  ?>
+                      <option <?= (!empty($_GET['modif']) || !empty($_GET['type'])) ? (($value['id'] == $datas['type_publication']) ? "selected" : "") : "";?> value="<?= $value['id'] ?>"><?= $value['titre'];?></option>
+                  <?php
+                    }
+                  } else {
+                    Manager::messages('Aucune donnée trouvé', 'alert-warning');
+                  }
+                  ?>
+                </select>
             </div>
           </div>
           <div class="card-footer">
-            <button type="submit" onclick="postData('categorie_publicationForm', 'categoriePublication'<?= (!empty($_GET['modif']) ? ', ' . $_GET['modif'] : '') ?>)" class="btn btn-success"><?= $GLOBALS['lang']['btn-valid'] ?? 'valider' ?></button>
+            <button type="submit" onclick="postData('categorie_type_publicationForm', 'categorieTypePublication'<?= (!empty($_GET['modif']) ? ', ' . $_GET['modif'] : '') ?>)" class="btn btn-success"><?= $GLOBALS['lang']['btn-valid'] ?? 'valider' ?></button>
             <p id="postMessage">
 
             </p>
@@ -73,24 +104,28 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
               <th>#</th>
                 <th>Titre</th>
                 <th>Icon</th>
+                <th>Type</th>
                 <th>Action</th>
               </tr>
               <?php
                 $i = 0;
-                $data = Manager::getData('categories_publication', 'statut', 1, true)['data'];
+                $sql = "SELECT *, t.titre type_publication, c.titre categories_publication FROM type_publication t, categories_publication c, categorie_type_publication ct
+                WHERE t.id=ct.type_publication AND c.id=ct.categories_publication AND c.statut=1 AND t.statut=1 AND t.id=?";
+                $data = Manager::getMultiplesRecords($sql, [$_GET['type']]);
                 if (is_array($data) || is_object($data)) {
                   foreach ($data as $value) {
                     $i++;
               ?>
                   <tr>
                   <td><?= $i;?></td>
-                    <td><?= $value['titre'];?></td>
+                    <td><?= $value['categories_publication'];?></td>
                     <td><i class="<?= $value['icon'];?>"></i></td>
+                    <td><?= $value['type_publication'];?></td>
                     <td>
-                      <a href="javascript:void()" onclick="getHTML('categoriePublication&modif=<?= $value['id'] ?>')" class="btn btn-primary">
+                      <a href="javascript:void()" onclick="getHTML('categorieTypePublication&modif=<?= $value['id'] ?>')" class="btn btn-primary">
                         <i class="fa fa-edit"></i>
                       </a>
-                      <a href="javascript:void()" onclick="getHTML('categoriePublication&delete=<?= $value['id'];?>')" class="btn btn-danger">
+                      <a href="javascript:void()" onclick="getHTML('categorieTypePublication&delete=<?= $value['id'];?>')" class="btn btn-danger">
                         <i class="fa fa-trash white"></i>
                       </a>
                     </td>

@@ -88,7 +88,7 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
                       <a href="javascript:void()" onclick="getHTML('typePublication&delete=<?= $value['id'];?>')" class="btn btn-danger">
                         <i class="fa fa-trash white"></i>
                       </a>
-                      <a href="javascript:void()" onclick="getHTML('categoriePublication&type=<?= $value['id'];?>')" class="btn btn-success">
+                      <a href="javascript:void()" onclick="getHTML('categorieTypePublication&type=<?= $value['id'];?>')" class="btn btn-success">
                         <i class="fa fa-plus white"></i>
                       </a>
                     </td>
