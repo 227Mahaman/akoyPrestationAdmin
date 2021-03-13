@@ -145,6 +145,10 @@ class UserManager  extends Manager
                 //Manager::showError($res);
                 $res = self::addoNTable($url, $res);
                 $res = self::correct($res);
+
+                //TODO
+                // $file = new files($res);
+                // $res = insert($file);
                 if ($res['error']) {
                     return 'Erreur lors de l\'jout de la photo';
                 } else {

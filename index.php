@@ -451,7 +451,9 @@ if (isset($_SESSION['user-akoyprestation'])) {
                     $data = $input;
                     $data['user_create'] = $_SESSION['user-akoyprestation']['id'];
                     $data['file'] = $_FILES['profile_picture'];
-                    $data['file'] = UserManager::uploadProfilePicture($data['file']);
+                    $files = new Files();
+                    $data['file'] = $files->uploadFilePicture($data['file']);
+                    // $data['file'] = UserManager::uploadProfilePicture($data['file']);
                     $data['file'] = intval($data['file']);
                     $publications = new publications($data);
                     $res = insert($publications);

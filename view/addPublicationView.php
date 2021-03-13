@@ -66,6 +66,25 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
+              <span class="input-group-text">Secteur</span>
+            </div>
+            <select class="form-control" id="category_publication" name="category_publication">
+              <?php
+              $data = Manager::getData('categories_publication', 'statut', 1, true)['data'];
+              if (is_array($data) || is_object($data)) {
+                foreach ($data as $value) {
+              ?>
+                  <option <?= (!empty($_GET['modif'])) ? (($value['id'] == $datas['category_publication']) ? "selected" : "") : "" ?> value="<?= $value['id'] ?>"><?= $value['titre'] ?></option>
+              <?php
+                }
+              } else {
+                Manager::messages('Aucune donnée trouvé', 'alert-warning');
+              }
+              ?>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
               <span class="input-group-text">Titre</span>
             </div>
 
