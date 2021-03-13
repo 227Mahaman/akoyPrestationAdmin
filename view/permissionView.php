@@ -29,7 +29,7 @@ if (isset($_GET['module'])) extract($_GET);
         <div class="card-header with-border">
           <i class="fa fa-server"></i>
           <h3 class="card-title"><?= Manager::getData('module', 'id', $module)['data']['name'] ?></h3>
-          <a onclick="addTableRow(<?=$module?>)" style="float: right" class="btn btn-success">
+          <a onclick="addTableRow(<?= $module;?>)" style="float: right" class="btn btn-success">
             <i class="fa fa-plus white"></i>
           </a>
         </div>

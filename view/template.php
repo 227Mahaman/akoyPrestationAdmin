@@ -133,7 +133,26 @@
                                 $menu->setmSousMenu($thisSMenu);
                                 echo $menu->getMenu($name['icon']);
                                 $thisSMenu = (array) null;
-                            }
+                            } //else {
+                            //     //if()
+                            //     $menu = new MenuManager($name['name']);
+                            //     $sMenu = getActions($name['id']);
+                            //     $nb = sizeof(($sMenu));
+                            //     //print_r($sMenu); die;
+                            //     if($nb){
+
+                            //     }
+                            //     if (is_array($sMenu) || is_object($sMenu)) {
+                            //         foreach ($sMenu as $key => $smValue) {
+                            //             if (haveAction($_SESSION['user-akoyprestation']['roleId'], $smValue['id'])) {
+                            //                 $thisSMenu[$smValue['action_url']] = $smValue['name'];
+                            //             }
+                            //         }
+                            //     }
+                            //     $menu->setmSousMenu($thisSMenu);
+                            //     echo $menu->getMenu($name['icon']);
+                            //     $thisSMenu = (array) null;
+                            // }
                         }
                         // $menu->setmSousMenu(['index.php?action=module'=> 'Test', 'index.php?action=test'=>'test 1']);
                         // echo $menu->getMenu();

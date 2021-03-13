@@ -232,7 +232,7 @@ function setActionUrl(name) {
 function addData(table, module) {
     var go;
     var data = $('#add_permission').serializeObject();
-    data.action_url = setActionUrl(data.name);
+    //data.action_url = setActionUrl(data.name);
     var form_data = JSON.stringify(data);
 
     go = canContinue(data);
