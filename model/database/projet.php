@@ -1,30 +1,28 @@
 
 <?php 
-class categories_publication {
+class projet {
 	 public $id;
 	 public $titre;
-	 public $type_publication;
-	 public $statut;
-	 public $categories_publication=array();
+	 public $liens;
+	 public $projet=array();
 
 
 
-                public function __construct($categories_publication=null) {
-                    $this->categories_publication = $categories_publication;
+                public function __construct($projet=null) {
+                    $this->projet = $projet;
                          
                 }
 
                 public function all()
                 {
-                    return $this->categories_publication;
+                    return $this->projet;
                 }
 
-                public function role($id, $titre, $type_publication, $statut)
+                public function role($id, $titre, $liens)
                     {
                         $this->id = $id;
 $this->titre = $titre;
-$this->type_publication = $type_publication;
-$this->statut = $statut;
+$this->liens = $liens;
 
                     }
                 
@@ -35,7 +33,7 @@ $this->statut = $statut;
                     */ 
                     public function getId($id=null)
                     {
-                        if ($id != null && is_array($this->categories_publication) && count($this->categories_publication)!=0) {
+                        if ($id != null && is_array($this->projet) && count($this->projet)!=0) {
                             $table_name = strtolower(get_class($this));
                             $query = "SELECT * FROM $table_name WHERE id = ?";
                             $req = Manager::bdd()->prepare($query);
@@ -45,9 +43,8 @@ $this->statut = $statut;
 $d=$data[0];
 $this->setId($d['id']);
 $this->setTitre($d['titre']);
-$this->setType_publication($d['type_publication']);
-$this->setStatut($d['statut']);
-$this->categories_publication =$data; 
+$this->setLiens($d['liens']);
+$this->projet =$data; 
  return $this;
                                 }
                             
@@ -61,7 +58,7 @@ $this->categories_publication =$data;
                     */ 
                     public function getTitre($titre=null)
                     {
-                        if ($titre != null && is_array($this->categories_publication) && count($this->categories_publication)!=0) {
+                        if ($titre != null && is_array($this->projet) && count($this->projet)!=0) {
                             $table_name = strtolower(get_class($this));
                             $query = "SELECT * FROM $table_name WHERE titre = ?";
                             $req = Manager::bdd()->prepare($query);
@@ -71,9 +68,8 @@ $this->categories_publication =$data;
 $d=$data[0];
 $this->setId($d['id']);
 $this->setTitre($d['titre']);
-$this->setType_publication($d['type_publication']);
-$this->setStatut($d['statut']);
-$this->categories_publication =$data; 
+$this->setLiens($d['liens']);
+$this->projet =$data; 
  return $this;
                                 }
                             
@@ -83,54 +79,27 @@ $this->categories_publication =$data;
                         
                     }
                     /**
-                    * Get the value of type_publication
+                    * Get the value of liens
                     */ 
-                    public function getType_publication($type_publication=null)
+                    public function getLiens($liens=null)
                     {
-                        if ($type_publication != null && is_array($this->categories_publication) && count($this->categories_publication)!=0) {
+                        if ($liens != null && is_array($this->projet) && count($this->projet)!=0) {
                             $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE type_publication = ?";
+                            $query = "SELECT * FROM $table_name WHERE liens = ?";
                             $req = Manager::bdd()->prepare($query);
-                            $req->execute([$type_publication]);
+                            $req->execute([$liens]);
                             $data = "";
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId($d['id']);
 $this->setTitre($d['titre']);
-$this->setType_publication($d['type_publication']);
-$this->setStatut($d['statut']);
-$this->categories_publication =$data; 
+$this->setLiens($d['liens']);
+$this->projet =$data; 
  return $this;
                                 }
                             
                         } else {
-                            return $this->type_publication;
-                        }
-                        
-                    }
-                    /**
-                    * Get the value of statut
-                    */ 
-                    public function getStatut($statut=null)
-                    {
-                        if ($statut != null && is_array($this->categories_publication) && count($this->categories_publication)!=0) {
-                            $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE statut = ?";
-                            $req = Manager::bdd()->prepare($query);
-                            $req->execute([$statut]);
-                            $data = "";
-                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
-$d=$data[0];
-$this->setId($d['id']);
-$this->setTitre($d['titre']);
-$this->setType_publication($d['type_publication']);
-$this->setStatut($d['statut']);
-$this->categories_publication =$data; 
- return $this;
-                                }
-                            
-                        } else {
-                            return $this->statut;
+                            return $this->liens;
                         }
                         
                     }
@@ -159,24 +128,13 @@ $this->categories_publication =$data;
                        return $this;
                    }
                     /**
-                    * Set the value of type_publication
+                    * Set the value of liens
                     *
                     * @return  self
                     */ 
-                   public function setType_publication($type_publication)
+                   public function setLiens($liens)
                    {
-                    $this->type_publication = $type_publication;
-               
-                       return $this;
-                   }
-                    /**
-                    * Set the value of statut
-                    *
-                    * @return  self
-                    */ 
-                   public function setStatut($statut)
-                   {
-                    $this->statut = $statut;
+                    $this->liens = $liens;
                
                        return $this;
                    }

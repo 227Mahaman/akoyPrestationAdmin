@@ -473,6 +473,46 @@ if (isset($_SESSION['user-akoyprestation'])) {
                 $res = update('publications', $data, 'id', $_GET['delete']);
             }
             require_once("view/listPublicationView.php");
+        } elseif ($action == 'categoriePublication') { //
+            $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification
+                if (!empty($input)) {
+                    $data = $input;
+                    $res = Manager::updateData($data, 'categories_publication', 'id', $_GET['modif']);
+                    if ($res['code'] = 1) {
+                        echo " <script>
+                        getHTML('categoriePublication');
+                    </script>";
+                    die;
+                    }
+                }
+            } elseif (!empty($_GET['delete'])) { //Suppression
+                $data['statut'] = 0;
+                $res = Manager::updateData($data, 'categories_publication', 'id', $_GET['delete']);
+                if ($res['code'] = 1) {
+                    echo " <script>
+                    getHTML('categoriePublication');
+                </script>";
+                die;
+                }
+            } else { // Ajout
+                if (!empty($input)) {
+                    $data = $input;
+                    $typeCategorie = new categories_publication($data);
+                    $res = insert($typeCategorie);
+
+                    $_SESSION['messages'] = $res;
+                    if (!empty($_SESSION['messages'])) {
+                        if ($_SESSION['messages']['code'] == 1) {
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-success');
+                        } else {
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-danger');
+                        }
+                    }
+                    die;
+                }
+            }
+            require_once("view/categoriePublicationView.php");
         }
     } elseif (empty($_GET['mat'])) {
         require_once("view/homeView.php");

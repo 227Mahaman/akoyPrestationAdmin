@@ -1,1 +1,1 @@
-ALTER TABLE `villes` ADD `pays` INT NOT NULL AFTER `titre`, ADD `statut` INT NOT NULL DEFAULT '1' AFTER `pays`, ADD INDEX (`pays`);
+ALTER TABLE `categories_publication` ADD `type_publication` INT NOT NULL AFTER `titre`, ADD INDEX (`type_publication`);

@@ -2,13 +2,10 @@
 <?php 
 class cv {
 	 public $id;
-	 public $titre;
-	 public $auteur;
-	 public $user_create;
+	 public $client;
 	 public $created_at;
 	 public $update_at;
 	 public $statut;
-	 public $file;
 	 public $cv=array();
 
 
@@ -23,16 +20,13 @@ class cv {
                     return $this->cv;
                 }
 
-                public function role($id, $titre, $auteur, $user_create, $created_at, $update_at, $statut, $file)
+                public function role($id, $client, $created_at, $update_at, $statut)
                     {
                         $this->id = $id;
-$this->titre = $titre;
-$this->auteur = $auteur;
-$this->user_create = $user_create;
+$this->client = $client;
 $this->created_at = $created_at;
 $this->update_at = $update_at;
 $this->statut = $statut;
-$this->file = $file;
 
                     }
                 
@@ -52,13 +46,10 @@ $this->file = $file;
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId($d['id']);
-$this->setTitre($d['titre']);
-$this->setAuteur($d['auteur']);
-$this->setUser_create($d['user_create']);
+$this->setClient($d['client']);
 $this->setCreated_at($d['created_at']);
 $this->setUpdate_at($d['update_at']);
 $this->setStatut($d['statut']);
-$this->setFile($d['file']);
 $this->cv =$data; 
  return $this;
                                 }
@@ -69,92 +60,29 @@ $this->cv =$data;
                         
                     }
                     /**
-                    * Get the value of titre
+                    * Get the value of client
                     */ 
-                    public function getTitre($titre=null)
+                    public function getClient($client=null)
                     {
-                        if ($titre != null && is_array($this->cv) && count($this->cv)!=0) {
+                        if ($client != null && is_array($this->cv) && count($this->cv)!=0) {
                             $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE titre = ?";
+                            $query = "SELECT * FROM $table_name WHERE client = ?";
                             $req = Manager::bdd()->prepare($query);
-                            $req->execute([$titre]);
+                            $req->execute([$client]);
                             $data = "";
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId($d['id']);
-$this->setTitre($d['titre']);
-$this->setAuteur($d['auteur']);
-$this->setUser_create($d['user_create']);
+$this->setClient($d['client']);
 $this->setCreated_at($d['created_at']);
 $this->setUpdate_at($d['update_at']);
 $this->setStatut($d['statut']);
-$this->setFile($d['file']);
 $this->cv =$data; 
  return $this;
                                 }
                             
                         } else {
-                            return $this->titre;
-                        }
-                        
-                    }
-                    /**
-                    * Get the value of auteur
-                    */ 
-                    public function getAuteur($auteur=null)
-                    {
-                        if ($auteur != null && is_array($this->cv) && count($this->cv)!=0) {
-                            $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE auteur = ?";
-                            $req = Manager::bdd()->prepare($query);
-                            $req->execute([$auteur]);
-                            $data = "";
-                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
-$d=$data[0];
-$this->setId($d['id']);
-$this->setTitre($d['titre']);
-$this->setAuteur($d['auteur']);
-$this->setUser_create($d['user_create']);
-$this->setCreated_at($d['created_at']);
-$this->setUpdate_at($d['update_at']);
-$this->setStatut($d['statut']);
-$this->setFile($d['file']);
-$this->cv =$data; 
- return $this;
-                                }
-                            
-                        } else {
-                            return $this->auteur;
-                        }
-                        
-                    }
-                    /**
-                    * Get the value of user_create
-                    */ 
-                    public function getUser_create($user_create=null)
-                    {
-                        if ($user_create != null && is_array($this->cv) && count($this->cv)!=0) {
-                            $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE user_create = ?";
-                            $req = Manager::bdd()->prepare($query);
-                            $req->execute([$user_create]);
-                            $data = "";
-                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
-$d=$data[0];
-$this->setId($d['id']);
-$this->setTitre($d['titre']);
-$this->setAuteur($d['auteur']);
-$this->setUser_create($d['user_create']);
-$this->setCreated_at($d['created_at']);
-$this->setUpdate_at($d['update_at']);
-$this->setStatut($d['statut']);
-$this->setFile($d['file']);
-$this->cv =$data; 
- return $this;
-                                }
-                            
-                        } else {
-                            return $this->user_create;
+                            return $this->client;
                         }
                         
                     }
@@ -172,13 +100,10 @@ $this->cv =$data;
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId($d['id']);
-$this->setTitre($d['titre']);
-$this->setAuteur($d['auteur']);
-$this->setUser_create($d['user_create']);
+$this->setClient($d['client']);
 $this->setCreated_at($d['created_at']);
 $this->setUpdate_at($d['update_at']);
 $this->setStatut($d['statut']);
-$this->setFile($d['file']);
 $this->cv =$data; 
  return $this;
                                 }
@@ -202,13 +127,10 @@ $this->cv =$data;
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId($d['id']);
-$this->setTitre($d['titre']);
-$this->setAuteur($d['auteur']);
-$this->setUser_create($d['user_create']);
+$this->setClient($d['client']);
 $this->setCreated_at($d['created_at']);
 $this->setUpdate_at($d['update_at']);
 $this->setStatut($d['statut']);
-$this->setFile($d['file']);
 $this->cv =$data; 
  return $this;
                                 }
@@ -232,49 +154,16 @@ $this->cv =$data;
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId($d['id']);
-$this->setTitre($d['titre']);
-$this->setAuteur($d['auteur']);
-$this->setUser_create($d['user_create']);
+$this->setClient($d['client']);
 $this->setCreated_at($d['created_at']);
 $this->setUpdate_at($d['update_at']);
 $this->setStatut($d['statut']);
-$this->setFile($d['file']);
 $this->cv =$data; 
  return $this;
                                 }
                             
                         } else {
                             return $this->statut;
-                        }
-                        
-                    }
-                    /**
-                    * Get the value of file
-                    */ 
-                    public function getFile($file=null)
-                    {
-                        if ($file != null && is_array($this->cv) && count($this->cv)!=0) {
-                            $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE file = ?";
-                            $req = Manager::bdd()->prepare($query);
-                            $req->execute([$file]);
-                            $data = "";
-                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
-$d=$data[0];
-$this->setId($d['id']);
-$this->setTitre($d['titre']);
-$this->setAuteur($d['auteur']);
-$this->setUser_create($d['user_create']);
-$this->setCreated_at($d['created_at']);
-$this->setUpdate_at($d['update_at']);
-$this->setStatut($d['statut']);
-$this->setFile($d['file']);
-$this->cv =$data; 
- return $this;
-                                }
-                            
-                        } else {
-                            return $this->file;
                         }
                         
                     }
@@ -292,35 +181,13 @@ $this->cv =$data;
                        return $this;
                    }
                     /**
-                    * Set the value of titre
+                    * Set the value of client
                     *
                     * @return  self
                     */ 
-                   public function setTitre($titre)
+                   public function setClient($client)
                    {
-                    $this->titre = $titre;
-               
-                       return $this;
-                   }
-                    /**
-                    * Set the value of auteur
-                    *
-                    * @return  self
-                    */ 
-                   public function setAuteur($auteur)
-                   {
-                    $this->auteur = $auteur;
-               
-                       return $this;
-                   }
-                    /**
-                    * Set the value of user_create
-                    *
-                    * @return  self
-                    */ 
-                   public function setUser_create($user_create)
-                   {
-                    $this->user_create = $user_create;
+                    $this->client = $client;
                
                        return $this;
                    }
@@ -354,17 +221,6 @@ $this->cv =$data;
                    public function setStatut($statut)
                    {
                     $this->statut = $statut;
-               
-                       return $this;
-                   }
-                    /**
-                    * Set the value of file
-                    *
-                    * @return  self
-                    */ 
-                   public function setFile($file)
-                   {
-                    $this->file = $file;
                
                        return $this;
                    }
