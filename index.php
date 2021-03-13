@@ -451,7 +451,9 @@ if (isset($_SESSION['user-akoyprestation'])) {
                     $data = $input;
                     $data['user_create'] = $_SESSION['user-akoyprestation']['id'];
                     $data['file'] = $_FILES['profile_picture'];
-                    $data['file'] = UserManager::uploadProfilePicture($data['file']);
+                    $files = new Files();
+                    $data['file'] = $files->uploadFilePicture($data['file']);
+                    // $data['file'] = UserManager::uploadProfilePicture($data['file']);
                     $data['file'] = intval($data['file']);
                     $publications = new publications($data);
                     $res = insert($publications);
@@ -513,6 +515,46 @@ if (isset($_SESSION['user-akoyprestation'])) {
                 }
             }
             require_once("view/categoriePublicationView.php");
+        } elseif ($action == 'categorieTypePublication') { //
+            $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification
+                if (!empty($input)) {
+                    $data = $input;
+                    $res = Manager::updateData($data, 'categorie_type_publication', 'id', $_GET['modif']);
+                    if ($res['code'] = 1) {
+                        echo " <script>
+                        getHTML('categorieTypePublication');
+                    </script>";
+                    die;
+                    }
+                }
+            } elseif (!empty($_GET['delete'])) { //Suppression
+                $data['statut'] = 0;
+                $res = Manager::updateData($data, 'categorie_type_publication', 'id', $_GET['delete']);
+                if ($res['code'] = 1) {
+                    echo " <script>
+                    getHTML('categorieTypePublication');
+                </script>";
+                die;
+                }
+            } else { // Ajout
+                if (!empty($input)) {
+                    $data = $input;
+                    $typeCategorie = new categorie_type_publication($data);
+                    $res = insert($typeCategorie);
+
+                    $_SESSION['messages'] = $res;
+                    if (!empty($_SESSION['messages'])) {
+                        if ($_SESSION['messages']['code'] == 1) {
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-success');
+                        } else {
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-danger');
+                        }
+                    }
+                    die;
+                }
+            }
+            require_once("view/categorieTypePublicationView.php");
         }
     } elseif (empty($_GET['mat'])) {
         require_once("view/homeView.php");

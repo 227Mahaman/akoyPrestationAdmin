@@ -3,8 +3,6 @@
 class villes {
 	 public $id;
 	 public $titre;
-	 public $pays;
-	 public $statut;
 	 public $villes=array();
 
 
@@ -19,12 +17,10 @@ class villes {
                     return $this->villes;
                 }
 
-                public function role($id, $titre, $pays, $statut)
+                public function role($id, $titre)
                     {
                         $this->id = $id;
 $this->titre = $titre;
-$this->pays = $pays;
-$this->statut = $statut;
 
                     }
                 
@@ -45,8 +41,6 @@ $this->statut = $statut;
 $d=$data[0];
 $this->setId($d['id']);
 $this->setTitre($d['titre']);
-$this->setPays($d['pays']);
-$this->setStatut($d['statut']);
 $this->villes =$data; 
  return $this;
                                 }
@@ -71,66 +65,12 @@ $this->villes =$data;
 $d=$data[0];
 $this->setId($d['id']);
 $this->setTitre($d['titre']);
-$this->setPays($d['pays']);
-$this->setStatut($d['statut']);
 $this->villes =$data; 
  return $this;
                                 }
                             
                         } else {
                             return $this->titre;
-                        }
-                        
-                    }
-                    /**
-                    * Get the value of pays
-                    */ 
-                    public function getPays($pays=null)
-                    {
-                        if ($pays != null && is_array($this->villes) && count($this->villes)!=0) {
-                            $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE pays = ?";
-                            $req = Manager::bdd()->prepare($query);
-                            $req->execute([$pays]);
-                            $data = "";
-                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
-$d=$data[0];
-$this->setId($d['id']);
-$this->setTitre($d['titre']);
-$this->setPays($d['pays']);
-$this->setStatut($d['statut']);
-$this->villes =$data; 
- return $this;
-                                }
-                            
-                        } else {
-                            return $this->pays;
-                        }
-                        
-                    }
-                    /**
-                    * Get the value of statut
-                    */ 
-                    public function getStatut($statut=null)
-                    {
-                        if ($statut != null && is_array($this->villes) && count($this->villes)!=0) {
-                            $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE statut = ?";
-                            $req = Manager::bdd()->prepare($query);
-                            $req->execute([$statut]);
-                            $data = "";
-                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
-$d=$data[0];
-$this->setId($d['id']);
-$this->setTitre($d['titre']);
-$this->setPays($d['pays']);
-$this->setStatut($d['statut']);
-$this->villes =$data; 
- return $this;
-                                }
-                            
-                        } else {
-                            return $this->statut;
                         }
                         
                     }
@@ -155,28 +95,6 @@ $this->villes =$data;
                    public function setTitre($titre)
                    {
                     $this->titre = $titre;
-               
-                       return $this;
-                   }
-                    /**
-                    * Set the value of pays
-                    *
-                    * @return  self
-                    */ 
-                   public function setPays($pays)
-                   {
-                    $this->pays = $pays;
-               
-                       return $this;
-                   }
-                    /**
-                    * Set the value of statut
-                    *
-                    * @return  self
-                    */ 
-                   public function setStatut($statut)
-                   {
-                    $this->statut = $statut;
                
                        return $this;
                    }

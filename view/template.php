@@ -11,7 +11,7 @@
     <!-- Fevicon -->
     <!-- <link rel="shortcut icon" href="public/img/favicon.ico"> -->
     <!-- Start css -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <link href="public/vendor/plugins/dropzone/dist/dropzone.css" rel="stylesheet" type="text/css">
     <link href="public/vendor/css/fileinput.min.css" rel="stylesheet" type="text/css">
     <!-- Switchery css -->

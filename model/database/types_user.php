@@ -3,7 +3,6 @@
 class types_user {
 	 public $id;
 	 public $label;
-	 public $statut;
 	 public $types_user=array();
 
 
@@ -18,11 +17,10 @@ class types_user {
                     return $this->types_user;
                 }
 
-                public function role($id, $label, $statut)
+                public function role($id, $label)
                     {
                         $this->id = $id;
 $this->label = $label;
-$this->statut = $statut;
 
                     }
                 
@@ -43,7 +41,6 @@ $this->statut = $statut;
 $d=$data[0];
 $this->setId($d['id']);
 $this->setLabel($d['label']);
-$this->setStatut($d['statut']);
 $this->types_user =$data; 
  return $this;
                                 }
@@ -68,38 +65,12 @@ $this->types_user =$data;
 $d=$data[0];
 $this->setId($d['id']);
 $this->setLabel($d['label']);
-$this->setStatut($d['statut']);
 $this->types_user =$data; 
  return $this;
                                 }
                             
                         } else {
                             return $this->label;
-                        }
-                        
-                    }
-                    /**
-                    * Get the value of statut
-                    */ 
-                    public function getStatut($statut=null)
-                    {
-                        if ($statut != null && is_array($this->types_user) && count($this->types_user)!=0) {
-                            $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE statut = ?";
-                            $req = Manager::bdd()->prepare($query);
-                            $req->execute([$statut]);
-                            $data = "";
-                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
-$d=$data[0];
-$this->setId($d['id']);
-$this->setLabel($d['label']);
-$this->setStatut($d['statut']);
-$this->types_user =$data; 
- return $this;
-                                }
-                            
-                        } else {
-                            return $this->statut;
                         }
                         
                     }
@@ -124,17 +95,6 @@ $this->types_user =$data;
                    public function setLabel($label)
                    {
                     $this->label = $label;
-               
-                       return $this;
-                   }
-                    /**
-                    * Set the value of statut
-                    *
-                    * @return  self
-                    */ 
-                   public function setStatut($statut)
-                   {
-                    $this->statut = $statut;
                
                        return $this;
                    }

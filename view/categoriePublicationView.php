@@ -40,23 +40,6 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
               <label for="icon">icon</label>
               <input type="text" value="<?= (!empty($_GET['modif']) ? $datas['icon'] : '') ?>" class="form-control" id="icon" name="icon" placeholder="icon sous-format fontawsome (facultatif)">
             </div>
-            <div class="form-group">
-                <label for="type_publication">Type publication</label>
-                <select class="form-control searchable" id="type_publication" name="type_publication">
-                  <?php
-                  $data = Manager::getData('type_publication', 'statut', 1, true)['data'];
-                  if (is_array($data) || is_object($data)) {
-                    foreach ($data as $value) {
-                  ?>
-                      <option <?= (!empty($_GET['modif'])) ? (($value['id'] == $datas['type_publication']) ? "selected" : "") : "";?> value="<?= $value['id'] ?>"><?= $value['titre'];?></option>
-                  <?php
-                    }
-                  } else {
-                    Manager::messages('Aucune donnée trouvé', 'alert-warning');
-                  }
-                  ?>
-                </select>
-            </div>
           </div>
           <div class="card-footer">
             <button type="submit" onclick="postData('categorie_publicationForm', 'categoriePublication'<?= (!empty($_GET['modif']) ? ', ' . $_GET['modif'] : '') ?>)" class="btn btn-success"><?= $GLOBALS['lang']['btn-valid'] ?? 'valider' ?></button>
@@ -90,7 +73,6 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
               <th>#</th>
                 <th>Titre</th>
                 <th>Icon</th>
-                <th>Type</th>
                 <th>Action</th>
               </tr>
               <?php
@@ -104,7 +86,6 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
                   <td><?= $i;?></td>
                     <td><?= $value['titre'];?></td>
                     <td><i class="<?= $value['icon'];?>"></i></td>
-                    <td><?= Manager::getData('type_publication', 'id', $value['type_publication'])['data']['titre'];?></td>
                     <td>
                       <a href="javascript:void()" onclick="getHTML('categoriePublication&modif=<?= $value['id'] ?>')" class="btn btn-primary">
                         <i class="fa fa-edit"></i>

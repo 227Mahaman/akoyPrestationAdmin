@@ -51,6 +51,7 @@ $start_form = ($page - 1) * $per_page;
               <div class="form-group">
                 <label for="icon">icon</label>
                 <input type="text" value="<?= (!empty($_GET['modif']) ? $module_data['icon'] : '') ?>" class="form-control" id="icon" name="icon" placeholder="icon sous-format fontawsome (facultatif)">
+                <input type="hidden" value="<?= (!empty($_GET['modif']) ? $module_data['user_create'] : $_SESSION['user-akoyprestation']['id']) ?>" class="form-control" id="user_create" name="user_create" placeholder="icon sous-format fontawsome (facultatif)">
               </div>
               <div class="form-group">
                 <label for="description">Description</label>
