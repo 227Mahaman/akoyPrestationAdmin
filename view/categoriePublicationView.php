@@ -2,7 +2,7 @@
 $title = "Type des categories";
 if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
   $title = "Modification du type";
-  $datas = Manager::getData("categorie_publication", "id", $_GET['modif'])['data'];
+  $datas = Manager::getData("categories_publication", "id", $_GET['modif'])['data'];
 }
 // ob_start();
 ?>
