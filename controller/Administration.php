@@ -13,6 +13,7 @@ include_once('model/database/publications.php');
 include_once('model/database/module_role.php');
 include_once('model/database/roles.php');
 include_once('model/database/type_publication.php');
+include_once('model/database/categorie_type_publication.php');
 include_once('model/database/types_user.php');
 include_once('model/database/villes.php');
 include_once('model/database/users.php');

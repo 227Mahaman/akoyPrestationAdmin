@@ -498,10 +498,18 @@ if (isset($_SESSION['user-akoyprestation'])) {
             } else { // Ajout
                 if (!empty($input)) {
                     $data = $input;
+                    $d['type_publication'] = $data['type_publication'];
+                    unset($data['type_publication']);
                     $typeCategorie = new categories_publication($data);
                     $res = insert($typeCategorie);
 
-                    $_SESSION['messages'] = $res;
+                    if(!empty($res['lastId'])){
+                        $d['categories_publication'] = $res['lastId'];
+                        $tpc = new categorie_type_publication($d);
+                        $r=insert($tpc);
+                    }
+
+                    $_SESSION['messages'] = $r;
                     if (!empty($_SESSION['messages'])) {
                         if ($_SESSION['messages']['code'] == 1) {
                             echo Manager::messages($_SESSION['messages']['message'], 'alert-success');

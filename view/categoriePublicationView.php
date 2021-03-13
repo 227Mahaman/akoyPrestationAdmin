@@ -99,16 +99,18 @@ if (!empty($_GET['type'])) {
               </tr>
               <?php
                 $i = 0;
-                $data = Manager::getData('categories_publication', 'statut', 1, true)['data'];
+                $sql = "SELECT *, t.titre type_publication, c.titre categories_publication FROM type_publication t, categories_publication c, categorie_type_publication ct
+                WHERE t.id=ct.type_publication AND c.id=ct.categories_publication AND c.statut=1 AND t.statut=1";
+                $data = Manager::getMultiplesRecords($sql);
                 if (is_array($data) || is_object($data)) {
                   foreach ($data as $value) {
                     $i++;
               ?>
                   <tr>
                   <td><?= $i;?></td>
-                    <td><?= $value['titre'];?></td>
+                    <td><?= $value['categories_publication'];?></td>
                     <td><i class="<?= $value['icon'];?>"></i></td>
-                    <td><?= Manager::getData('type_publication', 'id', $value['type_publication'])['data']['titre'];?></td>
+                    <td><?= $value['type_publication'];?></td>
                     <td>
                       <a href="javascript:void()" onclick="getHTML('categoriePublication&modif=<?= $value['id'] ?>')" class="btn btn-primary">
                         <i class="fa fa-edit"></i>
