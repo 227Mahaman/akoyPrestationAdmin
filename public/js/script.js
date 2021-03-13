@@ -7,7 +7,7 @@ document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
     $_GET[decode(arguments[1])] = decode(arguments[2]);
 });
 
-function addTableRow(sub_module) {
+function addTableRow(sub_module, user_create) {
     $tr = `<tr id="addPermission">
     <form >
             <td>
@@ -32,6 +32,7 @@ function addTableRow(sub_module) {
                 <div class="form-group">
                     <input required class="form-control" id="description" name="description" placeholder="description du module">
                     <input type="hidden" class="form-control" id="sub_module" name="sub_module" value="`+sub_module+`">
+                    <input type="hidden" class="form-control" id="user_create" name="user_create" value="`+user_create+`">
                 </div>
             </td>
             <td>

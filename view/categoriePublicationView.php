@@ -4,6 +4,10 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
   $title = "Modification du type";
   $datas = Manager::getData("categories_publication", "id", $_GET['modif'])['data'];
 }
+if (!empty($_GET['type'])) {
+  $datas['type_publication']=$_GET['type'];
+  // die($_GET['type']);
+}
 // ob_start();
 ?>
 <div class="breadcrumbbar">
@@ -48,7 +52,7 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
                   if (is_array($data) || is_object($data)) {
                     foreach ($data as $value) {
                   ?>
-                      <option <?= (!empty($_GET['modif'])) ? (($value['id'] == $datas['type_publication']) ? "selected" : "") : "";?> value="<?= $value['id'] ?>"><?= $value['titre'];?></option>
+                      <option <?= (!empty($_GET['modif']) || !empty($_GET['type'])) ? (($value['id'] == $datas['type_publication']) ? "selected" : "") : "";?> value="<?= $value['id'] ?>"><?= $value['titre'];?></option>
                   <?php
                     }
                   } else {
