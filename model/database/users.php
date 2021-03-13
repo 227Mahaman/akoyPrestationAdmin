@@ -12,6 +12,7 @@ class users {
 	 public $role;
 	 public $password_;
 	 public $statut;
+	 public $statut_delete;
 	 public $users=array();
 
 
@@ -26,7 +27,7 @@ class users {
                     return $this->users;
                 }
 
-                public function role($id, $first_name, $last_name, $phone_number, $type_user, $created_at, $updated_at, $photo, $role, $password_, $statut)
+                public function role($id, $first_name, $last_name, $phone_number, $type_user, $created_at, $updated_at, $photo, $role, $password_, $statut, $statut_delete)
                     {
                         $this->id = $id;
 $this->first_name = $first_name;
@@ -39,6 +40,7 @@ $this->photo = $photo;
 $this->role = $role;
 $this->password_ = $password_;
 $this->statut = $statut;
+$this->statut_delete = $statut_delete;
 
                     }
                 
@@ -68,6 +70,7 @@ $this->setPhoto($d['photo']);
 $this->setRole($d['role']);
 $this->setPassword_($d['password_']);
 $this->setStatut($d['statut']);
+$this->setStatut_delete($d['statut_delete']);
 $this->users =$data; 
  return $this;
                                 }
@@ -101,6 +104,7 @@ $this->setPhoto($d['photo']);
 $this->setRole($d['role']);
 $this->setPassword_($d['password_']);
 $this->setStatut($d['statut']);
+$this->setStatut_delete($d['statut_delete']);
 $this->users =$data; 
  return $this;
                                 }
@@ -134,6 +138,7 @@ $this->setPhoto($d['photo']);
 $this->setRole($d['role']);
 $this->setPassword_($d['password_']);
 $this->setStatut($d['statut']);
+$this->setStatut_delete($d['statut_delete']);
 $this->users =$data; 
  return $this;
                                 }
@@ -167,6 +172,7 @@ $this->setPhoto($d['photo']);
 $this->setRole($d['role']);
 $this->setPassword_($d['password_']);
 $this->setStatut($d['statut']);
+$this->setStatut_delete($d['statut_delete']);
 $this->users =$data; 
  return $this;
                                 }
@@ -200,6 +206,7 @@ $this->setPhoto($d['photo']);
 $this->setRole($d['role']);
 $this->setPassword_($d['password_']);
 $this->setStatut($d['statut']);
+$this->setStatut_delete($d['statut_delete']);
 $this->users =$data; 
  return $this;
                                 }
@@ -233,6 +240,7 @@ $this->setPhoto($d['photo']);
 $this->setRole($d['role']);
 $this->setPassword_($d['password_']);
 $this->setStatut($d['statut']);
+$this->setStatut_delete($d['statut_delete']);
 $this->users =$data; 
  return $this;
                                 }
@@ -266,6 +274,7 @@ $this->setPhoto($d['photo']);
 $this->setRole($d['role']);
 $this->setPassword_($d['password_']);
 $this->setStatut($d['statut']);
+$this->setStatut_delete($d['statut_delete']);
 $this->users =$data; 
  return $this;
                                 }
@@ -299,6 +308,7 @@ $this->setPhoto($d['photo']);
 $this->setRole($d['role']);
 $this->setPassword_($d['password_']);
 $this->setStatut($d['statut']);
+$this->setStatut_delete($d['statut_delete']);
 $this->users =$data; 
  return $this;
                                 }
@@ -332,6 +342,7 @@ $this->setPhoto($d['photo']);
 $this->setRole($d['role']);
 $this->setPassword_($d['password_']);
 $this->setStatut($d['statut']);
+$this->setStatut_delete($d['statut_delete']);
 $this->users =$data; 
  return $this;
                                 }
@@ -365,6 +376,7 @@ $this->setPhoto($d['photo']);
 $this->setRole($d['role']);
 $this->setPassword_($d['password_']);
 $this->setStatut($d['statut']);
+$this->setStatut_delete($d['statut_delete']);
 $this->users =$data; 
  return $this;
                                 }
@@ -398,12 +410,47 @@ $this->setPhoto($d['photo']);
 $this->setRole($d['role']);
 $this->setPassword_($d['password_']);
 $this->setStatut($d['statut']);
+$this->setStatut_delete($d['statut_delete']);
 $this->users =$data; 
  return $this;
                                 }
                             
                         } else {
                             return $this->statut;
+                        }
+                        
+                    }
+                    /**
+                    * Get the value of statut_delete
+                    */ 
+                    public function getStatut_delete($statut_delete=null)
+                    {
+                        if ($statut_delete != null && is_array($this->users) && count($this->users)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE statut_delete = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$statut_delete]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId($d['id']);
+$this->setFirst_name($d['first_name']);
+$this->setLast_name($d['last_name']);
+$this->setPhone_number($d['phone_number']);
+$this->setType_user($d['type_user']);
+$this->setCreated_at($d['created_at']);
+$this->setUpdated_at($d['updated_at']);
+$this->setPhoto($d['photo']);
+$this->setRole($d['role']);
+$this->setPassword_($d['password_']);
+$this->setStatut($d['statut']);
+$this->setStatut_delete($d['statut_delete']);
+$this->users =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->statut_delete;
                         }
                         
                     }
@@ -527,6 +574,17 @@ $this->users =$data;
                    public function setStatut($statut)
                    {
                     $this->statut = $statut;
+               
+                       return $this;
+                   }
+                    /**
+                    * Set the value of statut_delete
+                    *
+                    * @return  self
+                    */ 
+                   public function setStatut_delete($statut_delete)
+                   {
+                    $this->statut_delete = $statut_delete;
                
                        return $this;
                    }

@@ -3,7 +3,6 @@
 class tache {
 	 public $id;
 	 public $titre;
-	 public $experience;
 	 public $tache=array();
 
 
@@ -18,11 +17,10 @@ class tache {
                     return $this->tache;
                 }
 
-                public function role($id, $titre, $experience)
+                public function role($id, $titre)
                     {
                         $this->id = $id;
 $this->titre = $titre;
-$this->experience = $experience;
 
                     }
                 
@@ -43,7 +41,6 @@ $this->experience = $experience;
 $d=$data[0];
 $this->setId($d['id']);
 $this->setTitre($d['titre']);
-$this->setExperience($d['experience']);
 $this->tache =$data; 
  return $this;
                                 }
@@ -68,38 +65,12 @@ $this->tache =$data;
 $d=$data[0];
 $this->setId($d['id']);
 $this->setTitre($d['titre']);
-$this->setExperience($d['experience']);
 $this->tache =$data; 
  return $this;
                                 }
                             
                         } else {
                             return $this->titre;
-                        }
-                        
-                    }
-                    /**
-                    * Get the value of experience
-                    */ 
-                    public function getExperience($experience=null)
-                    {
-                        if ($experience != null && is_array($this->tache) && count($this->tache)!=0) {
-                            $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE experience = ?";
-                            $req = Manager::bdd()->prepare($query);
-                            $req->execute([$experience]);
-                            $data = "";
-                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
-$d=$data[0];
-$this->setId($d['id']);
-$this->setTitre($d['titre']);
-$this->setExperience($d['experience']);
-$this->tache =$data; 
- return $this;
-                                }
-                            
-                        } else {
-                            return $this->experience;
                         }
                         
                     }
@@ -124,17 +95,6 @@ $this->tache =$data;
                    public function setTitre($titre)
                    {
                     $this->titre = $titre;
-               
-                       return $this;
-                   }
-                    /**
-                    * Set the value of experience
-                    *
-                    * @return  self
-                    */ 
-                   public function setExperience($experience)
-                   {
-                    $this->experience = $experience;
                
                        return $this;
                    }

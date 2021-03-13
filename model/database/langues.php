@@ -4,6 +4,7 @@ class langues {
 	 public $id;
 	 public $code;
 	 public $titre;
+	 public $statut;
 	 public $langues=array();
 
 
@@ -18,11 +19,12 @@ class langues {
                     return $this->langues;
                 }
 
-                public function role($id, $code, $titre)
+                public function role($id, $code, $titre, $statut)
                     {
                         $this->id = $id;
 $this->code = $code;
 $this->titre = $titre;
+$this->statut = $statut;
 
                     }
                 
@@ -44,6 +46,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setCode($d['code']);
 $this->setTitre($d['titre']);
+$this->setStatut($d['statut']);
 $this->langues =$data; 
  return $this;
                                 }
@@ -69,6 +72,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setCode($d['code']);
 $this->setTitre($d['titre']);
+$this->setStatut($d['statut']);
 $this->langues =$data; 
  return $this;
                                 }
@@ -94,12 +98,39 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setCode($d['code']);
 $this->setTitre($d['titre']);
+$this->setStatut($d['statut']);
 $this->langues =$data; 
  return $this;
                                 }
                             
                         } else {
                             return $this->titre;
+                        }
+                        
+                    }
+                    /**
+                    * Get the value of statut
+                    */ 
+                    public function getStatut($statut=null)
+                    {
+                        if ($statut != null && is_array($this->langues) && count($this->langues)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE statut = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$statut]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId($d['id']);
+$this->setCode($d['code']);
+$this->setTitre($d['titre']);
+$this->setStatut($d['statut']);
+$this->langues =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->statut;
                         }
                         
                     }
@@ -135,6 +166,17 @@ $this->langues =$data;
                    public function setTitre($titre)
                    {
                     $this->titre = $titre;
+               
+                       return $this;
+                   }
+                    /**
+                    * Set the value of statut
+                    *
+                    * @return  self
+                    */ 
+                   public function setStatut($statut)
+                   {
+                    $this->statut = $statut;
                
                        return $this;
                    }

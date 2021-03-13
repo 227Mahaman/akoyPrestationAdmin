@@ -4,8 +4,8 @@ class categories_publication {
 	 public $id;
 	 public $titre;
 	 public $icon;
-	 public $statut;
 	 public $type_publication;
+	 public $statut;
 	 public $categories_publication=array();
 
 
@@ -20,13 +20,13 @@ class categories_publication {
                     return $this->categories_publication;
                 }
 
-                public function role($id, $titre, $icon, $statut, $type_publication)
+                public function role($id, $titre, $icon, $type_publication, $statut)
                     {
                         $this->id = $id;
 $this->titre = $titre;
 $this->icon = $icon;
-$this->statut = $statut;
 $this->type_publication = $type_publication;
+$this->statut = $statut;
 
                     }
                 
@@ -48,8 +48,8 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setTitre($d['titre']);
 $this->setIcon($d['icon']);
-$this->setStatut($d['statut']);
 $this->setType_publication($d['type_publication']);
+$this->setStatut($d['statut']);
 $this->categories_publication =$data; 
  return $this;
                                 }
@@ -75,8 +75,8 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setTitre($d['titre']);
 $this->setIcon($d['icon']);
-$this->setStatut($d['statut']);
 $this->setType_publication($d['type_publication']);
+$this->setStatut($d['statut']);
 $this->categories_publication =$data; 
  return $this;
                                 }
@@ -102,41 +102,14 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setTitre($d['titre']);
 $this->setIcon($d['icon']);
-$this->setStatut($d['statut']);
 $this->setType_publication($d['type_publication']);
+$this->setStatut($d['statut']);
 $this->categories_publication =$data; 
  return $this;
                                 }
                             
                         } else {
                             return $this->icon;
-                        }
-                        
-                    }
-                    /**
-                    * Get the value of statut
-                    */ 
-                    public function getStatut($statut=null)
-                    {
-                        if ($statut != null && is_array($this->categories_publication) && count($this->categories_publication)!=0) {
-                            $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE statut = ?";
-                            $req = Manager::bdd()->prepare($query);
-                            $req->execute([$statut]);
-                            $data = "";
-                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
-$d=$data[0];
-$this->setId($d['id']);
-$this->setTitre($d['titre']);
-$this->setIcon($d['icon']);
-$this->setStatut($d['statut']);
-$this->setType_publication($d['type_publication']);
-$this->categories_publication =$data; 
- return $this;
-                                }
-                            
-                        } else {
-                            return $this->statut;
                         }
                         
                     }
@@ -156,14 +129,41 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setTitre($d['titre']);
 $this->setIcon($d['icon']);
-$this->setStatut($d['statut']);
 $this->setType_publication($d['type_publication']);
+$this->setStatut($d['statut']);
 $this->categories_publication =$data; 
  return $this;
                                 }
                             
                         } else {
                             return $this->type_publication;
+                        }
+                        
+                    }
+                    /**
+                    * Get the value of statut
+                    */ 
+                    public function getStatut($statut=null)
+                    {
+                        if ($statut != null && is_array($this->categories_publication) && count($this->categories_publication)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE statut = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$statut]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId($d['id']);
+$this->setTitre($d['titre']);
+$this->setIcon($d['icon']);
+$this->setType_publication($d['type_publication']);
+$this->setStatut($d['statut']);
+$this->categories_publication =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->statut;
                         }
                         
                     }
@@ -203,17 +203,6 @@ $this->categories_publication =$data;
                        return $this;
                    }
                     /**
-                    * Set the value of statut
-                    *
-                    * @return  self
-                    */ 
-                   public function setStatut($statut)
-                   {
-                    $this->statut = $statut;
-               
-                       return $this;
-                   }
-                    /**
                     * Set the value of type_publication
                     *
                     * @return  self
@@ -221,6 +210,17 @@ $this->categories_publication =$data;
                    public function setType_publication($type_publication)
                    {
                     $this->type_publication = $type_publication;
+               
+                       return $this;
+                   }
+                    /**
+                    * Set the value of statut
+                    *
+                    * @return  self
+                    */ 
+                   public function setStatut($statut)
+                   {
+                    $this->statut = $statut;
                
                        return $this;
                    }
