@@ -50,6 +50,7 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
               <span class="input-group-text">Type</span>
             </div>
             <select class="form-control" id="type_publication" name="type_publication">
+              <option disabled selected>Sélection</option>
               <?php
               $data = Manager::getData('type_publication', 'statut', 1, true)['data'];
               if (is_array($data) || is_object($data)) {
@@ -69,6 +70,7 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
               <span class="input-group-text">Secteur</span>
             </div>
             <select class="form-control" id="category_publication" name="category_publication">
+            <option disabled selected>Sélection</option>
               <?php
               $data = Manager::getData('categories_publication', 'statut', 1, true)['data'];
               if (is_array($data) || is_object($data)) {
@@ -88,6 +90,7 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
               <span class="input-group-text">Ville</span>
             </div>
             <select class="form-control" id="ville" name="ville">
+            <option disabled selected>Sélection</option>
               <?php
               $data = Manager::getData('villes', 'statut', 1, true)['data'];
               if (is_array($data) || is_object($data)) {
@@ -107,6 +110,7 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
               <span class="input-group-text">Entreprise</span>
             </div>
             <select class="form-control" id="entreprise" name="entreprise">
+              <option disabled selected>Sélection</option>
               <?php
               $data = Manager::getData('entreprise', 'statut', 1, true)['data'];
               if (is_array($data) || is_object($data)) {
@@ -144,19 +148,19 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
             <div class="input-group-prepend">
               <span class="input-group-text">Année Bourse</span>
             </div>
-            <input type="text" required class="form-control" id="date_annee_bourse" name="date_annee_bourse" value="<?= (!empty($_GET['modif'])) ? $datas['date_annee_bourse'] : "" ?>">
+            <input type="text" class="form-control" id="date_annee_bourse" name="date_annee_bourse" value="<?= (!empty($_GET['modif'])) ? $datas['date_annee_bourse'] : "" ?>">
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">Date Début</span>
             </div>
-            <input type="date" required class="form-control" id="date_debut" name="date_debut" value="<?= (!empty($_GET['modif'])) ? $datas['date_debut'] : "" ?>">
+            <input type="date" class="form-control" id="date_debut" name="date_debut" value="<?= (!empty($_GET['modif'])) ? $datas['date_debut'] : "" ?>">
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">Date Fin</span>
             </div>
-            <input type="date" required class="form-control" id="date_fin" name="date_fin" value="<?= (!empty($_GET['modif'])) ? $datas['date_fin'] : "" ?>">
+            <input type="date" class="form-control" id="date_fin" name="date_fin" value="<?= (!empty($_GET['modif'])) ? $datas['date_fin'] : "" ?>">
           </div>
           <!-- <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -169,6 +173,7 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
               <span class="input-group-text">Ecole</span>
             </div>
             <select class="form-control" id="ecole" name="ecole">
+            <option disabled selected>Sélection</option>
               <?php
 
               $data = Manager::getData('ecole')['data'];
