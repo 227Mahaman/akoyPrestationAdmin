@@ -43,3 +43,6 @@ ALTER TABLE `categorie_type_publication`
   ADD KEY `categories_publication` (`categories_publication`),
   ADD KEY `type_publication` (`type_publication`);
 COMMIT;
+
+INSERT INTO `module` (`name`, `icon`, `description`, `action_url`, `sub_module`, `is_menu`, `created_at`, `updated_at`, `statut`, `user_create`) VALUES
+( 'categorie type publication', 'fa fa-tasks', 'associé la catégorie à un type publication', 'categorieTypePublication', NULL, 0, '2021-03-13 15:42:25', NULL, 1, 4);
