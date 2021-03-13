@@ -90,7 +90,7 @@ function getActions($moduleId)
 {
    $res = array();
    // Manager::showError($module)
-   $sql = "SELECT * FROM module WHERE sub_module=?";
+   $sql = "SELECT *, id as module, id FROM module WHERE sub_module=?";
        $res = Manager::getMultiplesRecords($sql, [$moduleId]);
    return $res;
 }
@@ -241,4 +241,64 @@ function generateRandomString($length = 10) {
         $randomString .= $characters[rand(0, $charactersLength - 1)];
     }
     return $randomString;
+}
+
+function loadMenu($data){
+    $thisSMenu = array();
+    foreach ($data as $key => $value) {
+        //$sql = "SELECT sub_module, name, id, icon FROM module WHERE is_menu=1 AND statut=1 AND id = ?";
+        
+        // on recupère les sous menus des modules
+        $sql = "SELECT x.sub_module, x.name, x.id, x.icon FROM module x WHERE x.is_menu=1 AND x.statut=1 AND x.id = ?";
+        $name = Manager::getSingleRecords($sql, [$value['module']]);
+
+        $sql = "SELECT COUNT(id) n FROM module WHERE sub_module=?";
+        $n = Manager::getSingleRecords($sql, [$name['id']])['n'];
+        // print_r($name);
+
+        // on test s'il n'ont pas des parents
+        if (!empty($n) && $n>0) {
+        //if (empty($name['sub_module'])) {
+            $menu = new MenuManager($name['name']); // on instancie la class menu
+            $sMenu = getActions($name['id']); // on recupère les sous module
+            if (is_array($sMenu) || is_object($sMenu)) {
+                foreach ($sMenu as $key => $smValue) {
+                    //loadMenu($sMenu);
+                    if (haveAction($_SESSION['user-akoyprestation']['roleId'], $smValue['id'])) {
+                        //$thisSMenu[$smValue['action_url']] = $smValue['name'];
+                        $ssMenu = getActions($smValue['id']);
+                        if(empty($name['sub_module'])){
+                            $thisSMenu[$smValue['action_url']] = $smValue['name'];
+                        } else {
+                            if (is_array($ssMenu) || is_object($ssMenu)) {
+                                $n=1;
+                                foreach ($ssMenu as $key => $ssmValue) {
+                                    $thisSMenu[$smValue['action_url']] = $ssmValue['name'];
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            $menu->setmSousMenu($thisSMenu, $n=1);
+
+                //sizeof($sMenu)
+                //$menu->setmSousMenu($thisSMenu, $n=0);
+            // } else {
+                
+            // }
+            // if (is_array($sMenu) || is_object($sMenu)) {
+            //     foreach ($sMenu as $key => $smValue) {
+                    
+            //         //loadMenu($sMenu);
+            //         if (haveAction($_SESSION['user-akoyprestation']['roleId'], $smValue['id'])) {
+            //             $thisSMenu[$smValue['action_url']] = $smValue['name'];
+            //         }
+            //     }
+            // }
+            // $menu->setmSousMenu($thisSMenu, $n=0);
+            echo $menu->getMenu($name['icon']);
+            $thisSMenu = (array) null;
+        }
+    }
 }

@@ -4,7 +4,7 @@ folder = '';
 if (host == 'localhost') {
     folder = '/akoyPrestationAdmin';
 }
-host = "localhost:8080"; // TODO retire ça si ce n'est pas mon mac
+//host = "localhost:8080"; // TODO retire ça si ce n'est pas mon mac
 customUrl = protocol + '//' + host + folder + '/index.php?action=';
 myurl = protocol + '//' + host + folder + '/api/object/';
 firestoreUrl = 'https://firestore.googleapis.com/v1/projects/test-gdg-406a8/databases/(default)/documents/';
