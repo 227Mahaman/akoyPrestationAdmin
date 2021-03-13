@@ -31,11 +31,9 @@ function addTableRow(sub_module) {
             <td>
                 <div class="form-group">
                     <input required class="form-control" id="description" name="description" placeholder="description du module">
+                    <input type="hidden" class="form-control" id="sub_module" name="sub_module" value="`+sub_module+`">
                 </div>
             </td>
-            <div style="display:none" class="form-group">
-                <input required class="form-control" id="sub_module" name="sub_module" value="`+sub_module+`" placeholder="description du module">
-            </div>
             <td>
             <button type="button" onclick="addData('module',`+sub_module+`)" class="btn btn-success">
                 <i class="fa  fa-check-square white"></i>
