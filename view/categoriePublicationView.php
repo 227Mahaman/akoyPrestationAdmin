@@ -37,6 +37,10 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
               <input type="text" required class="form-control" id="titre" name="titre" value="<?= (!empty($_GET['modif'])) ? $datas['titre'] : "" ?>" placeholder="Catégorie">
             </div>
             <div class="form-group">
+              <label for="icon">icon</label>
+              <input type="text" value="<?= (!empty($_GET['modif']) ? $datas['icon'] : '') ?>" class="form-control" id="icon" name="icon" placeholder="icon sous-format fontawsome (facultatif)">
+            </div>
+            <div class="form-group">
                 <label for="type_publication">Type publication</label>
                 <select class="form-control searchable" id="type_publication" name="type_publication">
                   <?php
@@ -85,6 +89,7 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
               <tr>
               <th>#</th>
                 <th>Titre</th>
+                <th>Icon</th>
                 <th>Type</th>
                 <th>Action</th>
               </tr>
@@ -98,6 +103,7 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
                   <tr>
                   <td><?= $i;?></td>
                     <td><?= $value['titre'];?></td>
+                    <td><i class="<?= $value['icon'];?>"></i></td>
                     <td><?= Manager::getData('type_publication', 'id', $value['type_publication'])['data']['titre'];?></td>
                     <td>
                       <a href="javascript:void()" onclick="getHTML('categoriePublication&modif=<?= $value['id'] ?>')" class="btn btn-primary">

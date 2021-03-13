@@ -14,7 +14,7 @@ $this->config['tables']['association'] = ['id','titre',];
 
 $this->config['tables']['academie']['id'] = ['id'];$this->config['tables']['association']['id'] = ['id'];
 
-$this->config['tables']['categories_publication'] = ['id','titre','type_publication','statut',];
+$this->config['tables']['categories_publication'] = ['id','titre','icon','type_publication','statut',];
 
 $this->config['tables']['academie']['id'] = ['id'];$this->config['tables']['association']['id'] = ['id'];$this->config['tables']['categories_publication']['id'] = ['id'];
 
