@@ -51,6 +51,7 @@ INSERT INTO `module` (`name`, `icon`, `description`, `action_url`, `sub_module`,
 ALTER TABLE `publications` ADD `ville` INT NULL AFTER `statut`, ADD `entreprise` INT NULL AFTER `ville`, ADD INDEX (`ville`), ADD INDEX (`entreprise`); 
 ALTER TABLE `entreprise` ADD `statut` INT NULL DEFAULT '1' AFTER `titre`;
 
+<<<<<<< HEAD
 -- Structure de la table `filieres`
 --
 
@@ -115,3 +116,8 @@ INSERT INTO `module_role` (`id`, `role_id`, `module`, `create_at`) VALUES
 (61, 2, 55, '2021-03-14 16:36:47'),
 (62, 2, 56, '2021-03-14 16:36:48'),
 (63, 2, 57, '2021-03-14 16:36:49');
+
+TODO --modif côté SQL
+$sql = "SELECT *, t.titre type_publication, c.titre categories_publication FROM type_publication t, categories_publication c, categorie_type_publication ct
+                WHERE t.id=ct.type_publication AND c.id=ct.categories_publication AND c.statut=1 AND t.statut=1 AND t.id=?";
+
