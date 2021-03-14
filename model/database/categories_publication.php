@@ -4,7 +4,6 @@ class categories_publication {
 	 public $id;
 	 public $titre;
 	 public $icon;
-	 public $type_publication;
 	 public $statut;
 	 public $categories_publication=array();
 
@@ -20,12 +19,11 @@ class categories_publication {
                     return $this->categories_publication;
                 }
 
-                public function role($id, $titre, $icon, $type_publication, $statut)
+                public function role($id, $titre, $icon, $statut)
                     {
                         $this->id = $id;
 $this->titre = $titre;
 $this->icon = $icon;
-$this->type_publication = $type_publication;
 $this->statut = $statut;
 
                     }
@@ -48,7 +46,6 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setTitre($d['titre']);
 $this->setIcon($d['icon']);
-$this->setType_publication($d['type_publication']);
 $this->setStatut($d['statut']);
 $this->categories_publication =$data; 
  return $this;
@@ -75,7 +72,6 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setTitre($d['titre']);
 $this->setIcon($d['icon']);
-$this->setType_publication($d['type_publication']);
 $this->setStatut($d['statut']);
 $this->categories_publication =$data; 
  return $this;
@@ -102,7 +98,6 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setTitre($d['titre']);
 $this->setIcon($d['icon']);
-$this->setType_publication($d['type_publication']);
 $this->setStatut($d['statut']);
 $this->categories_publication =$data; 
  return $this;
@@ -110,33 +105,6 @@ $this->categories_publication =$data;
                             
                         } else {
                             return $this->icon;
-                        }
-                        
-                    }
-                    /**
-                    * Get the value of type_publication
-                    */ 
-                    public function getType_publication($type_publication=null)
-                    {
-                        if ($type_publication != null && is_array($this->categories_publication) && count($this->categories_publication)!=0) {
-                            $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE type_publication = ?";
-                            $req = Manager::bdd()->prepare($query);
-                            $req->execute([$type_publication]);
-                            $data = "";
-                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
-$d=$data[0];
-$this->setId($d['id']);
-$this->setTitre($d['titre']);
-$this->setIcon($d['icon']);
-$this->setType_publication($d['type_publication']);
-$this->setStatut($d['statut']);
-$this->categories_publication =$data; 
- return $this;
-                                }
-                            
-                        } else {
-                            return $this->type_publication;
                         }
                         
                     }
@@ -156,7 +124,6 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setTitre($d['titre']);
 $this->setIcon($d['icon']);
-$this->setType_publication($d['type_publication']);
 $this->setStatut($d['statut']);
 $this->categories_publication =$data; 
  return $this;
@@ -199,17 +166,6 @@ $this->categories_publication =$data;
                    public function setIcon($icon)
                    {
                     $this->icon = $icon;
-               
-                       return $this;
-                   }
-                    /**
-                    * Set the value of type_publication
-                    *
-                    * @return  self
-                    */ 
-                   public function setType_publication($type_publication)
-                   {
-                    $this->type_publication = $type_publication;
                
                        return $this;
                    }

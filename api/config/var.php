@@ -18,11 +18,11 @@ $this->config['tables']['categorie_type_publication'] = ['id','categories_public
 
 $this->config['tables']['academie']['id'] = ['id'];$this->config['tables']['association']['id'] = ['id'];$this->config['tables']['categorie_type_publication']['id'] = ['id'];
 
-$this->config['tables']['categories_publication'] = ['id','titre','icon','type_publication','statut',];
+$this->config['tables']['categories_publication'] = ['id','titre','icon','statut',];
 
 $this->config['tables']['academie']['id'] = ['id'];$this->config['tables']['association']['id'] = ['id'];$this->config['tables']['categorie_type_publication']['id'] = ['id'];$this->config['tables']['categories_publication']['id'] = ['id'];
 
-$this->config['tables']['client'] = ['id','nom','prenom','phone','email','statut','created_at','update_at','password','file','date_naissance','lieu_naissance',];
+$this->config['tables']['client'] = ['id','nom','prenom','phone','email','statut','ville','presentation','adresse','created_at','update_at','password','file','date_naissance','lieu_naissance',];
 
 $this->config['tables']['academie']['id'] = ['id'];$this->config['tables']['association']['id'] = ['id'];$this->config['tables']['categorie_type_publication']['id'] = ['id'];$this->config['tables']['categories_publication']['id'] = ['id'];$this->config['tables']['client']['id'] = ['id'];
 

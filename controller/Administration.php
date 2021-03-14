@@ -5,6 +5,7 @@ include_once('model/class/EmergencyManager.php');
 include_once('model/class/MenuManager.php');
 include_once('model/class/Files.php');
 include_once('model/database/categories_publication.php');
+include_once('model/database/client.php');
 include_once('model/database/cv.php');
 // include_once('model/database/files.php');
 include_once('model/database/ecole.php');
