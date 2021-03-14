@@ -372,6 +372,9 @@
     <script src="public/js/script.js"></script>
     <script src="public/js/data_handler.js"></script>
     <!-- End js -->
+    <!-- textarea WYSIWYG -->
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
     <script>
         $(document).ready(function() {
             $('.searchable').select2();
@@ -395,6 +398,11 @@
                 'autoWidth': false
             })
         })
+        //textarea WYSIWYG
+        tinymce.init({
+            selector: 'textarea#editor',
+            menubar: false
+        });
     </script>
 </body>
 

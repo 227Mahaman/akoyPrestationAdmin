@@ -1,6 +1,7 @@
 <?php
 global $title;
 $title = "Ajouter une publication";
+$getPublicationType = Manager::getData('type_publication', 'titre', 'Annonce')['data']['id'];
 if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
   $title = "Modifier publication";
   $datas = Manager::getData("publications", "id", $_GET['modif'])['data'];
@@ -45,18 +46,28 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
       <!-- form start -->
       <form id="publicationForm" role="form" method="post" enctype="multipart/form-data">
         <div class="card-body">
+          <input type="hidden" required class="form-control" id="type_publication" name="type_publication" value="<?= (!empty($_GET['modif'])) ? $datas['type_publication'] : $getPublicationType;?>">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">Secteur</span>
             </div>
             <select class="form-control" id="category_publication" name="category_publication">
             <option disabled selected>Sélection</option>
-              <?php
-              $data = Manager::getData('categories_publication', 'statut', 1, true)['data'];
+              <?php 
+              //$file = fopen("categories.json", "w+") or die("Can't create file");
+              // $sql = "SELECT * FROM categories_publication cp, categorie_type_publication ct WHERE cp.id=ct.categories_publication AND ct.type_publication='$getPublicationType'";
+              // $data = Manager::getMultiplesRecords($sql);
+              // $categories = json_decode($data);
+              // fwrite($file, $categories);
+              // fclose($file);
+              //chmod("categories.json", 0777);
+              $sql = "SELECT cp.id, cp.titre FROM categories_publication cp, categorie_type_publication ct WHERE cp.id=ct.categories_publication AND ct.type_publication='$getPublicationType'";
+              $data = Manager::getMultiplesRecords($sql);
+              //$data = Manager::getData('categories_publication', 'statut', 1, true)['data'];
               if (is_array($data) || is_object($data)) {
                 foreach ($data as $value) {
               ?>
-                  <option <?= (!empty($_GET['modif'])) ? (($value['id'] == $datas['category_publication']) ? "selected" : "") : "" ?> value="<?= $value['id'] ?>"><?= $value['titre'] ?></option>
+                  <option <?= (!empty($_GET['modif'])) ? (($value['id'] == $datas['categorie_publication']) ? "selected" : "") : "" ?> value="<?= $value['id'] ?>"><?= $value['titre'] ?></option>
               <?php
                 }
               } else {
@@ -65,26 +76,26 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
               ?>
             </select>
           </div>
-          <div class="input-group mb-3">
+          <!-- <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">Type</span>
             </div>
             <select class="form-control" id="type_publication" name="type_publication">
               <option disabled selected>Sélection</option>
               <?php
-              $data = Manager::getData('type_publication', 'statut', 1, true)['data'];
-              if (is_array($data) || is_object($data)) {
-                foreach ($data as $value) {
+              // $data = Manager::getData('type_publication', 'statut', 1, true)['data'];
+              // if (is_array($data) || is_object($data)) {
+              //   foreach ($data as $value) {
               ?>
-                  <option <?= (!empty($_GET['modif'])) ? (($value['id'] == $datas['type_publication']) ? "selected" : "") : "" ?> value="<?= $value['id'] ?>"><?= $value['titre'] ?></option>
+                  <option <?//= (!empty($_GET['modif'])) ? (($value['id'] == $datas['type_publication']) ? "selected" : "") : "" ?> value="<?//= $value['id'] ?>"><?= $value['titre'] ?></option>
               <?php
-                }
-              } else {
-                Manager::messages('Aucune donnée trouvé', 'alert-warning');
-              }
+              //   }
+              // } else {
+              //   Manager::messages('Aucune donnée trouvé', 'alert-warning');
+              // }
               ?>
             </select>
-          </div>
+          </div> -->
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">Ville</span>
@@ -105,31 +116,30 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
               ?>
             </select>
           </div>
-          <div class="input-group mb-3">
+          <!-- <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">Entreprise</span>
             </div>
             <select class="form-control" id="entreprise" name="entreprise">
               <option disabled selected>Sélection</option>
               <?php
-              $data = Manager::getData('entreprise', 'statut', 1, true)['data'];
-              if (is_array($data) || is_object($data)) {
-                foreach ($data as $value) {
+              // $data = Manager::getData('entreprise', 'statut', 1, true)['data'];
+              // if (is_array($data) || is_object($data)) {
+              //   foreach ($data as $value) {
               ?>
-                  <option <?= (!empty($_GET['modif'])) ? (($value['id'] == $datas['entreprise']) ? "selected" : "") : "" ?> value="<?= $value['id'] ?>"><?= $value['titre'];?></option>
+                  <option <?//= (!empty($_GET['modif'])) ? (($value['id'] == $datas['entreprise']) ? "selected" : "") : "" ?> value="<?= $value['id'] ?>"><?= $value['titre'];?></option>
               <?php
-                }
-              } else {
-                Manager::messages('Aucune donnée trouvé', 'alert-warning');
-              }
+              //   }
+              // } else {
+              //   Manager::messages('Aucune donnée trouvé', 'alert-warning');
+              // }
               ?>
             </select>
-          </div>
+          </div> -->
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">Titre</span>
             </div>
-
             <input type="text" required class="form-control" id="titre" name="titre" placeholder="Veuillez entrer le titre de la publication" value="<?= (!empty($_GET['modif'])) ? $datas['titre'] : "" ?>">
           </div>
           <div class="input-group mb-3">
@@ -144,31 +154,37 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
             </div>
             <input type="text" required class="form-control" id="lieu" name="lieu" placeholder="Veuillez entrer le lieu" value="<?= (!empty($_GET['modif'])) ? $datas['lieu'] : "" ?>">
           </div>
-          <div class="input-group mb-3">
+          <!-- <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">Année Bourse</span>
             </div>
-            <input type="text" class="form-control" id="date_annee_bourse" name="date_annee_bourse" value="<?= (!empty($_GET['modif'])) ? $datas['date_annee_bourse'] : "" ?>">
-          </div>
-          <div class="input-group mb-3">
+            <input type="text" class="form-control" id="date_annee_bourse" name="date_annee_bourse" value="<?//= (!empty($_GET['modif'])) ? $datas['date_annee_bourse'] : "" ?>">
+          </div> -->
+          <!-- <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">Date Début</span>
             </div>
-            <input type="date" class="form-control" id="date_debut" name="date_debut" value="<?= (!empty($_GET['modif'])) ? $datas['date_debut'] : "" ?>">
-          </div>
+            <input type="date" class="form-control" id="date_debut" name="date_debut" value="<?//= (!empty($_GET['modif'])) ? $datas['date_debut'] : "" ?>">
+          </div> -->
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text">Date Fin</span>
+              <span class="input-group-text">Date</span>
             </div>
             <input type="date" class="form-control" id="date_fin" name="date_fin" value="<?= (!empty($_GET['modif'])) ? $datas['date_fin'] : "" ?>">
           </div>
+          <!-- <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Date Fin</span>
+            </div>
+            <input type="date" class="form-control" id="date_fin" name="date_fin" value="<?//= (!empty($_GET['modif'])) ? $datas['date_fin'] : "" ?>">
+          </div> -->
           <!-- <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">Date Elaboration</span>
             </div>
             <input type="date" required class="form-control" id="date_elaboration" name="date_elaboration" value="<?//= (!empty($_GET['modif'])) ? $datas['date_elaboration'] : "" ?>">
           </div> -->
-          <div class="input-group mb-3">
+          <!-- <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">Ecole</span>
             </div>
@@ -176,19 +192,19 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
             <option disabled selected>Sélection</option>
               <?php
 
-              $data = Manager::getData('ecole')['data'];
-              if (is_array($data) || is_object($data)) {
-                foreach ($data as $value) {
+              // $data = Manager::getData('ecole')['data'];
+              // if (is_array($data) || is_object($data)) {
+              //   foreach ($data as $value) {
               ?>
-                  <option <?= (!empty($_GET['modif'])) ? (($value['id'] == $datas['ecole']) ? "selected" : "") : "" ?> value="<?= $value['id'] ?>"><?= $value['label'] ?></option>
+                  <option <?//= (!empty($_GET['modif'])) ? (($value['id'] == $datas['ecole']) ? "selected" : "") : "" ?> value="<?//= $value['id'] ?>"><?= $value['label'] ?></option>
               <?php
-                }
-              } else {
-                Manager::messages('Aucune donnée trouvé', 'alert-warning');
-              }
+              //   }
+              // } else {
+              //   Manager::messages('Aucune donnée trouvé', 'alert-warning');
+              // }
               ?>
             </select>
-          </div>
+          </div> -->
           <div class="input-group mb-3" style="text-align: center;">
             <img src="<?= (!empty($_GET['modif'])) ? $src : 'public/img/150x150.png' ?>" id="profile_img" style="height: 100px; border-radius: 50%" alt="photo profile">
             <!-- hidden file input to trigger with JQuery  -->
@@ -212,28 +228,10 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
   </div>
 </div>
 <script>
-    $(".category_publication").click(function() {
-        var id = $(this).attr("id");
-        var id_tab = id.split("_");
-        var id_versements_pelerins = id_tab[id_tab.length-1];
-        var obj = $.ajax({
-            type: "POST",
-            url: "versements_pelerins_details.php", 
-            data: "id_versements_pelerins="+id_versements_pelerins,
-            dataType: 'html',
-        })
-        .done(function(resultats){
-            // show the response
-            $("#main_content").html(resultats);
-            //$("#main_content").load("versements_pelerins_modifier.php");
-        })
-        .fail(function() {
-            // just in case posting your form failed
-            alert( "Posting failed." );
-        });
-        // to prevent refreshing the whole page page
-        return false;
-    });
+    // $("#category_publication").on("change", function() {
+    //     console.log($(this).val(), 'category_publication');
+    //     category = $(this).val();
+    // });
 </script>
 <?php
 // $content = ob_get_clean();

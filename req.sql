@@ -89,3 +89,29 @@ INSERT INTO `module_role` (`id`, `role_id`, `module`, `create_at`) VALUES
 (49, 2, 51, '2021-03-14 15:10:40');
 
 ALTER TABLE `filieres` CHANGE `titre` `titre` VARCHAR(40) NOT NULL;
+
+INSERT INTO `module` (`id`, `name`, `icon`, `description`, `action_url`, `sub_module`, `is_menu`, `created_at`, `updated_at`, `statut`, `user_create`) VALUES
+(52, 'Clients', 'fa fa-customer', 'Gestion des clients', NULL, NULL, 1, '2021-03-14 16:24:45', NULL, 1, 4),
+(53, 'Nos clients', NULL, 'liste des clients', 'clients', 52, 1, '2021-03-14 16:25:57', NULL, 1, 4),
+(54, 'CV', NULL, 'liste des cv', 'cv', 52, 1, '2021-03-14 16:26:22', NULL, 1, 4);
+
+INSERT INTO `module_role` (`id`, `role_id`, `module`, `create_at`) VALUES
+(52, 1, 52, '2021-03-14 16:28:10'),
+(53, 1, 53, '2021-03-14 16:28:15'),
+(54, 1, 54, '2021-03-14 16:28:18'),
+(55, 2, 52, '2021-03-14 16:28:34'),
+(56, 2, 53, '2021-03-14 16:28:37'),
+(57, 2, 54, '2021-03-14 16:28:38');
+
+INSERT INTO `module` (`id`, `name`, `icon`, `description`, `action_url`, `sub_module`, `is_menu`, `created_at`, `updated_at`, `statut`, `user_create`) VALUES
+(55, 'Evenement', NULL, 'Ajout des evenements', 'addEvents', 40, 1, '2021-03-14 16:33:35', NULL, 1, 4),
+(56, 'Offre', NULL, 'Ajout des offres', 'addOffres', 40, 1, '2021-03-14 16:33:59', NULL, 1, 4),
+(57, 'Bourse', NULL, 'Ajout des bourses', 'addBourses', 40, 1, '2021-03-14 16:35:25', NULL, 1, 4);
+
+INSERT INTO `module_role` (`id`, `role_id`, `module`, `create_at`) VALUES
+(58, 1, 55, '2021-03-14 16:36:36'),
+(59, 1, 56, '2021-03-14 16:36:37'),
+(60, 1, 57, '2021-03-14 16:36:38'),
+(61, 2, 55, '2021-03-14 16:36:47'),
+(62, 2, 56, '2021-03-14 16:36:48'),
+(63, 2, 57, '2021-03-14 16:36:49');
