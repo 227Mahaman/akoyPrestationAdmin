@@ -50,3 +50,42 @@ INSERT INTO `module` (`name`, `icon`, `description`, `action_url`, `sub_module`,
 
 ALTER TABLE `publications` ADD `ville` INT NULL AFTER `statut`, ADD `entreprise` INT NULL AFTER `ville`, ADD INDEX (`ville`), ADD INDEX (`entreprise`); 
 ALTER TABLE `entreprise` ADD `statut` INT NULL DEFAULT '1' AFTER `titre`;
+
+-- Structure de la table `filieres`
+--
+
+CREATE TABLE `filieres` (
+  `id` int(11) NOT NULL,
+  `titre` int(11) NOT NULL,
+  `statut` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `filieres`
+--
+ALTER TABLE `filieres`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `filieres`
+--
+ALTER TABLE `filieres`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+INSERT INTO `module` (`id`, `name`, `icon`, `description`, `action_url`, `sub_module`, `is_menu`, `created_at`, `updated_at`, `statut`, `user_create`) VALUES
+(51, 'Filière', NULL, 'Gestion des filières', 'filieres', 2, 1, '2021-03-14 14:56:16', NULL, 1, 4);
+
+INSERT INTO `module_role` (`id`, `role_id`, `module`, `create_at`) VALUES
+(48, 1, 51, '2021-03-14 15:10:33'),
+(49, 2, 51, '2021-03-14 15:10:40');
+
+ALTER TABLE `filieres` CHANGE `titre` `titre` VARCHAR(40) NOT NULL;

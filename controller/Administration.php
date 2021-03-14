@@ -9,6 +9,7 @@ include_once('model/database/cv.php');
 // include_once('model/database/files.php');
 include_once('model/database/ecole.php');
 include_once('model/database/entreprise.php');
+include_once('model/database/filieres.php');
 include_once('model/database/module.php');
 include_once('model/database/pays.php');
 include_once('model/database/publications.php');

@@ -565,7 +565,7 @@ if (isset($_SESSION['user-akoyprestation'])) {
                     $res = Manager::updateData($data, 'entreprise', 'id', $_GET['modif']);
                     if ($res['code'] = 200) {
                         echo " <script>
-                        getHTML('ecoles');
+                        getHTML('entreprises');
                     </script>";
                     die;
                     }
@@ -575,7 +575,7 @@ if (isset($_SESSION['user-akoyprestation'])) {
                 $res = Manager::updateData($data, 'entreprise', 'id', $_GET['delete']);
                 if ($res['code'] = 1) {
                     echo " <script>
-                    getHTML('typePublication');
+                    getHTML('entreprises');
                 </script>";
                 die;
                 }
@@ -597,6 +597,47 @@ if (isset($_SESSION['user-akoyprestation'])) {
                 }
             }
             require_once("view/entrepriseView.php");
+        } elseif ($action == 'filieres') {
+            $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification
+                if (!empty($input)) {
+                    $data = $input;
+                    //$data['updated_at'] = date("Y-m-d H:i:s");
+                    $res = Manager::updateData($data, 'filieres', 'id', $_GET['modif']);
+                    if ($res['code'] = 200) {
+                        echo " <script>
+                        getHTML('filieres');
+                    </script>";
+                    die;
+                    }
+                }
+            } elseif (!empty($_GET['delete'])) { //Suppression
+                $data['statut'] = 0;
+                $res = Manager::updateData($data, 'filieres', 'id', $_GET['delete']);
+                if ($res['code'] = 1) {
+                    echo " <script>
+                    getHTML('filieres');
+                </script>";
+                die;
+                }
+            } else { // Ajout
+                if (!empty($input)) {
+                    $data = $input;
+                    $filieres = new filieres($data);
+                    $res = insert($filieres);
+
+                    $_SESSION['messages'] = $res;
+                    if (!empty($_SESSION['messages'])) {
+                        if ($_SESSION['messages']['code'] == 1) {
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-success');
+                        } else {
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-danger');
+                        }
+                    }
+                    die;
+                }
+            }
+            require_once("view/filiereView.php");
         }
     } elseif (empty($_GET['mat'])) {
         require_once("view/homeView.php");
