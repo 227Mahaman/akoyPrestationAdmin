@@ -65,7 +65,7 @@ $title = "Listes des publications";
                 <tr role="row" class="odd">
                   <td class="sorting_1"><?= $value['titre'];?></td>
                  
-                  <td><?= $value['description'];?></td>
+                  <td><?= substr($value['description'], 0, 125);?></td>
                   
                   <td><?= Manager::getData('type_publication', 'id', $value['type_publication'])['data']['titre']; ?></td>
                   <td><?= $value['lieu'];?></td>
@@ -86,7 +86,7 @@ $title = "Listes des publications";
                 <?php else : ?>
                 <tr role="row" class="even">
                   <td class="sorting_1"><?= $value['titre'];?></td>
-                  <td><?= $value['description'];?></td>
+                  <td><?= substr($value['description'], 0, 125);?></td>
                   
                   <td><?= Manager::getData('type_publication', 'id', $value['type_publication'])['data']['titre']; ?></td>
                   <td><?= $value['lieu']; ?></td>
