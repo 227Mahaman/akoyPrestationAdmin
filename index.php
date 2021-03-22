@@ -761,6 +761,12 @@ if (isset($_SESSION['user-akoyprestation'])) {
                 }
             }
             require_once("view/addOffreView.php");
+        } elseif($action == 'clients'){
+            if(isset($_GET['delete'])){
+                $data['statut'] = 0;
+                $res = update('client', $data, 'id', $_GET['delete']);
+            }
+            require_once("view/clientsView.php");
         }
     } elseif (empty($_GET['mat'])) {
         require_once("view/homeView.php");
