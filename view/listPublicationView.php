@@ -65,7 +65,7 @@ $title = "Listes des publications";
                 <tr role="row" class="odd">
                   <td class="sorting_1"><?= $value['titre'];?></td>
                  
-                  <td><?= substr($value['description'], 0, 125);?></td>
+                  <td><?= substr($value['description'], 0, 25);?></td>
                   
                   <td><?= Manager::getData('type_publication', 'id', $value['type_publication'])['data']['titre']; ?></td>
                   <td><?= $value['lieu'];?></td>
