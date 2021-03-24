@@ -136,7 +136,7 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
             <div class="input-group-prepend">
               <span class="input-group-text">Description</span>
             </div>
-            <textarea class="form-control" id="froala-editor" name="description" value="<?= (!empty($_GET['modif'])) ? $datas['description'] : "" ?>" placeholder="Description" cols="5" rows="2"><?= (!empty($_GET['modif'])) ? $datas['description'] : "" ?></textarea>
+            <textarea class="form-control" id="summernote" name="description" value="<?= (!empty($_GET['modif'])) ? $datas['description'] : "" ?>" placeholder="Description" cols="5" rows="2"><?= (!empty($_GET['modif'])) ? $datas['description'] : "" ?></textarea>
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -188,6 +188,51 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
               }
               ?>
             </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Experience</span>
+            </div>
+            <select class="form-control" id="experience" name="experience">
+              <option disabled selected>Sélection</option>
+              <option value="1 an">1 an</option>
+              <option value="2 ans">2 ans</option>
+              <option value="3 ans">3 ans</option>
+              <option value="4 ans">4 ans</option>
+              <option value="5 ans">5 ans</option>
+              <option value="6 ans">6 ans</option>
+              <option value="7 ans">7 ans</option>
+              <option value="8 ans">8 ans</option>
+              <option value="9 ans">9 ans</option>
+              <option value="10 ans">10 ans</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Sexe</span>
+            </div>
+            <select class="form-control" id="sexe" name="sexe">
+              <option disabled selected>Sélection</option>
+              <option value="0">F</option>
+              <option value="1">M</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Diplome</span>
+            </div>
+            <select class="form-control" id="diplome" name="diplome">
+              <option disabled selected>Sélection</option>
+              <option value="Licence">Licence</option>
+              <option value="Master">Master</option>
+              <option value="Doctorat">Doctorat</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Nombre de candidat</span>
+            </div>
+            <input type="number" class="form-control" id="nombre_candidat" name="nombre_candidat" value="<?= (!empty($_GET['modif'])) ? $datas['nombre_candidat'] : "" ?>">
           </div>
           <div class="input-group mb-3" style="text-align: center;">
             <img src="<?= (!empty($_GET['modif'])) ? $src : 'public/img/150x150.png' ?>" id="profile_img" style="height: 100px; border-radius: 50%" alt="photo profile">

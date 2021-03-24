@@ -28,10 +28,9 @@
     <link rel="stylesheet" href="public/css/style.css">
 
     <link href='https://cdn.jsdelivr.net/npm/froala-editor@3.2.0/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
-
-
-
     <!-- End css -->
+
+    <!-- <link rel="stylesheet" href="https://http://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/> -->
 </head>
 
 <body class="vertical-layout">
@@ -378,10 +377,14 @@
     <!-- End js -->
     <!-- textarea WYSIWYG -->
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://http://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.js"></script> -->
 
     <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@3.2.0/js/froala_editor.pkgd.min.js'></script>
     <script>
         new FroalaEditor('textarea#froala-editor');
+        $('#summernote').summernote();
         $(document).ready(function() {
             
             $('.searchable').select2();
