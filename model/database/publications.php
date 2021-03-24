@@ -19,6 +19,10 @@ class publications {
 	 public $statut;
 	 public $ville;
 	 public $entreprise;
+	 public $experience;
+	 public $sexe;
+	 public $nombre_candidat;
+	 public $diplome;
 	 public $publications=array();
 
 
@@ -33,7 +37,7 @@ class publications {
                     return $this->publications;
                 }
 
-                public function role($id, $type_publication, $category_publication, $titre, $description, $lieu, $date_annee_bourse, $date_debut, $date_fin, $ecole, $date_elaboration, $file, $user_create, $create_at, $updated_at, $statut, $ville, $entreprise)
+                public function role($id, $type_publication, $category_publication, $titre, $description, $lieu, $date_annee_bourse, $date_debut, $date_fin, $ecole, $date_elaboration, $file, $user_create, $create_at, $updated_at, $statut, $ville, $entreprise, $experience, $sexe, $nombre_candidat, $diplome)
                     {
                         $this->id = $id;
 $this->type_publication = $type_publication;
@@ -53,6 +57,10 @@ $this->updated_at = $updated_at;
 $this->statut = $statut;
 $this->ville = $ville;
 $this->entreprise = $entreprise;
+$this->experience = $experience;
+$this->sexe = $sexe;
+$this->nombre_candidat = $nombre_candidat;
+$this->diplome = $diplome;
 
                     }
                 
@@ -89,6 +97,10 @@ $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
 $this->setVille($d['ville']);
 $this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -129,6 +141,10 @@ $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
 $this->setVille($d['ville']);
 $this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -169,6 +185,10 @@ $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
 $this->setVille($d['ville']);
 $this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -209,6 +229,10 @@ $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
 $this->setVille($d['ville']);
 $this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -249,6 +273,10 @@ $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
 $this->setVille($d['ville']);
 $this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -289,6 +317,10 @@ $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
 $this->setVille($d['ville']);
 $this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -329,6 +361,10 @@ $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
 $this->setVille($d['ville']);
 $this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -369,6 +405,10 @@ $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
 $this->setVille($d['ville']);
 $this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -409,6 +449,10 @@ $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
 $this->setVille($d['ville']);
 $this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -449,6 +493,10 @@ $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
 $this->setVille($d['ville']);
 $this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -489,6 +537,10 @@ $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
 $this->setVille($d['ville']);
 $this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -529,6 +581,10 @@ $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
 $this->setVille($d['ville']);
 $this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -569,6 +625,10 @@ $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
 $this->setVille($d['ville']);
 $this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -609,6 +669,10 @@ $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
 $this->setVille($d['ville']);
 $this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -649,6 +713,10 @@ $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
 $this->setVille($d['ville']);
 $this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -689,6 +757,10 @@ $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
 $this->setVille($d['ville']);
 $this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -729,6 +801,10 @@ $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
 $this->setVille($d['ville']);
 $this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -769,12 +845,192 @@ $this->setUpdated_at($d['updated_at']);
 $this->setStatut($d['statut']);
 $this->setVille($d['ville']);
 $this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
 $this->publications =$data; 
  return $this;
                                 }
                             
                         } else {
                             return $this->entreprise;
+                        }
+                        
+                    }
+                    /**
+                    * Get the value of experience
+                    */ 
+                    public function getExperience($experience=null)
+                    {
+                        if ($experience != null && is_array($this->publications) && count($this->publications)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE experience = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$experience]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId($d['id']);
+$this->setType_publication($d['type_publication']);
+$this->setCategory_publication($d['category_publication']);
+$this->setTitre($d['titre']);
+$this->setDescription($d['description']);
+$this->setLieu($d['lieu']);
+$this->setDate_annee_bourse($d['date_annee_bourse']);
+$this->setDate_debut($d['date_debut']);
+$this->setDate_fin($d['date_fin']);
+$this->setEcole($d['ecole']);
+$this->setDate_elaboration($d['date_elaboration']);
+$this->setFile($d['file']);
+$this->setUser_create($d['user_create']);
+$this->setCreate_at($d['create_at']);
+$this->setUpdated_at($d['updated_at']);
+$this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
+$this->publications =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->experience;
+                        }
+                        
+                    }
+                    /**
+                    * Get the value of sexe
+                    */ 
+                    public function getSexe($sexe=null)
+                    {
+                        if ($sexe != null && is_array($this->publications) && count($this->publications)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE sexe = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$sexe]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId($d['id']);
+$this->setType_publication($d['type_publication']);
+$this->setCategory_publication($d['category_publication']);
+$this->setTitre($d['titre']);
+$this->setDescription($d['description']);
+$this->setLieu($d['lieu']);
+$this->setDate_annee_bourse($d['date_annee_bourse']);
+$this->setDate_debut($d['date_debut']);
+$this->setDate_fin($d['date_fin']);
+$this->setEcole($d['ecole']);
+$this->setDate_elaboration($d['date_elaboration']);
+$this->setFile($d['file']);
+$this->setUser_create($d['user_create']);
+$this->setCreate_at($d['create_at']);
+$this->setUpdated_at($d['updated_at']);
+$this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
+$this->publications =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->sexe;
+                        }
+                        
+                    }
+                    /**
+                    * Get the value of nombre_candidat
+                    */ 
+                    public function getNombre_candidat($nombre_candidat=null)
+                    {
+                        if ($nombre_candidat != null && is_array($this->publications) && count($this->publications)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE nombre_candidat = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$nombre_candidat]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId($d['id']);
+$this->setType_publication($d['type_publication']);
+$this->setCategory_publication($d['category_publication']);
+$this->setTitre($d['titre']);
+$this->setDescription($d['description']);
+$this->setLieu($d['lieu']);
+$this->setDate_annee_bourse($d['date_annee_bourse']);
+$this->setDate_debut($d['date_debut']);
+$this->setDate_fin($d['date_fin']);
+$this->setEcole($d['ecole']);
+$this->setDate_elaboration($d['date_elaboration']);
+$this->setFile($d['file']);
+$this->setUser_create($d['user_create']);
+$this->setCreate_at($d['create_at']);
+$this->setUpdated_at($d['updated_at']);
+$this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
+$this->publications =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->nombre_candidat;
+                        }
+                        
+                    }
+                    /**
+                    * Get the value of diplome
+                    */ 
+                    public function getDiplome($diplome=null)
+                    {
+                        if ($diplome != null && is_array($this->publications) && count($this->publications)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE diplome = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$diplome]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId($d['id']);
+$this->setType_publication($d['type_publication']);
+$this->setCategory_publication($d['category_publication']);
+$this->setTitre($d['titre']);
+$this->setDescription($d['description']);
+$this->setLieu($d['lieu']);
+$this->setDate_annee_bourse($d['date_annee_bourse']);
+$this->setDate_debut($d['date_debut']);
+$this->setDate_fin($d['date_fin']);
+$this->setEcole($d['ecole']);
+$this->setDate_elaboration($d['date_elaboration']);
+$this->setFile($d['file']);
+$this->setUser_create($d['user_create']);
+$this->setCreate_at($d['create_at']);
+$this->setUpdated_at($d['updated_at']);
+$this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
+$this->publications =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->diplome;
                         }
                         
                     }
@@ -975,6 +1231,50 @@ $this->publications =$data;
                    public function setEntreprise($entreprise)
                    {
                     $this->entreprise = $entreprise;
+               
+                       return $this;
+                   }
+                    /**
+                    * Set the value of experience
+                    *
+                    * @return  self
+                    */ 
+                   public function setExperience($experience)
+                   {
+                    $this->experience = $experience;
+               
+                       return $this;
+                   }
+                    /**
+                    * Set the value of sexe
+                    *
+                    * @return  self
+                    */ 
+                   public function setSexe($sexe)
+                   {
+                    $this->sexe = $sexe;
+               
+                       return $this;
+                   }
+                    /**
+                    * Set the value of nombre_candidat
+                    *
+                    * @return  self
+                    */ 
+                   public function setNombre_candidat($nombre_candidat)
+                   {
+                    $this->nombre_candidat = $nombre_candidat;
+               
+                       return $this;
+                   }
+                    /**
+                    * Set the value of diplome
+                    *
+                    * @return  self
+                    */ 
+                   public function setDiplome($diplome)
+                   {
+                    $this->diplome = $diplome;
                
                        return $this;
                    }

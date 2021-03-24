@@ -121,3 +121,5 @@ TODO --modif côté SQL
 $sql = "SELECT *, t.titre type_publication, c.titre categories_publication FROM type_publication t, categories_publication c, categorie_type_publication ct
                 WHERE t.id=ct.type_publication AND c.id=ct.categories_publication AND c.statut=1 AND t.statut=1 AND t.id=?";
 
+                ALTER TABLE `publications` ADD `experience` VARCHAR(50) NULL AFTER `entreprise`, ADD `sexe` INT(3) NULL AFTER `experience`, ADD `nombre_candidat` INT NULL AFTER `sexe`, ADD `diplome` VARCHAR(50) NULL AFTER `nombre_candidat`;
+
