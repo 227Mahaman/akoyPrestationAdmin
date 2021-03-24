@@ -18,6 +18,9 @@
     <link href="public/vendor/plugins/switchery/switchery.min.css" rel="stylesheet">
     <!-- Summernote css -->
     <link href="public/vendor/plugins/summernote/summernote-bs4.css" rel="stylesheet">
+     <!-- SummerNote -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <!-- Code Mirror css -->
     <link href="public/vendor/plugins/code-mirror/codemirror.css" rel="stylesheet">
     <link href="public/vendor/plugins/bootstrap-xeditable/css/bootstrap-editable.css" rel="stylesheet" type="text/css">
@@ -377,14 +380,21 @@
     <!-- End js -->
     <!-- textarea WYSIWYG -->
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://http://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.js"></script> -->
+    <!-- SummerNote -->
+   <!-- SummerNote -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
     <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@3.2.0/js/froala_editor.pkgd.min.js'></script>
     <script>
-        new FroalaEditor('textarea#froala-editor');
-        $('#summernote').summernote();
+        //new FroalaEditor('textarea#froala-editor');
+        $('#summernote').summernote({
+            height: 300,                 // set editor height
+  minHeight: null,             // set minimum height of editor
+  maxHeight: null,             // set maximum height of editor
+  focus: true                  // set focus to editable area after initializing summernote
+        });
         $(document).ready(function() {
             
             $('.searchable').select2();
