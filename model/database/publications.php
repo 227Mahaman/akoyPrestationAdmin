@@ -4,6 +4,7 @@ class publications {
 	 public $id;
 	 public $type_publication;
 	 public $category_publication;
+	 public $num_offre;
 	 public $titre;
 	 public $description;
 	 public $lieu;
@@ -37,11 +38,12 @@ class publications {
                     return $this->publications;
                 }
 
-                public function role($id, $type_publication, $category_publication, $titre, $description, $lieu, $date_annee_bourse, $date_debut, $date_fin, $ecole, $date_elaboration, $file, $user_create, $create_at, $updated_at, $statut, $ville, $entreprise, $experience, $sexe, $nombre_candidat, $diplome)
+                public function role($id, $type_publication, $category_publication, $num_offre, $titre, $description, $lieu, $date_annee_bourse, $date_debut, $date_fin, $ecole, $date_elaboration, $file, $user_create, $create_at, $updated_at, $statut, $ville, $entreprise, $experience, $sexe, $nombre_candidat, $diplome)
                     {
                         $this->id = $id;
 $this->type_publication = $type_publication;
 $this->category_publication = $category_publication;
+$this->num_offre = $num_offre;
 $this->titre = $titre;
 $this->description = $description;
 $this->lieu = $lieu;
@@ -82,6 +84,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -126,6 +129,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -170,6 +174,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -199,6 +204,51 @@ $this->publications =$data;
                         
                     }
                     /**
+                    * Get the value of num_offre
+                    */ 
+                    public function getNum_offre($num_offre=null)
+                    {
+                        if ($num_offre != null && is_array($this->publications) && count($this->publications)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE num_offre = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$num_offre]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId($d['id']);
+$this->setType_publication($d['type_publication']);
+$this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
+$this->setTitre($d['titre']);
+$this->setDescription($d['description']);
+$this->setLieu($d['lieu']);
+$this->setDate_annee_bourse($d['date_annee_bourse']);
+$this->setDate_debut($d['date_debut']);
+$this->setDate_fin($d['date_fin']);
+$this->setEcole($d['ecole']);
+$this->setDate_elaboration($d['date_elaboration']);
+$this->setFile($d['file']);
+$this->setUser_create($d['user_create']);
+$this->setCreate_at($d['create_at']);
+$this->setUpdated_at($d['updated_at']);
+$this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
+$this->publications =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->num_offre;
+                        }
+                        
+                    }
+                    /**
                     * Get the value of titre
                     */ 
                     public function getTitre($titre=null)
@@ -214,6 +264,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -258,6 +309,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -302,6 +354,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -346,6 +399,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -390,6 +444,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -434,6 +489,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -478,6 +534,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -522,6 +579,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -566,6 +624,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -610,6 +669,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -654,6 +714,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -698,6 +759,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -742,6 +804,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -786,6 +849,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -830,6 +894,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -874,6 +939,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -918,6 +984,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -962,6 +1029,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -1006,6 +1074,7 @@ $d=$data[0];
 $this->setId($d['id']);
 $this->setType_publication($d['type_publication']);
 $this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
 $this->setTitre($d['titre']);
 $this->setDescription($d['description']);
 $this->setLieu($d['lieu']);
@@ -1066,6 +1135,17 @@ $this->publications =$data;
                    public function setCategory_publication($category_publication)
                    {
                     $this->category_publication = $category_publication;
+               
+                       return $this;
+                   }
+                    /**
+                    * Set the value of num_offre
+                    *
+                    * @return  self
+                    */ 
+                   public function setNum_offre($num_offre)
+                   {
+                    $this->num_offre = $num_offre;
                
                        return $this;
                    }
