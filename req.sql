@@ -122,4 +122,5 @@ $sql = "SELECT *, t.titre type_publication, c.titre categories_publication FROM 
                 WHERE t.id=ct.type_publication AND c.id=ct.categories_publication AND c.statut=1 AND t.statut=1 AND t.id=?";
 
                 ALTER TABLE `publications` ADD `experience` VARCHAR(50) NULL AFTER `entreprise`, ADD `sexe` INT(3) NULL AFTER `experience`, ADD `nombre_candidat` INT NULL AFTER `sexe`, ADD `diplome` VARCHAR(50) NULL AFTER `nombre_candidat`;
-
+-- Creation tables vues
+CREATE TABLE `akoy_prestation`.`vues` ( `id` INT NOT NULL AUTO_INCREMENT , `id_publication` INT NOT NULL , `created_at` TIMESTAMP NOT NULL , `nb` INT NULL , PRIMARY KEY (`id`), INDEX (`id_publication`)) ENGINE = InnoDB;
