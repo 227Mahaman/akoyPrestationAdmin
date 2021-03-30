@@ -124,3 +124,6 @@ $sql = "SELECT *, t.titre type_publication, c.titre categories_publication FROM 
                 ALTER TABLE `publications` ADD `experience` VARCHAR(50) NULL AFTER `entreprise`, ADD `sexe` INT(3) NULL AFTER `experience`, ADD `nombre_candidat` INT NULL AFTER `sexe`, ADD `diplome` VARCHAR(50) NULL AFTER `nombre_candidat`;
 -- Creation tables vues
 CREATE TABLE `akoy_prestation`.`vues` ( `id` INT NOT NULL AUTO_INCREMENT , `id_publication` INT NOT NULL , `created_at` TIMESTAMP NOT NULL , `nb` INT NULL , PRIMARY KEY (`id`), INDEX (`id_publication`)) ENGINE = InnoDB;
+
+--Ajout attribut num ofrre
+ALTER TABLE `publications` ADD `num_offre` VARCHAR(45) NULL AFTER `category_publication`; 
