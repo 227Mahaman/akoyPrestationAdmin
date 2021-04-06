@@ -52,6 +52,15 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
             <select class="form-control" id="category_publication" name="category_publication">
             <option disabled selected>Sélection</option>
               <?php
+              $file = fopen("type_publication.json", "w+") or die("Can't create file");
+              // $sql = "SELECT *, t.titre type_publication, c.titre categories_publication FROM type_publication t, categories_publication c, categorie_type_publication ct
+              // WHERE t.id=ct.type_publication AND c.id=ct.categories_publication AND c.statut=1 AND t.statut=1 AND t.id=?";
+              $sql = "SELECT t.id, t.titre, cp.id idC  FROM categorie_type_publication c, categories_publication cp, type_publication t WHERE c.categories_publication=cp.id AND t.id=c.type_publication";
+              $data = Manager::getMultiplesRecords($sql);
+              $type_publications = json_encode($data);
+              fwrite($file, $type_publications);
+              fclose($file);
+              chmod("type_publication.json", 0777);
               $data = Manager::getData('categories_publication', 'statut', 1, true)['data'];
               if (is_array($data) || is_object($data)) {
                 foreach ($data as $value) {
@@ -69,14 +78,14 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
             <div class="input-group-prepend">
               <span class="input-group-text">Type</span>
             </div>
-            <select class="form-control" id="type_publication" name="type_publication">
+            <select class="form-control type_publication" id="type_publication" name="type_publication">
               <option disabled selected>Sélection</option>
               <?php
-              $data = Manager::getData('type_publication', 'statut', 1, true)['data'];
+              //$data = Manager::getData('type_publication', 'statut', 1, true)['data'];
               if (is_array($data) || is_object($data)) {
                 foreach ($data as $value) {
               ?>
-                  <option <?= (!empty($_GET['modif'])) ? (($value['id'] == $datas['type_publication']) ? "selected" : "") : "" ?> value="<?= $value['id'] ?>"><?= $value['titre'] ?></option>
+                  <option <?//= (!empty($_GET['modif'])) ? (($value['id'] == $datas['type_publication']) ? "selected" : "") : "" ?> value="<?= $value['id'] ?>"><?= $value['titre'] ?></option>
               <?php
                 }
               } else {
@@ -278,6 +287,24 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
         });
         // to prevent refreshing the whole page page
         return false;
+    });
+    $("#category_publication").on("change", function() {
+      console.log($(this).val(), 'category_publication')
+      v = $(this).val();
+      $.getJSON("type_publication.json", function(data) {
+          var option = '<option class="option" selected>Veuillez selectionner le type de la publication</option>';
+          $.each(data, function(key, val) {
+              // console.log(key, val, "ok villes");
+              if (val.idC == v) {
+                  console.log(key, val, "ok type_publication");
+
+                  option += '<option value="' + val.id + '">' + val.titre + '</option>';
+              }
+          });
+          console.log(option);
+
+          $("#type_publication").html(option);
+      });
     });
 </script>
 <?php
