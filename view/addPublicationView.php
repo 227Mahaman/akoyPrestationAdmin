@@ -145,7 +145,7 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
             <div class="input-group-prepend">
               <span class="input-group-text">Description</span>
             </div>
-            <textarea class="form-control" id="summernote" name="description" value="<?= (!empty($_GET['modif'])) ? $datas['description'] : "" ?>" placeholder="Description" cols="5" rows="2"><?= (!empty($_GET['modif'])) ? $datas['description'] : "" ?></textarea>
+            <textarea class="form-control" id="summernote" name="description" value="<?= (!empty($_GET['modif'])) ? $datas['description'] : "" ?>" placeholder="Description" cols="30" rows="5"><?= (!empty($_GET['modif'])) ? $datas['description'] : "" ?></textarea>
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
