@@ -21,7 +21,9 @@
      <!-- SummerNote -->
   <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
+  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet"> -->
+  <!-- Summernote css -->
+  <link href="public/vendor/plugins/summernote/summernote-bs4.css" rel="stylesheet">
     <!-- Code Mirror css -->
     <link href="public/vendor/plugins/code-mirror/codemirror.css" rel="stylesheet">
     <link href="public/vendor/plugins/bootstrap-xeditable/css/bootstrap-editable.css" rel="stylesheet" type="text/css">
@@ -380,7 +382,10 @@
     <script src="public/js/data_handler.js"></script>
     <!-- End js -->
     <!-- SummerNote -->
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
+  <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script> -->
+  <!-- Summernote JS -->
+  <script src="public/vendor/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="public/vendor/js/custom/custom-form-editor.js"></script>
 
 
     <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@3.2.0/js/froala_editor.pkgd.min.js'></script>
@@ -396,14 +401,12 @@
             
             $('.searchable').select2();
             console.log($('.note-editable'), "ok");
-
             $('#description').val($('.note-editable').html());
             $('.note-editable').bind('DOMSubtreeModified', function() {
                 console.log($(this).html(), 'ok');
                 $('#description').val($(this).html());
 
             });
-            $('#summernote').summernote();
         })
         $(function() {
             $('#example1').DataTable()
@@ -416,11 +419,6 @@
                 'autoWidth': false
             })
         })
-        //textarea WYSIWYG
-        tinymce.init({
-            selector: 'textarea#editor',
-            menubar: false
-        });
     </script>
 </body>
 

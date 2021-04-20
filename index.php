@@ -448,6 +448,8 @@ if (isset($_SESSION['user-akoyprestation'])) {
                 }
             } else { // Ajout
                 if (!empty($input) && !empty($_FILES)) {
+            //         var_dump($input);
+            // exit();
                     $data = $input;
                     $data['user_create'] = $_SESSION['user-akoyprestation']['id'];
                     $data['date_elaboration'] = date("Y-m-d H:i:s");

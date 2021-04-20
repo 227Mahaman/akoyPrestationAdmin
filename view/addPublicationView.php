@@ -141,12 +141,14 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
 
             <input type="text" required class="form-control" id="titre" name="titre" placeholder="Veuillez entrer le titre de la publication" value="<?= (!empty($_GET['modif'])) ? $datas['titre'] : "" ?>">
           </div>
-          <div class="input-group mb-3">
+          <div class="form-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">Description</span>
             </div>
-            <textarea class="form-control" id="summernote" name="description" value="<?= (!empty($_GET['modif'])) ? $datas['description'] : "" ?>" placeholder="Description" cols="30" rows="5"><?= (!empty($_GET['modif'])) ? $datas['description'] : "" ?></textarea>
-          </div>
+              <!-- <div id="summernote"><?//= (!empty($_GET['modif'])) ? $datas['description'] : "";?></div>
+              <input type="hidden" required class="form-control" id="description" name="description" value="<?//= (!empty($_GET['modif'])) ? $datas['description'] : "" ?>"> -->
+              <textarea class="form-control" id="summernote" name="description" value="<?= (!empty($_GET['modif'])) ? $datas['description'] : "" ?>" placeholder="Description" cols="30" rows="5"><?= (!empty($_GET['modif'])) ? $datas['description'] : "" ?></textarea>
+            </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">Lieu</span>
@@ -265,6 +267,7 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
     </div>
   </div>
 </div>
+<script src="public/vendor/js/custom/custom-form-editor.js"></script>
 <script>
     $(".category_publication").click(function() {
         var id = $(this).attr("id");
@@ -305,6 +308,13 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
 
           $("#type_publication").html(option);
       });
+    });
+
+    $('#description').val($('.note-editable').html());
+    $('.note-editable').bind('DOMSubtreeModified', function() {
+        console.log($(this).html(), 'ok');
+        $('#description').val($(this).html());
+
     });
 </script>
 <?php
