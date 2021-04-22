@@ -141,14 +141,6 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
 
             <input type="text" required class="form-control" id="titre" name="titre" placeholder="Veuillez entrer le titre de la publication" value="<?= (!empty($_GET['modif'])) ? $datas['titre'] : "" ?>">
           </div>
-          <div class="form-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Description</span>
-            </div>
-              <!-- <div id="summernote"><?//= (!empty($_GET['modif'])) ? $datas['description'] : "";?></div>
-              <input type="hidden" required class="form-control" id="description" name="description" value="<?//= (!empty($_GET['modif'])) ? $datas['description'] : "" ?>"> -->
-              <textarea class="form-control" id="summernote" name="description" value="<?= (!empty($_GET['modif'])) ? $datas['description'] : "" ?>" placeholder="Description" cols="30" rows="5"><?= (!empty($_GET['modif'])) ? $datas['description'] : "" ?></textarea>
-            </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">Lieu</span>
@@ -244,6 +236,14 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
               <span class="input-group-text">Nombre de candidat</span>
             </div>
             <input type="number" class="form-control" id="nombre_candidat" name="nombre_candidat" value="<?= (!empty($_GET['modif'])) ? $datas['nombre_candidat'] : "" ?>">
+          </div>
+          <div class="form-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Description</span>
+            </div>
+              <!-- <div id="summernote"><?//= (!empty($_GET['modif'])) ? $datas['description'] : "";?></div>
+              <input type="hidden" required class="form-control" id="description" name="description" value="<?//= (!empty($_GET['modif'])) ? $datas['description'] : "" ?>"> -->
+              <textarea class="form-control" id="summernote" name="description" value="<?= (!empty($_GET['modif'])) ? $datas['description'] : "" ?>" placeholder="Description" cols="30" rows="5"><?= (!empty($_GET['modif'])) ? $datas['description'] : "" ?></textarea>
           </div>
           <div class="input-group mb-3" style="text-align: center;">
             <img src="<?= (!empty($_GET['modif'])) ? $src : 'public/img/150x150.png' ?>" id="profile_img" style="height: 100px; border-radius: 50%" alt="photo profile">
