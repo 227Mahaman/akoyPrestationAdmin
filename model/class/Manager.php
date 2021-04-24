@@ -460,7 +460,7 @@ class Manager
             }
 
             $req = self::bdd()->prepare($sql);
-            if ($this->is_not_empty($table)) {
+            //if ($this->is_not_empty($table)) {
                 try {
                     // self::bdd()->beginTransaction();
                     $req->execute($table);
@@ -471,9 +471,9 @@ class Manager
                 } catch (PDOException $e) {
                     return $this->throwError(0, "Enregistrement échoué; $e", true);
                 }
-            } else {
-                return $this->throwError(0, "Un ou plusieurs champs mal renseigner", true);
-            }
+            // } else {
+            //     return $this->throwError(0, "Un ou plusieurs champs mal renseigner", true);
+            // }
         }
     }
     /*

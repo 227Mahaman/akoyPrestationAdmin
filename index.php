@@ -448,8 +448,8 @@ if (isset($_SESSION['user-akoyprestation'])) {
                 }
             } else { // Ajout
                 if (!empty($input) && !empty($_FILES)) {
-            //         var_dump($input);
-            // exit();
+                     //var_dump($input);
+            
                     $data = $input;
                     $data['user_create'] = $_SESSION['user-akoyprestation']['id'];
                     $data['date_elaboration'] = date("Y-m-d H:i:s");
@@ -459,7 +459,10 @@ if (isset($_SESSION['user-akoyprestation'])) {
                     // $data['file'] = UserManager::uploadProfilePicture($data['file']);
                     $data['file'] = intval($data['file']);
                     $publications = new publications($data);
+                    //var_dump($publications);
                     $res = insert($publications);
+                    // var_dump($res);
+                    // exit();
                     $_SESSION['messages'] = $res;
                     if (!empty($_SESSION['messages'])) {
                         if ($_SESSION['messages']['code'] == 1) {
@@ -676,6 +679,9 @@ if (isset($_SESSION['user-akoyprestation'])) {
                     $_SESSION['messages'] = $res;
                     if (!empty($_SESSION['messages'])) {
                         if ($_SESSION['messages']['code'] == 1) {
+                            echo " <script>
+                                getHTML('addEvents');
+                            </script>";
                             echo Manager::messages($_SESSION['messages']['message'], 'alert-success');
                         } else {
                             echo Manager::messages($_SESSION['messages']['message'], 'alert-danger');
