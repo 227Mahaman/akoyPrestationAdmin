@@ -235,7 +235,13 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
             <div class="input-group-prepend">
               <span class="input-group-text">Nombre de candidat</span>
             </div>
-            <input type="number" class="form-control" id="nombre_candidat" name="nombre_candidat" value="<?= (!empty($_GET['modif'])) ? $datas['nombre_candidat'] : "" ?>">
+            <input type="number" min="0" class="form-control" id="nombre_candidat" name="nombre_candidat" value="<?= (!empty($_GET['modif'])) ? $datas['nombre_candidat'] : "";?>">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Salaire</span>
+            </div>
+            <input type="number" min="1000" class="form-control" id="salaire" name="salaire" value="<?= (!empty($_GET['modif'])) ? $datas['salaire'] : "";?>">
           </div>
           <div class="form-group mb-3">
             <div class="input-group-prepend">
