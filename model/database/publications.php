@@ -24,6 +24,7 @@ class publications {
 	 public $sexe;
 	 public $nombre_candidat;
 	 public $diplome;
+	 public $salaire;
 	 public $publications=array();
 
 
@@ -38,7 +39,7 @@ class publications {
                     return $this->publications;
                 }
 
-                public function role($id, $type_publication, $category_publication, $num_offre, $titre, $description, $lieu, $date_annee_bourse, $date_debut, $date_fin, $ecole, $date_elaboration, $file, $user_create, $create_at, $updated_at, $statut, $ville, $entreprise, $experience, $sexe, $nombre_candidat, $diplome)
+                public function role($id, $type_publication, $category_publication, $num_offre, $titre, $description, $lieu, $date_annee_bourse, $date_debut, $date_fin, $ecole, $date_elaboration, $file, $user_create, $create_at, $updated_at, $statut, $ville, $entreprise, $experience, $sexe, $nombre_candidat, $diplome, $salaire)
                     {
                         $this->id = $id;
 $this->type_publication = $type_publication;
@@ -63,6 +64,7 @@ $this->experience = $experience;
 $this->sexe = $sexe;
 $this->nombre_candidat = $nombre_candidat;
 $this->diplome = $diplome;
+$this->salaire = $salaire;
 
                     }
                 
@@ -104,6 +106,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -149,6 +152,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -194,6 +198,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -239,6 +244,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -284,6 +290,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -329,6 +336,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -374,6 +382,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -419,6 +428,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -464,6 +474,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -509,6 +520,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -554,6 +566,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -599,6 +612,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -644,6 +658,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -689,6 +704,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -734,6 +750,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -779,6 +796,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -824,6 +842,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -869,6 +888,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -914,6 +934,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -959,6 +980,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -1004,6 +1026,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -1049,6 +1072,7 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
@@ -1094,12 +1118,59 @@ $this->setExperience($d['experience']);
 $this->setSexe($d['sexe']);
 $this->setNombre_candidat($d['nombre_candidat']);
 $this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
 $this->publications =$data; 
  return $this;
                                 }
                             
                         } else {
                             return $this->diplome;
+                        }
+                        
+                    }
+                    /**
+                    * Get the value of salaire
+                    */ 
+                    public function getSalaire($salaire=null)
+                    {
+                        if ($salaire != null && is_array($this->publications) && count($this->publications)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE salaire = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$salaire]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId($d['id']);
+$this->setType_publication($d['type_publication']);
+$this->setCategory_publication($d['category_publication']);
+$this->setNum_offre($d['num_offre']);
+$this->setTitre($d['titre']);
+$this->setDescription($d['description']);
+$this->setLieu($d['lieu']);
+$this->setDate_annee_bourse($d['date_annee_bourse']);
+$this->setDate_debut($d['date_debut']);
+$this->setDate_fin($d['date_fin']);
+$this->setEcole($d['ecole']);
+$this->setDate_elaboration($d['date_elaboration']);
+$this->setFile($d['file']);
+$this->setUser_create($d['user_create']);
+$this->setCreate_at($d['create_at']);
+$this->setUpdated_at($d['updated_at']);
+$this->setStatut($d['statut']);
+$this->setVille($d['ville']);
+$this->setEntreprise($d['entreprise']);
+$this->setExperience($d['experience']);
+$this->setSexe($d['sexe']);
+$this->setNombre_candidat($d['nombre_candidat']);
+$this->setDiplome($d['diplome']);
+$this->setSalaire($d['salaire']);
+$this->publications =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->salaire;
                         }
                         
                     }
@@ -1355,6 +1426,17 @@ $this->publications =$data;
                    public function setDiplome($diplome)
                    {
                     $this->diplome = $diplome;
+               
+                       return $this;
+                   }
+                    /**
+                    * Set the value of salaire
+                    *
+                    * @return  self
+                    */ 
+                   public function setSalaire($salaire)
+                   {
+                    $this->salaire = $salaire;
                
                        return $this;
                    }
