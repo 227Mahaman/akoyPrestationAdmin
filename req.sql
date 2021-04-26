@@ -127,3 +127,7 @@ CREATE TABLE `akoy_prestation`.`vues` ( `id` INT NOT NULL AUTO_INCREMENT , `id_p
 
 --Ajout attribut num ofrre
 ALTER TABLE `publications` ADD `num_offre` VARCHAR(45) NULL AFTER `category_publication`; 
+
+
+-- Req 26 - 04 - 2021
+ALTER TABLE `publications` ADD `salaire` INT NULL AFTER `diplome`;
