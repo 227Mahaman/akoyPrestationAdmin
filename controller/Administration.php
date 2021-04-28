@@ -22,6 +22,7 @@ include_once('model/database/types_user.php');
 include_once('model/database/villes.php');
 include_once('model/database/users.php');
 include_once('model/database/langues.php');
+include_once('model/database/publicites.php');
 
 
 function addData($data, $table)

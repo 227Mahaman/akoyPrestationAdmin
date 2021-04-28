@@ -131,3 +131,72 @@ ALTER TABLE `publications` ADD `num_offre` VARCHAR(45) NULL AFTER `category_publ
 
 -- Req 26 - 04 - 2021
 ALTER TABLE `publications` ADD `salaire` INT NULL AFTER `diplome`;
+
+-- Req 28_04_2021
+-- phpMyAdmin SQL Dump
+-- version 4.8.1
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : localhost
+-- Généré le :  mer. 28 avr. 2021 à 22:44
+-- Version du serveur :  10.1.33-MariaDB
+-- Version de PHP :  7.2.6
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données :  `akoy_prestation`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `publicites`
+--
+
+CREATE TABLE `publicites` (
+  `id` int(11) NOT NULL,
+  `titre` varchar(255) DEFAULT NULL,
+  `description` text,
+  `file` int(11) DEFAULT NULL,
+  `entreprise` int(11) DEFAULT NULL,
+  `delai` int(11) DEFAULT NULL,
+  `user_create` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `statut` int(11) DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `publicites`
+--
+ALTER TABLE `publicites`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `publicites`
+--
+ALTER TABLE `publicites`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+ALTER TABLE `publicites` CHANGE `delai` `delai` DATE NULL DEFAULT NULL;

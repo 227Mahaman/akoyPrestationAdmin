@@ -785,6 +785,48 @@ if (isset($_SESSION['user-akoyprestation'])) {
                 $res = update('cv', $data, 'id', $_GET['delete']);
             }
             require_once("view/cvView.php");
+        } elseif ($action == 'addPub') {
+            $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification
+                if (!empty($input)) {
+                    $data = $input;
+                    if (!empty($_FILES['profile_picture']['name'])) {
+                        $data['file'] = UserManager::uploadProfilePicture($_FILES['profile_picture']);
+                    }
+                    $res = Manager::updateData($data, 'publicites', 'id', $_GET['modif']);
+                    if ($res['code'] = 1) {
+                        echo " <script>
+                        getHTML('showPub');
+                    </script>";
+                    die;
+                    }
+                }
+            } else { // Ajout
+                if (!empty($input) && !empty($_FILES)) {
+                    $data = $input;
+                    $data['user_create'] = $_SESSION['user-akoyprestation']['id'];
+                    $data['file'] = $_FILES['profile_picture'];
+                    $files = new Files();
+                    $data['file'] = $files->uploadFilePicture($data['file']);
+                    // $data['file'] = UserManager::uploadProfilePicture($data['file']);
+                    $data['file'] = intval($data['file']);
+                    $publicites = new publicites($data);
+                    $res = insert($publicites);
+                    $_SESSION['messages'] = $res;
+                    if (!empty($_SESSION['messages'])) {
+                        if ($_SESSION['messages']['code'] == 1) {
+                            echo " <script>
+                                getHTML('addPub');
+                            </script>";
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-success');
+                        } else {
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-danger');
+                        }
+                    }
+                    die;
+                }
+            }
+            require_once("view/addPubView.php");
         }
     } elseif (empty($_GET['mat'])) {
         require_once("view/homeView.php");
