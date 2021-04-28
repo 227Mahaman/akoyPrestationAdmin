@@ -466,9 +466,9 @@ if (isset($_SESSION['user-akoyprestation'])) {
                     $_SESSION['messages'] = $res;
                     if (!empty($_SESSION['messages'])) {
                         if ($_SESSION['messages']['code'] == 1) {
-                                echo " <script>
-                                getHTML('addPublication');
-                            </script>";
+                            //     echo " <script>
+                            //     getHTML('addPublication');
+                            // </script>";
                             //die;
                             echo Manager::messages($_SESSION['messages']['message'], 'alert-success');
                         } else {

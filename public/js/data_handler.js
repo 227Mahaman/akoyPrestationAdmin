@@ -497,9 +497,16 @@ function postData(formId, action, id) {
                 contentType: false, // tell jQuery not to set contentType
                 timeout: 30000,
                 success: function (result) {
-                    console.log(result, "res");
+                    console.log(result, "res"); 
                     hidePleaseWait();
+                    //$('#publicationForm').reset();
+                    //$("#publicationForm")[0].reset();
+                    //faster version:
+                    //$("#publicationForm")[0].reset();
+                    //document.getElementById('publicationForm').reset();
+                    //window.location.reload();
                     $('#postMessage').html(result);
+                    // $('#publicationForm').trigger('reset');
                 },
                 error: function (xhr, resp, text) {
                     //  error to console

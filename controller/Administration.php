@@ -134,7 +134,7 @@ function getModelByDocuments($value=null)
 }
 
 
-function handleMatricule($mat)
+function handleNumOffre($mat)
 {
     $lentgh = strlen($mat);
     switch ($lentgh) {
@@ -211,15 +211,14 @@ function handleMatricule($mat)
     }
 }
 
-function getMatricule()
+function getNumOffre()
 {
-    $sql = "SELECT COUNT(*) +1 nb FROM document";
+    $sql = "SELECT COUNT(id) +1 nb FROM publications";
     $res = Manager::getSingleRecords($sql);
-    // Manager::showError($res);
     try {
-        return date("yy").'-chcodu-'.handleMatricule("00000".$res['nb']);
+        return "0".handleNumOffre($res['nb']."/".date("Y"));
     } catch (\Throwable $th) {
-        return date("y")."-chcodu-000001";
+        return "01".date("Y");
     }
 
 }

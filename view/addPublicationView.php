@@ -136,9 +136,14 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
+              <span class="input-group-text">N°Publication</span>
+            </div>
+            <input type="text" required class="form-control" id="num_offre" name="num_offre" placeholder="00/année" value="<?= (!empty($_GET['modif'])) ? $datas['num_offre'] : getNumOffre(); ?>">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
               <span class="input-group-text">Titre</span>
             </div>
-
             <input type="text" required class="form-control" id="titre" name="titre" placeholder="Veuillez entrer le titre de la publication" value="<?= (!empty($_GET['modif'])) ? $datas['titre'] : "" ?>">
           </div>
           <div class="input-group mb-3">
@@ -275,28 +280,10 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
 </div>
 <script src="public/vendor/js/custom/custom-form-editor.js"></script>
 <script>
-    $(".category_publication").click(function() {
-        var id = $(this).attr("id");
-        var id_tab = id.split("_");
-        var id_versements_pelerins = id_tab[id_tab.length-1];
-        var obj = $.ajax({
-            type: "POST",
-            url: "versements_pelerins_details.php", 
-            data: "id_versements_pelerins="+id_versements_pelerins,
-            dataType: 'html',
-        })
-        .done(function(resultats){
-            // show the response
-            $("#main_content").html(resultats);
-            //$("#main_content").load("versements_pelerins_modifier.php");
-        })
-        .fail(function() {
-            // just in case posting your form failed
-            alert( "Posting failed." );
-        });
-        // to prevent refreshing the whole page page
-        return false;
-    });
+    //$(".alert").on("show", function(){
+        //$("#publicationForm").trigger('reset');
+    //});
+    
     $("#category_publication").on("change", function() {
       console.log($(this).val(), 'category_publication')
       v = $(this).val();
