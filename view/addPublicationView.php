@@ -287,6 +287,7 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
     $("#category_publication").on("change", function() {
       console.log($(this).val(), 'category_publication')
       v = $(this).val();
+      hidePleaseWait();
       $.getJSON("type_publication.json", function(data) {
           var option = '<option class="option" selected>Veuillez selectionner le type de la publication</option>';
           $.each(data, function(key, val) {

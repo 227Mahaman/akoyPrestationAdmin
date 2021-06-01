@@ -482,8 +482,8 @@ function postData(formId, action, id) {
         console.log("id", id);
 
         var formData = JSON.stringify(data);
-        if (id != '') {
-            putData(formDat, customUrl + action + '&modif=' + id);
+        if (id != '' && id != undefined) {
+            putData(formDat, customUrl + action + '&modif=' + id, formId);
         } else {
             $.ajax({
                 url: customUrl + action,
@@ -502,10 +502,12 @@ function postData(formId, action, id) {
                     //$('#publicationForm').reset();
                     //$("#publicationForm")[0].reset();
                     //faster version:
-                    //$("#publicationForm")[0].reset();
+                    $('#' + formId)[0].reset();
                     //document.getElementById('publicationForm').reset();
                     //window.location.reload();
                     $('#postMessage').html(result);
+                    $('#profile_img').src("");
+                    // $(':input').val('');    
                     // $('#publicationForm').trigger('reset');
                 },
                 error: function (xhr, resp, text) {
@@ -533,7 +535,7 @@ function postData(formId, action, id) {
 
 }
 
-function putData(formData, modifUrl) {
+function putData(formData, modifUrl, formId="") {
     console.log(modifUrl);
 
     $.ajax({
@@ -551,6 +553,7 @@ function putData(formData, modifUrl) {
             console.log(result, "res");
             hidePleaseWait();
             $('#postMessage').html(result);
+            $('#' + formId)[0].reset(); 
         },
         error: function (xhr, resp, text) {
             //  error to console
