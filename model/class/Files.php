@@ -27,7 +27,7 @@ class Files
 
             if (($file['type'] == "image/gif") || ($file['type'] == "image/jpeg") || ($file['type'] == "image/png") || ($file['type'] == "image/pjpeg")) {
 
-                $isOk = $this->compressImage($file['tmp_name'], $target, 60);
+                $isOk = $this->compressImage($file['tmp_name'], $target, 50);//60
                 // Manager::showError($isOk);
                 if ($isOk) {
                     // $url = API_ROOT_PATH . "/files";
