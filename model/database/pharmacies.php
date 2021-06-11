@@ -1,41 +1,39 @@
 
 <?php 
-class publicites {
+class pharmacies {
 	 public $id;
+	 public $code_pharma;
 	 public $titre;
-	 public $description;
-	 public $file;
-	 public $entreprise;
-	 public $date_debut_delai;
-	 public $date_fin_delai;
+	 public $adresse;
+	 public $tel;
+	 public $image;
+	 public $create_at;
 	 public $user_create;
-	 public $created_at;
 	 public $statut;
-	 public $publicites=array();
+	 public $pharmacies=array();
 
 
 
-                public function __construct($publicites=null) {
-                    $this->publicites = $publicites;
+                public function __construct($pharmacies=null) {
+                    $this->pharmacies = $pharmacies;
                          
                 }
 
                 public function all()
                 {
-                    return $this->publicites;
+                    return $this->pharmacies;
                 }
 
-                public function role($id, $titre, $description, $file, $entreprise, $date_debut_delai, $date_fin_delai, $user_create, $created_at, $statut)
+                public function role($id, $code_pharma, $titre, $adresse, $tel, $image, $create_at, $user_create, $statut)
                     {
                         $this->id = $id;
+$this->code_pharma = $code_pharma;
 $this->titre = $titre;
-$this->description = $description;
-$this->file = $file;
-$this->entreprise = $entreprise;
-$this->date_debut_delai = $date_debut_delai;
-$this->date_fin_delai = $date_fin_delai;
+$this->adresse = $adresse;
+$this->tel = $tel;
+$this->image = $image;
+$this->create_at = $create_at;
 $this->user_create = $user_create;
-$this->created_at = $created_at;
 $this->statut = $statut;
 
                     }
@@ -47,7 +45,7 @@ $this->statut = $statut;
                     */ 
                     public function getId($id=null)
                     {
-                        if ($id != null && is_array($this->publicites) && count($this->publicites)!=0) {
+                        if ($id != null && is_array($this->pharmacies) && count($this->pharmacies)!=0) {
                             $table_name = strtolower(get_class($this));
                             $query = "SELECT * FROM $table_name WHERE id = ?";
                             $req = Manager::bdd()->prepare($query);
@@ -56,16 +54,15 @@ $this->statut = $statut;
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId($d['id']);
+$this->setCode_pharma($d['code_pharma']);
 $this->setTitre($d['titre']);
-$this->setDescription($d['description']);
-$this->setFile($d['file']);
-$this->setEntreprise($d['entreprise']);
-$this->setDate_debut_delai($d['date_debut_delai']);
-$this->setDate_fin_delai($d['date_fin_delai']);
+$this->setAdresse($d['adresse']);
+$this->setTel($d['tel']);
+$this->setImage($d['image']);
+$this->setCreate_at($d['create_at']);
 $this->setUser_create($d['user_create']);
-$this->setCreated_at($d['created_at']);
 $this->setStatut($d['statut']);
-$this->publicites =$data; 
+$this->pharmacies =$data; 
  return $this;
                                 }
                             
@@ -75,11 +72,42 @@ $this->publicites =$data;
                         
                     }
                     /**
+                    * Get the value of code_pharma
+                    */ 
+                    public function getCode_pharma($code_pharma=null)
+                    {
+                        if ($code_pharma != null && is_array($this->pharmacies) && count($this->pharmacies)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE code_pharma = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$code_pharma]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId($d['id']);
+$this->setCode_pharma($d['code_pharma']);
+$this->setTitre($d['titre']);
+$this->setAdresse($d['adresse']);
+$this->setTel($d['tel']);
+$this->setImage($d['image']);
+$this->setCreate_at($d['create_at']);
+$this->setUser_create($d['user_create']);
+$this->setStatut($d['statut']);
+$this->pharmacies =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->code_pharma;
+                        }
+                        
+                    }
+                    /**
                     * Get the value of titre
                     */ 
                     public function getTitre($titre=null)
                     {
-                        if ($titre != null && is_array($this->publicites) && count($this->publicites)!=0) {
+                        if ($titre != null && is_array($this->pharmacies) && count($this->pharmacies)!=0) {
                             $table_name = strtolower(get_class($this));
                             $query = "SELECT * FROM $table_name WHERE titre = ?";
                             $req = Manager::bdd()->prepare($query);
@@ -88,16 +116,15 @@ $this->publicites =$data;
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId($d['id']);
+$this->setCode_pharma($d['code_pharma']);
 $this->setTitre($d['titre']);
-$this->setDescription($d['description']);
-$this->setFile($d['file']);
-$this->setEntreprise($d['entreprise']);
-$this->setDate_debut_delai($d['date_debut_delai']);
-$this->setDate_fin_delai($d['date_fin_delai']);
+$this->setAdresse($d['adresse']);
+$this->setTel($d['tel']);
+$this->setImage($d['image']);
+$this->setCreate_at($d['create_at']);
 $this->setUser_create($d['user_create']);
-$this->setCreated_at($d['created_at']);
 $this->setStatut($d['statut']);
-$this->publicites =$data; 
+$this->pharmacies =$data; 
  return $this;
                                 }
                             
@@ -107,162 +134,126 @@ $this->publicites =$data;
                         
                     }
                     /**
-                    * Get the value of description
+                    * Get the value of adresse
                     */ 
-                    public function getDescription($description=null)
+                    public function getAdresse($adresse=null)
                     {
-                        if ($description != null && is_array($this->publicites) && count($this->publicites)!=0) {
+                        if ($adresse != null && is_array($this->pharmacies) && count($this->pharmacies)!=0) {
                             $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE description = ?";
+                            $query = "SELECT * FROM $table_name WHERE adresse = ?";
                             $req = Manager::bdd()->prepare($query);
-                            $req->execute([$description]);
+                            $req->execute([$adresse]);
                             $data = "";
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId($d['id']);
+$this->setCode_pharma($d['code_pharma']);
 $this->setTitre($d['titre']);
-$this->setDescription($d['description']);
-$this->setFile($d['file']);
-$this->setEntreprise($d['entreprise']);
-$this->setDate_debut_delai($d['date_debut_delai']);
-$this->setDate_fin_delai($d['date_fin_delai']);
+$this->setAdresse($d['adresse']);
+$this->setTel($d['tel']);
+$this->setImage($d['image']);
+$this->setCreate_at($d['create_at']);
 $this->setUser_create($d['user_create']);
-$this->setCreated_at($d['created_at']);
 $this->setStatut($d['statut']);
-$this->publicites =$data; 
+$this->pharmacies =$data; 
  return $this;
                                 }
                             
                         } else {
-                            return $this->description;
+                            return $this->adresse;
                         }
                         
                     }
                     /**
-                    * Get the value of file
+                    * Get the value of tel
                     */ 
-                    public function getFile($file=null)
+                    public function getTel($tel=null)
                     {
-                        if ($file != null && is_array($this->publicites) && count($this->publicites)!=0) {
+                        if ($tel != null && is_array($this->pharmacies) && count($this->pharmacies)!=0) {
                             $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE file = ?";
+                            $query = "SELECT * FROM $table_name WHERE tel = ?";
                             $req = Manager::bdd()->prepare($query);
-                            $req->execute([$file]);
+                            $req->execute([$tel]);
                             $data = "";
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId($d['id']);
+$this->setCode_pharma($d['code_pharma']);
 $this->setTitre($d['titre']);
-$this->setDescription($d['description']);
-$this->setFile($d['file']);
-$this->setEntreprise($d['entreprise']);
-$this->setDate_debut_delai($d['date_debut_delai']);
-$this->setDate_fin_delai($d['date_fin_delai']);
+$this->setAdresse($d['adresse']);
+$this->setTel($d['tel']);
+$this->setImage($d['image']);
+$this->setCreate_at($d['create_at']);
 $this->setUser_create($d['user_create']);
-$this->setCreated_at($d['created_at']);
 $this->setStatut($d['statut']);
-$this->publicites =$data; 
+$this->pharmacies =$data; 
  return $this;
                                 }
                             
                         } else {
-                            return $this->file;
+                            return $this->tel;
                         }
                         
                     }
                     /**
-                    * Get the value of entreprise
+                    * Get the value of image
                     */ 
-                    public function getEntreprise($entreprise=null)
+                    public function getImage($image=null)
                     {
-                        if ($entreprise != null && is_array($this->publicites) && count($this->publicites)!=0) {
+                        if ($image != null && is_array($this->pharmacies) && count($this->pharmacies)!=0) {
                             $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE entreprise = ?";
+                            $query = "SELECT * FROM $table_name WHERE image = ?";
                             $req = Manager::bdd()->prepare($query);
-                            $req->execute([$entreprise]);
+                            $req->execute([$image]);
                             $data = "";
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId($d['id']);
+$this->setCode_pharma($d['code_pharma']);
 $this->setTitre($d['titre']);
-$this->setDescription($d['description']);
-$this->setFile($d['file']);
-$this->setEntreprise($d['entreprise']);
-$this->setDate_debut_delai($d['date_debut_delai']);
-$this->setDate_fin_delai($d['date_fin_delai']);
+$this->setAdresse($d['adresse']);
+$this->setTel($d['tel']);
+$this->setImage($d['image']);
+$this->setCreate_at($d['create_at']);
 $this->setUser_create($d['user_create']);
-$this->setCreated_at($d['created_at']);
 $this->setStatut($d['statut']);
-$this->publicites =$data; 
+$this->pharmacies =$data; 
  return $this;
                                 }
                             
                         } else {
-                            return $this->entreprise;
+                            return $this->image;
                         }
                         
                     }
                     /**
-                    * Get the value of date_debut_delai
+                    * Get the value of create_at
                     */ 
-                    public function getDate_debut_delai($date_debut_delai=null)
+                    public function getCreate_at($create_at=null)
                     {
-                        if ($date_debut_delai != null && is_array($this->publicites) && count($this->publicites)!=0) {
+                        if ($create_at != null && is_array($this->pharmacies) && count($this->pharmacies)!=0) {
                             $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE date_debut_delai = ?";
+                            $query = "SELECT * FROM $table_name WHERE create_at = ?";
                             $req = Manager::bdd()->prepare($query);
-                            $req->execute([$date_debut_delai]);
+                            $req->execute([$create_at]);
                             $data = "";
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId($d['id']);
+$this->setCode_pharma($d['code_pharma']);
 $this->setTitre($d['titre']);
-$this->setDescription($d['description']);
-$this->setFile($d['file']);
-$this->setEntreprise($d['entreprise']);
-$this->setDate_debut_delai($d['date_debut_delai']);
-$this->setDate_fin_delai($d['date_fin_delai']);
+$this->setAdresse($d['adresse']);
+$this->setTel($d['tel']);
+$this->setImage($d['image']);
+$this->setCreate_at($d['create_at']);
 $this->setUser_create($d['user_create']);
-$this->setCreated_at($d['created_at']);
 $this->setStatut($d['statut']);
-$this->publicites =$data; 
+$this->pharmacies =$data; 
  return $this;
                                 }
                             
                         } else {
-                            return $this->date_debut_delai;
-                        }
-                        
-                    }
-                    /**
-                    * Get the value of date_fin_delai
-                    */ 
-                    public function getDate_fin_delai($date_fin_delai=null)
-                    {
-                        if ($date_fin_delai != null && is_array($this->publicites) && count($this->publicites)!=0) {
-                            $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE date_fin_delai = ?";
-                            $req = Manager::bdd()->prepare($query);
-                            $req->execute([$date_fin_delai]);
-                            $data = "";
-                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
-$d=$data[0];
-$this->setId($d['id']);
-$this->setTitre($d['titre']);
-$this->setDescription($d['description']);
-$this->setFile($d['file']);
-$this->setEntreprise($d['entreprise']);
-$this->setDate_debut_delai($d['date_debut_delai']);
-$this->setDate_fin_delai($d['date_fin_delai']);
-$this->setUser_create($d['user_create']);
-$this->setCreated_at($d['created_at']);
-$this->setStatut($d['statut']);
-$this->publicites =$data; 
- return $this;
-                                }
-                            
-                        } else {
-                            return $this->date_fin_delai;
+                            return $this->create_at;
                         }
                         
                     }
@@ -271,7 +262,7 @@ $this->publicites =$data;
                     */ 
                     public function getUser_create($user_create=null)
                     {
-                        if ($user_create != null && is_array($this->publicites) && count($this->publicites)!=0) {
+                        if ($user_create != null && is_array($this->pharmacies) && count($this->pharmacies)!=0) {
                             $table_name = strtolower(get_class($this));
                             $query = "SELECT * FROM $table_name WHERE user_create = ?";
                             $req = Manager::bdd()->prepare($query);
@@ -280,16 +271,15 @@ $this->publicites =$data;
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId($d['id']);
+$this->setCode_pharma($d['code_pharma']);
 $this->setTitre($d['titre']);
-$this->setDescription($d['description']);
-$this->setFile($d['file']);
-$this->setEntreprise($d['entreprise']);
-$this->setDate_debut_delai($d['date_debut_delai']);
-$this->setDate_fin_delai($d['date_fin_delai']);
+$this->setAdresse($d['adresse']);
+$this->setTel($d['tel']);
+$this->setImage($d['image']);
+$this->setCreate_at($d['create_at']);
 $this->setUser_create($d['user_create']);
-$this->setCreated_at($d['created_at']);
 $this->setStatut($d['statut']);
-$this->publicites =$data; 
+$this->pharmacies =$data; 
  return $this;
                                 }
                             
@@ -299,43 +289,11 @@ $this->publicites =$data;
                         
                     }
                     /**
-                    * Get the value of created_at
-                    */ 
-                    public function getCreated_at($created_at=null)
-                    {
-                        if ($created_at != null && is_array($this->publicites) && count($this->publicites)!=0) {
-                            $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE created_at = ?";
-                            $req = Manager::bdd()->prepare($query);
-                            $req->execute([$created_at]);
-                            $data = "";
-                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
-$d=$data[0];
-$this->setId($d['id']);
-$this->setTitre($d['titre']);
-$this->setDescription($d['description']);
-$this->setFile($d['file']);
-$this->setEntreprise($d['entreprise']);
-$this->setDate_debut_delai($d['date_debut_delai']);
-$this->setDate_fin_delai($d['date_fin_delai']);
-$this->setUser_create($d['user_create']);
-$this->setCreated_at($d['created_at']);
-$this->setStatut($d['statut']);
-$this->publicites =$data; 
- return $this;
-                                }
-                            
-                        } else {
-                            return $this->created_at;
-                        }
-                        
-                    }
-                    /**
                     * Get the value of statut
                     */ 
                     public function getStatut($statut=null)
                     {
-                        if ($statut != null && is_array($this->publicites) && count($this->publicites)!=0) {
+                        if ($statut != null && is_array($this->pharmacies) && count($this->pharmacies)!=0) {
                             $table_name = strtolower(get_class($this));
                             $query = "SELECT * FROM $table_name WHERE statut = ?";
                             $req = Manager::bdd()->prepare($query);
@@ -344,16 +302,15 @@ $this->publicites =$data;
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId($d['id']);
+$this->setCode_pharma($d['code_pharma']);
 $this->setTitre($d['titre']);
-$this->setDescription($d['description']);
-$this->setFile($d['file']);
-$this->setEntreprise($d['entreprise']);
-$this->setDate_debut_delai($d['date_debut_delai']);
-$this->setDate_fin_delai($d['date_fin_delai']);
+$this->setAdresse($d['adresse']);
+$this->setTel($d['tel']);
+$this->setImage($d['image']);
+$this->setCreate_at($d['create_at']);
 $this->setUser_create($d['user_create']);
-$this->setCreated_at($d['created_at']);
 $this->setStatut($d['statut']);
-$this->publicites =$data; 
+$this->pharmacies =$data; 
  return $this;
                                 }
                             
@@ -376,6 +333,17 @@ $this->publicites =$data;
                        return $this;
                    }
                     /**
+                    * Set the value of code_pharma
+                    *
+                    * @return  self
+                    */ 
+                   public function setCode_pharma($code_pharma)
+                   {
+                    $this->code_pharma = $code_pharma;
+               
+                       return $this;
+                   }
+                    /**
                     * Set the value of titre
                     *
                     * @return  self
@@ -387,57 +355,46 @@ $this->publicites =$data;
                        return $this;
                    }
                     /**
-                    * Set the value of description
+                    * Set the value of adresse
                     *
                     * @return  self
                     */ 
-                   public function setDescription($description)
+                   public function setAdresse($adresse)
                    {
-                    $this->description = $description;
+                    $this->adresse = $adresse;
                
                        return $this;
                    }
                     /**
-                    * Set the value of file
+                    * Set the value of tel
                     *
                     * @return  self
                     */ 
-                   public function setFile($file)
+                   public function setTel($tel)
                    {
-                    $this->file = $file;
+                    $this->tel = $tel;
                
                        return $this;
                    }
                     /**
-                    * Set the value of entreprise
+                    * Set the value of image
                     *
                     * @return  self
                     */ 
-                   public function setEntreprise($entreprise)
+                   public function setImage($image)
                    {
-                    $this->entreprise = $entreprise;
+                    $this->image = $image;
                
                        return $this;
                    }
                     /**
-                    * Set the value of date_debut_delai
+                    * Set the value of create_at
                     *
                     * @return  self
                     */ 
-                   public function setDate_debut_delai($date_debut_delai)
+                   public function setCreate_at($create_at)
                    {
-                    $this->date_debut_delai = $date_debut_delai;
-               
-                       return $this;
-                   }
-                    /**
-                    * Set the value of date_fin_delai
-                    *
-                    * @return  self
-                    */ 
-                   public function setDate_fin_delai($date_fin_delai)
-                   {
-                    $this->date_fin_delai = $date_fin_delai;
+                    $this->create_at = $create_at;
                
                        return $this;
                    }
@@ -449,17 +406,6 @@ $this->publicites =$data;
                    public function setUser_create($user_create)
                    {
                     $this->user_create = $user_create;
-               
-                       return $this;
-                   }
-                    /**
-                    * Set the value of created_at
-                    *
-                    * @return  self
-                    */ 
-                   public function setCreated_at($created_at)
-                   {
-                    $this->created_at = $created_at;
                
                        return $this;
                    }

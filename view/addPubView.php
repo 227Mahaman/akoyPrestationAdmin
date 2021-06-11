@@ -79,9 +79,15 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text">Delai</span>
+              <span class="input-group-text">Date Début</span>
             </div>
-            <input type="date" class="form-control" id="delai" name="delai" value="<?= (!empty($_GET['modif'])) ? $datas['delai'] : "" ?>">
+            <input type="date" class="form-control" id="date_debut_delai" name="date_debut_delai" value="<?= (!empty($_GET['modif'])) ? $datas['date_debut_delai'] : "" ?>">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Date Fin</span>
+            </div>
+            <input type="date" class="form-control" id="date_fin_delai" name="date_fin_delai" value="<?= (!empty($_GET['modif'])) ? $datas['date_fin_delai'] : "" ?>">
           </div>
           <!-- <div class="input-group mb-3">
             <div class="input-group-prepend">

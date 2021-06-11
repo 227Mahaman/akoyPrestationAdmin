@@ -827,6 +827,12 @@ if (isset($_SESSION['user-akoyprestation'])) {
                 }
             }
             require_once("view/addPubView.php");
+        } elseif ($action == 'showPub') {//
+            if(isset($_GET['delete'])){
+                $data['statut'] = 0;
+                $res = update('publicites', $data, 'id', $_GET['delete']);
+            }
+            require_once("view/showPubliciteView.php");
         }
     } elseif (empty($_GET['mat'])) {
         require_once("view/homeView.php");
