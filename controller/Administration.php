@@ -24,6 +24,7 @@ include_once('model/database/users.php');
 include_once('model/database/langues.php');
 include_once('model/database/publicites.php');
 include_once('model/database/pharmacies.php');
+include_once('model/database/programmation.php');
 
 
 function addData($data, $table)

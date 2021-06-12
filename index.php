@@ -881,6 +881,46 @@ if (isset($_SESSION['user-akoyprestation'])) {
                 $res = update('pharmacies', $data, 'id', $_GET['delete']);
             }
             require_once("view/showPharmaView.php");
+        } elseif ($action == 'addProgram') {
+            $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification
+                if (!empty($input)) {
+                    $data = $input;
+                    $res = Manager::updateData($data, 'programmation', 'id_program', $_GET['modif']);
+                    if ($res['code'] = 1) {
+                        echo " <script>
+                        getHTML('showProgram');
+                    </script>";
+                    die;
+                    }
+                }
+            } else { // Ajout
+                if (!empty($input) && !empty($_FILES)) {
+                    $data = $input;
+                    $data['user_create'] = $_SESSION['user-akoyprestation']['id'];
+                    $programmation = new programmation($data);
+                    $res = insert($programmation);
+                    $_SESSION['messages'] = $res;
+                    if (!empty($_SESSION['messages'])) {
+                        if ($_SESSION['messages']['code'] == 1) {
+                            echo " <script>
+                                getHTML('addProgram');
+                            </script>";
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-success');
+                        } else {
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-danger');
+                        }
+                    }
+                    die;
+                }
+            }
+            require_once("view/addProgramView.php");
+        } elseif ($action == 'showProgram') {//
+            if(isset($_GET['delete'])){
+                $data['statut'] = 0;
+                $res = update('programmation', $data, 'id_program', $_GET['delete']);
+            }
+            require_once("view/showProgramView.php");
         }
     } elseif (empty($_GET['mat'])) {
         require_once("view/homeView.php");
