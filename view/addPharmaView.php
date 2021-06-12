@@ -4,7 +4,7 @@ $title = "Ajouter une pharmacie";
 if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
   $title = "Modifier publicité";
   $datas = Manager::getData("pharmacies", "id", $_GET['modif'])['data'];
-  //$src = Manager::getData("files", "id", $datas['file'])['data']['file_url'];
+  $src = Manager::getData("files", "id", $datas['image'])['data']['file_url'];
 }
 // ob_start();
 ?>
@@ -66,6 +66,26 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
               <span class="input-group-text">Tel</span>
             </div>
             <input type="text" required class="form-control" id="tel" name="tel" placeholder="Veuillez entrer le numero de téléphone" value="<?= (!empty($_GET['modif'])) ? $datas['tel'] : "" ?>">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Ville</span>
+            </div>
+            <select class="form-control" id="ville" name="ville">
+            <option disabled selected>Sélection</option>
+              <?php
+              $data = Manager::getData('villes', 'statut', 1, true)['data'];
+              if (is_array($data) || is_object($data)) {
+                foreach ($data as $value) {
+              ?>
+                  <option <?= (!empty($_GET['modif'])) ? (($value['id'] == $datas['ville']) ? "selected" : "") : "" ?> value="<?= $value['id'] ?>"><?= $value['titre'];?></option>
+              <?php
+                }
+              } else {
+                Manager::messages('Aucune donnée trouvé', 'alert-warning');
+              }
+              ?>
+            </select>
           </div>
           <div class="input-group mb-3" style="text-align: center;">
             <img src="<?= (!empty($_GET['modif'])) ? $src : 'public/img/150x150.png' ?>" id="profile_img" style="height: 100px; border-radius: 50%" alt="Image">
