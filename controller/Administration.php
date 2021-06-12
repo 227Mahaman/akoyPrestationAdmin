@@ -23,6 +23,7 @@ include_once('model/database/villes.php');
 include_once('model/database/users.php');
 include_once('model/database/langues.php');
 include_once('model/database/publicites.php');
+include_once('model/database/pharmacies.php');
 
 
 function addData($data, $table)
