@@ -897,6 +897,8 @@ if (isset($_SESSION['user-akoyprestation'])) {
             } else { // Ajout
                 if (!empty($input) && !empty($_FILES)) {
                     $data = $input;
+                    var_dump($data);
+                    die();
                     $data['user_create'] = $_SESSION['user-akoyprestation']['id'];
                     $programmation = new programmation($data);
                     $res = insert($programmation);

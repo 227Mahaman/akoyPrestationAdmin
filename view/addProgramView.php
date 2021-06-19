@@ -40,7 +40,7 @@ if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
       </div>
       <!-- /.box-header -->
       <!-- form start -->
-      <form id="programForm" role="form" method="post" enctype="multipart/form-data">
+      <form id="programForm" role="form" method="post">
         <div class="card-body">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
