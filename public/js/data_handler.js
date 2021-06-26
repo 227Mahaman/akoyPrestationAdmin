@@ -92,6 +92,100 @@ function addPermissionRole(chec, role) {
         deleteDataWith2Param('module_role', 'module', $(chec).val(), 'role_id', $_GET['role']);
     }
 }
+
+function addGroupeProgram(chec, program) {
+    $data = "id_program=" + program + "&id_groupe=" + $(chec).val();
+    $mr = getDataWith2Param('programmation_has_groupe_pharm', 'id_groupe', $(chec).val(), 'id_program', program);
+    console.log($data, $mr, "addGroupeProgram");
+    if ($(chec).prop('checked') == true) {
+        $mr.done(function ($mr) {
+            if ($mr.error) {
+                console.log($mr, $mr.error);
+                $.ajax({
+                    url: myurl + "programmation_has_groupe_pharm",
+                    type: "POST",
+                    contentType: 'application/x-www-form-urlencoded',
+                    dataType: "json",
+                    data: $data,
+                    success: function (result) {
+                        console.log(result);
+                    },
+                    error: function (xhr, resp, text) {
+                        // show error to console
+                        console.log(xhr, resp, text);
+                    }
+                });
+            }
+        });
+
+        $mr.fail(function ($mr) {
+            console.log($mr, $mr.error);
+            $.ajax({
+                url: myurl + "programmation_has_groupe_pharm",
+                type: "POST",
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: "json",
+                data: $data,
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (xhr, resp, text) {
+                    // show error to console
+                    console.log(xhr, resp, text);
+                }
+            });
+        });
+    } else {
+        deleteDataWith2Param('programmation_has_groupe_pharm', 'id_groupe', $(chec).val(), 'id_program', $_GET['id']);
+    }
+}
+
+function addPharmaGroupe(chec, groupe) {
+    $data = "groupe_pharmacie=" + groupe + "&pharmacie=" + $(chec).val();
+    $mr = getDataWith2Param('groupe_pharma_has_pharma', 'pharmacie', $(chec).val(), 'groupe_pharmacie', groupe);
+    console.log($data, $mr, "addPharmaGroupe");
+    if ($(chec).prop('checked') == true) {
+        $mr.done(function ($mr) {
+            if ($mr.error) {
+                console.log($mr, $mr.error);
+                $.ajax({
+                    url: myurl + "groupe_pharma_has_pharma",
+                    type: "POST",
+                    contentType: 'application/x-www-form-urlencoded',
+                    dataType: "json",
+                    data: $data,
+                    success: function (result) {
+                        console.log(result);
+                    },
+                    error: function (xhr, resp, text) {
+                        // show error to console
+                        console.log(xhr, resp, text);
+                    }
+                });
+            }
+        });
+
+        $mr.fail(function ($mr) {
+            console.log($mr, $mr.error);
+            $.ajax({
+                url: myurl + "groupe_pharma_has_pharma",
+                type: "POST",
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: "json",
+                data: $data,
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (xhr, resp, text) {
+                    // show error to console
+                    console.log(xhr, resp, text);
+                }
+            });
+        });
+    } else {
+        deleteDataWith2Param('groupe_pharma_has_pharma', 'pharmacie', $(chec).val(), 'groupe_pharmacie', $_GET['id']);
+    }
+}
 // filtrage de l'exercice par ville
 $("#bureau").on('select2:selecting', function (e) {
     showPleaseWait();

@@ -6,6 +6,7 @@ class pharmacies {
 	 public $titre;
 	 public $adresse;
 	 public $tel;
+	 public $ville;
 	 public $image;
 	 public $create_at;
 	 public $user_create;
@@ -24,13 +25,14 @@ class pharmacies {
                     return $this->pharmacies;
                 }
 
-                public function role($id, $code_pharma, $titre, $adresse, $tel, $image, $create_at, $user_create, $statut)
+                public function role($id, $code_pharma, $titre, $adresse, $tel, $ville, $image, $create_at, $user_create, $statut)
                     {
                         $this->id = $id;
 $this->code_pharma = $code_pharma;
 $this->titre = $titre;
 $this->adresse = $adresse;
 $this->tel = $tel;
+$this->ville = $ville;
 $this->image = $image;
 $this->create_at = $create_at;
 $this->user_create = $user_create;
@@ -58,6 +60,7 @@ $this->setCode_pharma($d['code_pharma']);
 $this->setTitre($d['titre']);
 $this->setAdresse($d['adresse']);
 $this->setTel($d['tel']);
+$this->setVille($d['ville']);
 $this->setImage($d['image']);
 $this->setCreate_at($d['create_at']);
 $this->setUser_create($d['user_create']);
@@ -89,6 +92,7 @@ $this->setCode_pharma($d['code_pharma']);
 $this->setTitre($d['titre']);
 $this->setAdresse($d['adresse']);
 $this->setTel($d['tel']);
+$this->setVille($d['ville']);
 $this->setImage($d['image']);
 $this->setCreate_at($d['create_at']);
 $this->setUser_create($d['user_create']);
@@ -120,6 +124,7 @@ $this->setCode_pharma($d['code_pharma']);
 $this->setTitre($d['titre']);
 $this->setAdresse($d['adresse']);
 $this->setTel($d['tel']);
+$this->setVille($d['ville']);
 $this->setImage($d['image']);
 $this->setCreate_at($d['create_at']);
 $this->setUser_create($d['user_create']);
@@ -151,6 +156,7 @@ $this->setCode_pharma($d['code_pharma']);
 $this->setTitre($d['titre']);
 $this->setAdresse($d['adresse']);
 $this->setTel($d['tel']);
+$this->setVille($d['ville']);
 $this->setImage($d['image']);
 $this->setCreate_at($d['create_at']);
 $this->setUser_create($d['user_create']);
@@ -182,6 +188,7 @@ $this->setCode_pharma($d['code_pharma']);
 $this->setTitre($d['titre']);
 $this->setAdresse($d['adresse']);
 $this->setTel($d['tel']);
+$this->setVille($d['ville']);
 $this->setImage($d['image']);
 $this->setCreate_at($d['create_at']);
 $this->setUser_create($d['user_create']);
@@ -192,6 +199,38 @@ $this->pharmacies =$data;
                             
                         } else {
                             return $this->tel;
+                        }
+                        
+                    }
+                    /**
+                    * Get the value of ville
+                    */ 
+                    public function getVille($ville=null)
+                    {
+                        if ($ville != null && is_array($this->pharmacies) && count($this->pharmacies)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE ville = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$ville]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId($d['id']);
+$this->setCode_pharma($d['code_pharma']);
+$this->setTitre($d['titre']);
+$this->setAdresse($d['adresse']);
+$this->setTel($d['tel']);
+$this->setVille($d['ville']);
+$this->setImage($d['image']);
+$this->setCreate_at($d['create_at']);
+$this->setUser_create($d['user_create']);
+$this->setStatut($d['statut']);
+$this->pharmacies =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->ville;
                         }
                         
                     }
@@ -213,6 +252,7 @@ $this->setCode_pharma($d['code_pharma']);
 $this->setTitre($d['titre']);
 $this->setAdresse($d['adresse']);
 $this->setTel($d['tel']);
+$this->setVille($d['ville']);
 $this->setImage($d['image']);
 $this->setCreate_at($d['create_at']);
 $this->setUser_create($d['user_create']);
@@ -244,6 +284,7 @@ $this->setCode_pharma($d['code_pharma']);
 $this->setTitre($d['titre']);
 $this->setAdresse($d['adresse']);
 $this->setTel($d['tel']);
+$this->setVille($d['ville']);
 $this->setImage($d['image']);
 $this->setCreate_at($d['create_at']);
 $this->setUser_create($d['user_create']);
@@ -275,6 +316,7 @@ $this->setCode_pharma($d['code_pharma']);
 $this->setTitre($d['titre']);
 $this->setAdresse($d['adresse']);
 $this->setTel($d['tel']);
+$this->setVille($d['ville']);
 $this->setImage($d['image']);
 $this->setCreate_at($d['create_at']);
 $this->setUser_create($d['user_create']);
@@ -306,6 +348,7 @@ $this->setCode_pharma($d['code_pharma']);
 $this->setTitre($d['titre']);
 $this->setAdresse($d['adresse']);
 $this->setTel($d['tel']);
+$this->setVille($d['ville']);
 $this->setImage($d['image']);
 $this->setCreate_at($d['create_at']);
 $this->setUser_create($d['user_create']);
@@ -373,6 +416,17 @@ $this->pharmacies =$data;
                    public function setTel($tel)
                    {
                     $this->tel = $tel;
+               
+                       return $this;
+                   }
+                    /**
+                    * Set the value of ville
+                    *
+                    * @return  self
+                    */ 
+                   public function setVille($ville)
+                   {
+                    $this->ville = $ville;
                
                        return $this;
                    }

@@ -923,6 +923,52 @@ if (isset($_SESSION['user-akoyprestation'])) {
                 $res = update('programmation', $data, 'id_program', $_GET['delete']);
             }
             require_once("view/showProgramView.php");
+        } elseif ($action == 'addGroupeToProgram') {//
+            require_once("view/addGroupeToProgramView.php");
+        } elseif ($action == 'addGroupePharma') {
+            $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification
+                if (!empty($input)) {
+                    $data = $input;
+                    $res = Manager::updateData($data, 'groupe_pharmacies', 'id', $_GET['modif']);
+                    if ($res['code'] = 1) {
+                        echo " <script>
+                        getHTML('showProgram');
+                    </script>";
+                    die;
+                    }
+                }
+            } else { // Ajout
+                if (!empty($input) && !empty($_FILES)) {
+                    $data = $input;
+                    var_dump($data);
+                    die();
+                    $data['user_create'] = $_SESSION['user-akoyprestation']['id'];
+                    $programmation = new programmation($data);
+                    $res = insert($programmation);
+                    $_SESSION['messages'] = $res;
+                    if (!empty($_SESSION['messages'])) {
+                        if ($_SESSION['messages']['code'] == 1) {
+                            echo " <script>
+                                getHTML('addGroupePharma');
+                            </script>";
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-success');
+                        } else {
+                            echo Manager::messages($_SESSION['messages']['message'], 'alert-danger');
+                        }
+                    }
+                    die;
+                }
+            }
+            require_once("view/addGroupeView.php");
+        } elseif ($action == 'showGroupePharma') {//
+            if(isset($_GET['delete'])){
+                $data['statut'] = 0;
+                $res = update('groupe_pharmacies', $data, 'id', $_GET['delete']);
+            }
+            require_once("view/showGroupePharmaView.php");
+        } elseif ($action == 'addPharmaToGroupe') {//
+            require_once("view/addPharmaToGroupeView.php");
         }
     } elseif (empty($_GET['mat'])) {
         require_once("view/homeView.php");
