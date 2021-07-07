@@ -964,6 +964,8 @@ if (isset($_SESSION['user-akoyprestation'])) {
                 $res = update('groupe_pharmacies', $data, 'id', $_GET['delete']);
             }
             require_once("view/showGroupePharmaView.php");
+        } elseif ($action == 'editImage') {//
+            require_once("view/editImageView.php");
         } elseif ($action == 'addPharmaToGroupe') {//
             require_once("view/addPharmaToGroupeView.php");
         }

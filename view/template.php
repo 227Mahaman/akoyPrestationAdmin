@@ -11,6 +11,8 @@
     <!-- Fevicon -->
     <!-- <link rel="shortcut icon" href="public/img/favicon.ico"> -->
     <!-- Start css -->
+    <link type="text/css" href="//uicdn.toast.com/tui-color-picker/v2.2.6/tui-color-picker.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui-image-editor/v3.10.0/tui-image-editor.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <link href="public/vendor/plugins/dropzone/dist/dropzone.css" rel="stylesheet" type="text/css">
     <link href="public/vendor/css/fileinput.min.css" rel="stylesheet" type="text/css">
@@ -18,12 +20,12 @@
     <link href="public/vendor/plugins/switchery/switchery.min.css" rel="stylesheet">
     <!-- Summernote css -->
     <!-- <link href="public/vendor/plugins/summernote/summernote-bs4.css" rel="stylesheet"> -->
-     <!-- SummerNote -->
-  <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- SummerNote -->
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> -->
-  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet"> -->
-  <!-- Summernote css -->
-  <link href="public/vendor/plugins/summernote/summernote-bs4.css" rel="stylesheet">
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet"> -->
+    <!-- Summernote css -->
+    <link href="public/vendor/plugins/summernote/summernote-bs4.css" rel="stylesheet">
     <!-- Code Mirror css -->
     <link href="public/vendor/plugins/code-mirror/codemirror.css" rel="stylesheet">
     <link href="public/vendor/plugins/bootstrap-xeditable/css/bootstrap-editable.css" rel="stylesheet" type="text/css">
@@ -40,7 +42,7 @@
 </head>
 
 <body class="vertical-layout">
-    
+
     <!-- Start Infobar Setting Sidebar -->
     <div id="infobar-settings-sidebar" class="infobar-settings-sidebar">
         <div class="infobar-settings-sidebar-head d-flex w-100 justify-content-between">
@@ -207,7 +209,7 @@
                                     <div class="searchbar">
                                         <form id="submitForm">
                                             <div class="input-group">
-                                                
+
                                                 <input id="inputSearch" type="search" class="form-control" placeholder="<?= $GLOBALS['lang']['input-search'] ?? 'recherche' ?>" aria-label="Search" aria-describedby="button-addon2">
                                                 <div class="input-group-append">
                                                     <button class="btn" type="submit" id="button-addon2"><img src="public/vendor/images/svg-icon/search.svg" class="img-fluid" alt="search"></button>
@@ -246,7 +248,9 @@
                                                             <li class="media dropdown-item">
                                                                 <!-- <span class="action-icon badge badge-success-inverse"><i class="feather icon-file"></i></span> -->
                                                                 <div class="media-body">
-                                                                   <a href="index.php?langue=<?= strtolower($value['code']) ?>"> <h5 class="action-title"><?= $value['titre'] ?></h5></a>
+                                                                    <a href="index.php?langue=<?= strtolower($value['code']) ?>">
+                                                                        <h5 class="action-title"><?= $value['titre'] ?></h5>
+                                                                    </a>
                                                                     <!-- <p><span class="timing">Mardi, 18h:40</span></p> -->
                                                                 </div>
                                                             </li>
@@ -313,9 +317,9 @@
             <!-- Start Contentbar -->
             <div style="margin-bottom: 200px;" id="contentData">
 
-            <?php
-            echo $content;
-            ?>
+                <?php
+                echo $content;
+                ?>
             </div>
             <!-- End Contentbar -->
             <!-- Start Footerbar -->
@@ -382,23 +386,29 @@
     <script src="public/js/data_handler.js"></script>
     <!-- End js -->
     <!-- SummerNote -->
-  <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script> -->
-  <!-- Summernote JS -->
-  <script src="public/vendor/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script> -->
+    <!-- Summernote JS -->
+    <script src="public/vendor/plugins/summernote/summernote-bs4.min.js"></script>
     <script src="public/vendor/js/custom/custom-form-editor.js"></script>
 
 
     <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@3.2.0/js/froala_editor.pkgd.min.js'></script>
+    
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fabric.js/3.6.0/fabric.js"></script>
+    <script type="text/javascript" src="//uicdn.toast.com/tui.code-snippet/v1.5.0/tui-code-snippet.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
+    <script type="text/javascript" src="//uicdn.toast.com/tui-color-picker/v2.2.6/tui-color-picker.js"></script>
+    <script src="https://uicdn.toast.com/tui-image-editor/v3.10.0/tui-image-editor.js"></script>
     <script>
         //new FroalaEditor('textarea#froala-editor');
-//         $('#summernote').summernote({
-//             height: 300,                 // set editor height
-//   minHeight: null,             // set minimum height of editor
-//   maxHeight: null,             // set maximum height of editor
-//   focus: true                  // set focus to editable area after initializing summernote
-//         });
+        //         $('#summernote').summernote({
+        //             height: 300,                 // set editor height
+        //   minHeight: null,             // set minimum height of editor
+        //   maxHeight: null,             // set maximum height of editor
+        //   focus: true                  // set focus to editable area after initializing summernote
+        //         });
         $(document).ready(function() {
-            
+
             $('.searchable').select2();
             console.log($('.note-editable'), "ok");
             $('#description').val($('.note-editable').html());
@@ -407,7 +417,7 @@
                 $('#description').val($(this).html());
 
             });
-        })
+        });
         $(function() {
             $('#example1').DataTable()
             $('#example2').DataTable({
@@ -418,7 +428,8 @@
                 'info': true,
                 'autoWidth': false
             })
-        })
+        });
+        
     </script>
 </body>
 
