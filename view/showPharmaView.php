@@ -59,7 +59,7 @@ $title = "Listes des pharmacies";
 
                 <tr role="row" class="odd">
                   <td class="sorting_1"><?= $value['titre'];?></td>
-                  <td><?= $value['adresse'];?></td>
+                  <td><?= strtruncate($value['adresse'], 28);?></td>
                   <td><?= $value['tel'];?></td>
                   <td><?= Manager::getData('villes', 'id', $value['ville'])['data']['titre']; ?></td>
                   <td>
@@ -77,7 +77,7 @@ $title = "Listes des pharmacies";
                 <?php else : ?>
                 <tr role="row" class="even">
                   <td class="sorting_1"><?= $value['titre'];?></td>
-                  <td><?= $value['adresse'];?></td>
+                  <td><?= strtruncate($value['adresse'], 28);?></td>
                   <td><?= $value['tel'];?></td>
                   <td><?= Manager::getData('villes', 'id', $value['ville'])['data']['titre']; ?></td>
                   <td>

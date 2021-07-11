@@ -25,6 +25,8 @@ include_once('model/database/langues.php');
 include_once('model/database/publicites.php');
 include_once('model/database/pharmacies.php');
 include_once('model/database/programmation.php');
+include_once('model/database/groupe_pharma_has_pharma.php');
+include_once('model/database/groupe_pharmacies.php');
 
 
 function addData($data, $table)
@@ -307,5 +309,17 @@ function loadMenu($data){
             echo $menu->getMenu($name['icon']);
             $thisSMenu = (array) null;
         }
+    }
+}
+
+function strtruncate(String $string, int $length)
+{
+    if (strlen($string) >= $length) {
+        return substr($string, 0, $length) . "...";
+    }else {
+        for ($i=strlen($string); $i < $length; $i++) { 
+            $string .="&nbsp;";
+        }
+        return $string;
     }
 }

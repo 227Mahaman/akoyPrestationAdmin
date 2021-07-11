@@ -49,7 +49,7 @@ $start_form = ($page - 1) * $per_page;
                 ?>
                     <tr>
                       <td><?= $value['titre'];?></td>
-                      <td><?= $value['adresse'] . ' & ' . $value['tel'];?></td>
+                      <td><?= strtruncate($value['adresse'], 28). ' & ' . $value['tel'];?></td>
                       <td><?= Manager::getData('villes', "id", $value['ville'])['data']['titre'];?></td>
                       <td>
                         <div class="form-group">

@@ -941,8 +941,8 @@ if (isset($_SESSION['user-akoyprestation'])) {
                 if (!empty($input)) {
                     $data = $input;
                     $data['user_create'] = $_SESSION['user-akoyprestation']['id'];
-                    $programmation = new programmation($data);
-                    $res = insert($programmation);
+                    $groupe_pharmacies = new groupe_pharmacies($data);
+                    $res = insert($groupe_pharmacies);
                     $_SESSION['messages'] = $res;
                     if (!empty($_SESSION['messages'])) {
                         if ($_SESSION['messages']['code'] == 1) {

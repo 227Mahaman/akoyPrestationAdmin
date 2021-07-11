@@ -18,20 +18,20 @@ $title = "Listes de programmation des pharmacie de garde";
         $module = Manager::getData("module", "action_url", "addGroupePharma")['data']['id'];
         if (haveAction($_SESSION['user-akoyprestation']['roleId'], $module)) :
         ?>
-          <a  href="javascript:void()" onclick="getHTML('addGroupePharma')" class="btn btn-success-rgba"><i class="fa fa-plus"></i> Ajouter</a>
+          <a href="javascript:void()" onclick="getHTML('addGroupePharma')" class="btn btn-success-rgba"><i class="fa fa-plus"></i> Ajouter</a>
         <?php endif ?>
       </div>
     </div>
   </div>
 </div>
-<br> <br> 
+<br> <br>
 <div class="container">
   <div class="card m-b-30">
     <div class="card-header">
       <h3 class="card-title"><?= $title ?></h3>
     </div>
     <!-- /.card-header -->
-    
+
     <div class="card-body">
       <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
         <div class="row">
@@ -49,46 +49,47 @@ $title = "Listes de programmation des pharmacie de garde";
                 <?php
                 $i = 0;
                 $data = Manager::getData('groupe_pharmacies', 'statut', 1, true)['data'];
+                // var_dump($data);
                 if (is_array($data) || is_object($data)) {
                   foreach ($data as $value) {
                     $i++;
                     if ($i % 2 == 0) :
-                      ?>
+                ?>
 
-                <tr role="row" class="odd">
-                  <td class="sorting_1"><?= $value['titre'];?></td>
-                  <td><?= $value['code_groupe'];?></td>
-                  <td><?= ""; ?></td>
-                  <td>
-                    <a href="javascript:void()" onclick="getHTML('addPharmaToProgram&id=<?= $value['id'];?>')" class="btn btn-success">
-                      <i class="fa fa-plus white"></i>
-                    </a>
-                    <a href="javascript:void()" onclick="getHTML('addGroupePharma&modif=<?= $value['id'];?>')" class="btn btn-primary">
-                      <i class="fa fa-edit white"></i>
-                    </a>
-                    <a href="javascript:void()" onclick="getHTML('showGroupePharma&delete=<?= $value['id'];?>')" class="btn btn-danger">
-                      <i class="fa fa-trash"></i>
-                    </a>
-                  </td>
-                </tr>
-                <?php else : ?>
-                <tr role="row" class="even">
-                  <td class="sorting_1"><?= $value['titre'];?></td>
-                  <td><?= $value['code_groupe'];?></td>
-                  <td><?= ""; ?></td>
-                  <td>
-                    <a href="javascript:void()" onclick="getHTML('addPharmaToGroupe&id=<?= $value['id'];?>')" class="btn btn-success">
-                      <i class="fa fa-plus white"></i>
-                    </a>
-                    <a href="javascript:void()" onclick="getHTML('addGroupePharma&modif=<?= $value['id'];?>')" class="btn btn-primary">
-                      <i class="fa fa-edit white"></i>
-                    </a>
-                    <a href="javascript:void()" onclick="getHTML('showGroupePharma&delete=<?= $value['id'];?>')" class="btn btn-danger">
-                      <i class="fa fa-trash"></i>
-                    </a>
-                  </td>
-                </tr>
-                <?php endif; ?>
+                      <tr role="row" class="odd">
+                        <td class="sorting_1"><?= $value['titre']; ?></td>
+                        <td><?= $value['code_groupe']; ?></td>
+                        <td><?= ""; ?></td>
+                        <td>
+                          <a href="javascript:void()" onclick="getHTML('addPharmaToProgram&id=<?= $value['id']; ?>')" class="btn btn-success">
+                            <i class="fa fa-plus white"></i>
+                          </a>
+                          <a href="javascript:void()" onclick="getHTML('addGroupePharma&modif=<?= $value['id']; ?>')" class="btn btn-primary">
+                            <i class="fa fa-edit white"></i>
+                          </a>
+                          <a href="javascript:void()" onclick="getHTML('showGroupePharma&delete=<?= $value['id']; ?>')" class="btn btn-danger">
+                            <i class="fa fa-trash"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    <?php else : ?>
+                      <tr role="row" class="even">
+                        <td class="sorting_1"><?= $value['titre']; ?></td>
+                        <td><?= $value['code_groupe']; ?></td>
+                        <td><?= ""; ?></td>
+                        <td>
+                          <a href="javascript:void()" onclick="getHTML('addPharmaToGroupe&id=<?= $value['id']; ?>')" class="btn btn-success">
+                            <i class="fa fa-plus white"></i>
+                          </a>
+                          <a href="javascript:void()" onclick="getHTML('addGroupePharma&modif=<?= $value['id']; ?>')" class="btn btn-primary">
+                            <i class="fa fa-edit white"></i>
+                          </a>
+                          <a href="javascript:void()" onclick="getHTML('showGroupePharma&delete=<?= $value['id']; ?>')" class="btn btn-danger">
+                            <i class="fa fa-trash"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    <?php endif; ?>
                 <?php
                   }
                 } else {
